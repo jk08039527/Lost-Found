@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+    <!-- 框架默认使用的Fragment id -->
+	<item name="fragments_contain" type="id">false</item>
+		
+</resources>
