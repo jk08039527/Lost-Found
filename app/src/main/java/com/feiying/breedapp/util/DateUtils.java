@@ -59,7 +59,7 @@ public class DateUtils {
      * @throws ParseException
      */
     public static int compareTo(String start, String end) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         Date startDate;
         Date endDate;
         try {

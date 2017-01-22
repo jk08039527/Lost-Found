@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="empty_list_text_color">#b2b2b2</color>
+    <color name="poptext_red">#ffff0000</color>
+    <color name="poptext_blue">#ff007aff</color>
+    <color name="pop_bg_pressed">#ddffffff</color>
+    <color name="pop_bg">#e6ffffff</color>
 </resources>

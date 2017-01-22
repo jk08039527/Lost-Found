@@ -6,6 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 
 import com.feiying.breedapp.FYLog.Flog;
 
@@ -64,10 +65,10 @@ public class AndroidUtils {
                 0);
         String uuid = "";
         if (mShare != null
-                && !StringTools.isEmpty(mShare.getString(MOBILE_UUID, ""))) {
+                && !TextUtils.isEmpty(mShare.getString(MOBILE_UUID, ""))) {
             uuid = mShare.getString(MOBILE_UUID, "");
         }
-        if (StringTools.isEmpty(uuid)) {
+        if (TextUtils.isEmpty(uuid)) {
             uuid = UUID.randomUUID().toString();
             mShare.edit().putString(MOBILE_UUID, uuid).commit();
         }

@@ -1,6 +1,8 @@
 package com.feiying.breedapp.util;
 
 
+import android.text.TextUtils;
+
 import com.feiying.breedapp.FYLog.Flog;
 
 import java.math.BigDecimal;
@@ -34,7 +36,7 @@ public class DigitalUtils {
 
     public static String parseFormatStr(String str) {
         String result = "";
-        if (!StringTools.isEmpty(str)) {
+        if (!TextUtils.isEmpty(str)) {
             try {
                 result = "" + fmt.parse(str);
             } catch (ParseException e) {
