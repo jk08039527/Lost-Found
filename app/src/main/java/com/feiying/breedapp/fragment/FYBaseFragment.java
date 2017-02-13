@@ -17,7 +17,7 @@ import com.feiying.breedapp.activity.FYFragmentActivity;
  * Created by Administrator on 2016/3/26.
  */
 public abstract class FYBaseFragment extends Fragment {
-    private static final String LOG_TAG = "FYBaseFragment";
+    private static final String LOG_TAG = FYBaseFragment.class.getSimpleName();
     protected View contentView = null;
     protected FYFragmentActivity activity = null;
     protected boolean isFirstLoad = true;
