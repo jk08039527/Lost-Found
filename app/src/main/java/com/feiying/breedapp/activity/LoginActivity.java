@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.feiying.breedapp.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends FYBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

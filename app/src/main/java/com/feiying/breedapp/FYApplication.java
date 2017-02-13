@@ -18,7 +18,6 @@ public class FYApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mApp = this;
-        settings = this.getSharedPreferences(
-                FYConstants.SharedPreferences_URL, 0);
+        settings = this.getSharedPreferences(FYConstants.SharedPreferences_URL, 0);
     }
 }
