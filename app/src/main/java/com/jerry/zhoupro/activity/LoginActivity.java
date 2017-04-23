@@ -1,14 +1,20 @@
 package com.jerry.zhoupro.activity;
 
-import android.os.Bundle;
-
 import com.jerry.zhoupro.R;
 
 public class LoginActivity extends BaseActivity {
+    @Override
+    protected int getContentLayout() {
+        return R.layout.activity_login;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    protected void initAction() {
+
+    }
+
+    @Override
+    protected void initView() {
+
     }
 }

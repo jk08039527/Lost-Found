@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "com.feiying.breedapp"
-        minSdkVersion 19
+        applicationId "com.jerry.zhoupro"
+        minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -17,11 +17,32 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    signingConfigs {
+        debug {
+            storeFile new File("/Users/wzl-pc/Library/Android/MyKeystore.keystore")
+            storePassword PASSWORD
+            keyAlias "MyKey"
+            keyPassword PASSWORD
+        }
+
+        release {
+            storeFile new File("/Users/wzl-pc/Library/Android/MyKeystore.keystore")
+            storePassword PASSWORD
+            keyAlias "MyKey"
+            keyPassword PASSWORD
+            v2SigningEnabled false
+        }
+    }
+    sourceSets { main { jni.srcDirs = ['src/main/jni', 'src/main/jni/'] } }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23+'
-    compile files('libs/tray.jar')
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:appcompat-v7:25+'
+    compile files('libs/httpmime-4.1.2.jar')
+    compile files('libs/BaiduLBS_Android.jar')
+    compile 'com.jakewharton:butterknife:8.5.1'
 }
