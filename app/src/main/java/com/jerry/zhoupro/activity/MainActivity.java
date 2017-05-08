@@ -1,29 +1,17 @@
 package com.jerry.zhoupro.activity;
 
-import com.baidu.mapapi.map.MapView;
 import com.jerry.zhoupro.R;
 
-import android.widget.Button;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
-
-    @BindView(R.id.button)
-    Button mButton;
-    @BindView(R.id.bmapView)
-    MapView mBmapView;
-
-    @Override
-    protected void initAction() {
-
-    }
-
-    @Override
-    protected void initView() {
-
-    }
+    @BindView(R.id.content)
+    FrameLayout mContent;
 
     @Override
     protected int getContentLayout() {
@@ -31,20 +19,23 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        mBmapView.onResume();
+    protected void initData() {
+
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mBmapView.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mBmapView.onDestroy();
+    @OnClick({R.id.tab_home, R.id.tab_unite, R.id.tab_live, R.id.tab_award, R.id.tab_me})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tab_home:
+                break;
+            case R.id.tab_unite:
+                break;
+            case R.id.tab_live:
+                break;
+            case R.id.tab_award:
+                break;
+            case R.id.tab_me:
+                break;
+        }
     }
 }

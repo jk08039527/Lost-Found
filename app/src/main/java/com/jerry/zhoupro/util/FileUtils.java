@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 
-import com.jerry.zhoupro.FYLog.Mlog;
+import com.jerry.zhoupro.MLog.Mlog;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -5,7 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.NetworkInfo.State;
 
-import com.jerry.zhoupro.FYLog.Mlog;
+import com.jerry.zhoupro.MLog.Mlog;
 
 /**
  * Created by Administrator on 2016/3/27.

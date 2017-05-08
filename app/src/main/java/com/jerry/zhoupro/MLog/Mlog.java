@@ -1,4 +1,4 @@
-package com.jerry.zhoupro.FYLog;
+package com.jerry.zhoupro.MLog;
 
 import android.util.Log;
 

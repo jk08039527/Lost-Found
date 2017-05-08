@@ -9,12 +9,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
-    protected void initAction() {
-
-    }
-
-    @Override
-    protected void initView() {
+    protected void initData() {
 
     }
 }

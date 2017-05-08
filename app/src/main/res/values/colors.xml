@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="themecolor">#3F51B5</color>
+    <color name="themecolorDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="empty_list_text_color">#b2b2b2</color>
     <color name="poptext_red">#ffff0000</color>
     <color name="poptext_blue">#ff007aff</color>
     <color name="pop_bg_pressed">#ddffffff</color>
     <color name="pop_bg">#e6ffffff</color>
+
+    <color name="gray_line_color_primary">#d8d8d8</color>
+    <color name="gray_line_color_second">#e6e6e6</color>
+
+    <!-- bg -->
+    <color name="white">#ffffff</color>
+    <color name="white_press">#e3e3e3</color>
+    <color name="gray_bg">#f4f5f6</color>
+    <color name="gray_bg_pressed">#dfdfdf</color>
+    <color name="black_btn_normal_bg">#3d3d3e</color>
+    <color name="black_btn_press_bg">#373738</color>
+
 </resources>

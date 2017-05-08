@@ -1,5 +1,11 @@
 <resources>
-    <string name="app_name">BreedApp</string>
+    <string name="app_name">LandF</string>
     <string name="cancel">取消</string>
     <string name="ok">确定</string>
+
+    <string name="tab_home">首页</string>
+    <string name="tab_discover">发现</string>
+    <string name="tab_add">发布</string>
+    <string name="tab_msg">消息</string>
+    <string name="tab_me">我</string>
 </resources>

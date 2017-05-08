@@ -10,7 +10,7 @@ import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.webkit.WebView;
 
-import com.jerry.zhoupro.FYLog.Mlog;
+import com.jerry.zhoupro.MLog.Mlog;
 
 import java.util.ArrayList;
 import java.util.List;
