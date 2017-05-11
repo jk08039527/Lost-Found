@@ -7,4 +7,14 @@ package com.jerry.zhoupro.command;
 public class Constants {
     public static String SharedPreferences_URL="SETTING_INFOS";
 
+    /**
+     * Bottom Tab shift
+     */
+    public static final String TAB_HOME = "tabHome";
+    public static final String TAB_FIND = "tabFind";
+    public static final String TAB_RELEASE = "tabRelease";
+    public static final String TAB_MSG = "tabMsg";
+    public static final String TAB_ME = "tabMe";
+
+    public static final String NIL = "";
 }

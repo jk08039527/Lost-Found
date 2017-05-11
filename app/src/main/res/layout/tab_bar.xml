@@ -14,27 +14,27 @@
         android:background="@color/white"
         android:orientation="horizontal">
 
-        <TextView
+        <Button
             android:id="@+id/tab_home"
             style="@style/tab_bar_text_style"
             android:text="@string/tab_home" />
 
-        <TextView
-            android:id="@+id/tab_unite"
+        <Button
+            android:id="@+id/tab_find"
             style="@style/tab_bar_text_style"
             android:text="@string/tab_discover" />
 
-        <TextView
-            android:id="@+id/tab_live"
+        <Button
+            android:id="@+id/tab_add"
             style="@style/tab_bar_text_style"
             android:text="@string/tab_add" />
 
-        <TextView
-            android:id="@+id/tab_award"
+        <Button
+            android:id="@+id/tab_msg"
             style="@style/tab_bar_text_style"
             android:text="@string/tab_msg" />
 
-        <TextView
+        <Button
             android:id="@+id/tab_me"
             style="@style/tab_bar_text_style"
             android:text="@string/tab_me" />

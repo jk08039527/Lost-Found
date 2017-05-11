@@ -6,9 +6,20 @@
     <dimen name="half_px">0.5px</dimen>
     <dimen name="half_dp">0.5dp</dimen>
     <dimen name="one_dp">1dp</dimen>
+    <dimen name="five_dp">5dp</dimen>
+    <dimen name="seven_dp">7dp</dimen>
+    <dimen name="nine_dp">9dp</dimen>
+    <dimen name="twelve_dp">12dp</dimen>
+    <dimen name="fourteen_dp">14dp</dimen>
+    <dimen name="fifteen_dp">15dp</dimen>
+    <dimen name="_38dp">38dp</dimen>
     <dimen name="_48dp">48dp</dimen>
 
-
+    <!--title or tab-->
+    <dimen name="status_bar_height">0dp</dimen>
+    <dimen name="title_bar_height">48dp</dimen>
+    <dimen name="page_margin_left">14dp</dimen>
+    <dimen name="tab_strip_height">40dp</dimen>
 
 
     <!--字体sp-->
@@ -19,5 +30,6 @@
     <dimen name="_16sp">16sp</dimen>
     <dimen name="_17sp">17sp</dimen>
     <dimen name="_18sp">18sp</dimen>
+    <dimen name="_20sp">20sp</dimen>
 
 </resources>

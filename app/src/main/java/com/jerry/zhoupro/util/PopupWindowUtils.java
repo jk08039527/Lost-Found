@@ -1,5 +1,9 @@
 package com.jerry.zhoupro.util;
 
+import java.util.ArrayList;
+
+import com.jerry.zhoupro.R;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -14,10 +18,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-
-import com.jerry.zhoupro.R;
-
-import java.util.ArrayList;
 
 /**
  * Created by wzl on 16-6-16.
@@ -183,10 +183,10 @@ public class PopupWindowUtils {
                         : headTextColor);
                 headTextView.setText(title);
                 headTextView.setPadding(
-                        PxUtil.dip2px(context, 60),
-                        PxUtil.dip2px(context, 15),
-                        PxUtil.dip2px(context, 60),
-                        PxUtil.dip2px(context, 15));
+                        DisplayUtil.dip2px(60),
+                        DisplayUtil.dip2px(15),
+                        DisplayUtil.dip2px(60),
+                        DisplayUtil.dip2px(15));
                 layoutView.addView(headTextView);
             }
 
@@ -194,7 +194,7 @@ public class PopupWindowUtils {
                 textView = new TextView(context);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
-                        PxUtil.dip2px(context, 50)
+                        DisplayUtil.dip2px(50)
                 );
                 layoutParams.setMargins(50, 1, 50, 1);
                 textView.setLayoutParams(layoutParams);
@@ -231,7 +231,7 @@ public class PopupWindowUtils {
             footTextView = new TextView(context);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
-                    PxUtil.dip2px(context, 50)
+                    DisplayUtil.dip2px(50)
             );
             layoutParams.setMargins(50, 10, 50, 10);
             footTextView.setLayoutParams(layoutParams);
