@@ -8,7 +8,7 @@ import android.view.View;
  * Created by wzl-pc on 2017/5/9.
  */
 
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends TitleBaseFragment {
 
     @Override
     public int getContentLayout() {
@@ -16,7 +16,14 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
-    public void initView(View view) {
+    protected String getTitleText() {
+        return getString(R.string.tab_home);
+    }
 
+    @Override
+    public void initView(final View view) {
+        super.initView(view);
+        setGone(titleBack);
+        setGone(titleMore);
     }
 }

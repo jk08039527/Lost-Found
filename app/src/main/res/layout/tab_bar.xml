@@ -22,21 +22,21 @@
         <Button
             android:id="@+id/tab_find"
             style="@style/tab_bar_text_style"
-            android:text="@string/tab_discover" />
+            android:text="@string/discover" />
 
         <Button
             android:id="@+id/tab_add"
             style="@style/tab_bar_text_style"
-            android:text="@string/tab_add" />
+            android:text="@string/realese" />
 
         <Button
             android:id="@+id/tab_msg"
             style="@style/tab_bar_text_style"
-            android:text="@string/tab_msg" />
+            android:text="@string/message" />
 
         <Button
             android:id="@+id/tab_me"
             style="@style/tab_bar_text_style"
-            android:text="@string/tab_me" />
+            android:text="@string/me" />
     </LinearLayout>
 </merge>
