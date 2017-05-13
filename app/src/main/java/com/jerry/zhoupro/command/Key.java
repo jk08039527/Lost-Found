@@ -18,4 +18,5 @@ public class Key {
     public static final String SLASH = "/";
     public static final String VERTICAL_LINE_IN_BRACE = "{| }";
     public static final String VERTICAL_LINE = "|";
+    public static final String phone = "phone";
 }

@@ -23,7 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         initData();
     }
 
-    private void beforeViews() {}
+    protected void beforeViews() {}
 
     protected abstract int getContentLayout() ;
 
