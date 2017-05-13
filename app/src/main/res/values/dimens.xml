@@ -8,12 +8,14 @@
     <dimen name="one_dp">1dp</dimen>
     <dimen name="five_dp">5dp</dimen>
     <dimen name="seven_dp">7dp</dimen>
+    <dimen name="eight_dp">8dp</dimen>
     <dimen name="nine_dp">9dp</dimen>
     <dimen name="twelve_dp">12dp</dimen>
     <dimen name="fourteen_dp">14dp</dimen>
     <dimen name="fifteen_dp">15dp</dimen>
     <dimen name="_38dp">38dp</dimen>
     <dimen name="_48dp">48dp</dimen>
+    <dimen name="fifty_dp">50dp</dimen>
 
     <!--title or tab-->
     <dimen name="status_bar_height">0dp</dimen>
