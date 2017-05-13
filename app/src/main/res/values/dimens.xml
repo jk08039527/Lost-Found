@@ -13,6 +13,7 @@
     <dimen name="twelve_dp">12dp</dimen>
     <dimen name="fourteen_dp">14dp</dimen>
     <dimen name="fifteen_dp">15dp</dimen>
+    <dimen name="thirty_dp">30dp</dimen>
     <dimen name="_38dp">38dp</dimen>
     <dimen name="_48dp">48dp</dimen>
     <dimen name="fifty_dp">50dp</dimen>
@@ -33,5 +34,10 @@
     <dimen name="_17sp">17sp</dimen>
     <dimen name="_18sp">18sp</dimen>
     <dimen name="_20sp">20sp</dimen>
+    <dimen name="row_height">45dp</dimen>
+    <dimen name="_45dp">45dp</dimen>
+    <dimen name="four_dp">4dp</dimen>
+    <dimen name="inputbox_height">51dp</dimen>
+    <dimen name="_22dp">22dp</dimen>
 
 </resources>

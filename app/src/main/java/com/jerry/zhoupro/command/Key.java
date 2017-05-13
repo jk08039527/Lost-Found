@@ -6,4 +6,16 @@ package com.jerry.zhoupro.command;
 
 public class Key {
     public static final String tabTag = "tabTag";
+
+    /**
+     * symbols
+     */
+    public static final String NIL = "";
+    public static final String COMMA = ",";
+    public static final String COLON = ":";
+    public static final String SPACE = " ";
+    public static final String DOUBLE_SPACE = "  ";
+    public static final String SLASH = "/";
+    public static final String VERTICAL_LINE_IN_BRACE = "{| }";
+    public static final String VERTICAL_LINE = "|";
 }

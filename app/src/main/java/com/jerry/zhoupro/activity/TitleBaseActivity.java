@@ -1,9 +1,8 @@
-package com.jerry.zhoupro.fragment;
-
+package com.jerry.zhoupro.activity;
 
 import com.jerry.zhoupro.R;
 
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,9 +10,9 @@ import android.widget.TextView;
 import butterknife.BindView;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link AppCompatActivity} subclass.
  */
-public abstract class TitleBaseFragment extends BaseFragment {
+abstract class TitleBaseActivity extends BaseActivity {
 
     @BindView(R.id.back)
     TextView titleBack;
@@ -29,8 +28,8 @@ public abstract class TitleBaseFragment extends BaseFragment {
     protected abstract String getTitleText();
 
     @Override
-    public void initView(final View view) {
-        super.initView(view);
+    public void initView() {
+        super.initView();
         titleText.setText(getTitleText());
     }
 
@@ -45,4 +44,5 @@ public abstract class TitleBaseFragment extends BaseFragment {
     protected void setInvisible(View view) {
         view.setVisibility(View.INVISIBLE);
     }
+
 }

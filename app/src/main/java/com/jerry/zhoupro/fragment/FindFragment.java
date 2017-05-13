@@ -24,6 +24,5 @@ public class FindFragment extends TitleBaseFragment {
     public void initView(final View view) {
         super.initView(view);
         setGone(titleBack);
-        setGone(titleMore);
     }
 }

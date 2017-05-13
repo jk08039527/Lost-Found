@@ -2,10 +2,11 @@ package com.jerry.zhoupro.activity;
 
 import com.jerry.zhoupro.R;
 
-public class LoginActivity extends TitleBaseActivity {
+public class RegisterActivity extends TitleBaseActivity {
+
     @Override
     protected int getContentLayout() {
-        return R.layout.activity_login;
+        return R.layout.activity_register;
     }
 
     @Override
@@ -15,6 +16,6 @@ public class LoginActivity extends TitleBaseActivity {
 
     @Override
     protected String getTitleText() {
-        return getString(R.string.login);
+        return getString(R.string.register);
     }
 }

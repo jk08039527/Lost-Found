@@ -82,7 +82,8 @@
             android:background="@drawable/titlebar_btn_selector"
             android:paddingLeft="@dimen/fourteen_dp"
             android:paddingRight="@dimen/fourteen_dp"
-            android:src="@mipmap/titlebar_more_icon" />
+            android:src="@mipmap/titlebar_more_icon"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_right"

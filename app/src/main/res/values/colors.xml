@@ -15,6 +15,7 @@
     <!-- bg -->
     <color name="white">#ffffff</color>
     <color name="white_press">#e3e3e3</color>
+    <color name="white_80alpha">#80ffffff</color>
     <color name="gray_bg">#f4f5f6</color>
     <color name="gray_bg_pressed">#dfdfdf</color>
     <color name="black_btn_normal_bg">#3d3d3e</color>
@@ -22,6 +23,8 @@
 
     <color name="red_primary">#fb4e46</color>
     <color name="blue_primary">#3097fd</color>
+    <color name="blue_pressed">#1088ff</color>
+    <color name="blue_disable">#7cbeff</color>
 
     <!-- text color -->
     <color name="primary_text_color">#333333</color>

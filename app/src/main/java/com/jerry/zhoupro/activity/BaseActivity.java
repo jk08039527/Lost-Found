@@ -1,14 +1,16 @@
 package com.jerry.zhoupro.activity;
 
+import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.pop.RefreshDialog;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Unbinder mUnbinder;
     private RefreshDialog progressDialog;
@@ -50,6 +52,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void closeLoadingDialog() {
         if (null != progressDialog && progressDialog.isShowing()) {
             progressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onClick(final View v) {
+        if (v.getId() == R.id.back) {
+            finish();
         }
     }
 }
