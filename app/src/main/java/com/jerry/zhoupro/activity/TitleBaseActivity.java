@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * A simple {@link AppCompatActivity} subclass.
@@ -45,4 +46,8 @@ abstract class TitleBaseActivity extends BaseActivity {
         view.setVisibility(View.INVISIBLE);
     }
 
+    @OnClick({R.id.back})
+    public void onClick(final View v) {
+        finish();
+    }
 }
