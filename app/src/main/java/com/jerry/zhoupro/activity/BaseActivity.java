@@ -1,6 +1,7 @@
 package com.jerry.zhoupro.activity;
 
 import com.jerry.zhoupro.pop.RefreshDialog;
+import com.jerry.zhoupro.util.ToastTools;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -51,5 +52,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (null != progressDialog && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
+    }
+
+    protected void toast(int resId) {
+        ToastTools.showShort(this,resId);
     }
 }

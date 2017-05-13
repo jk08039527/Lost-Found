@@ -21,4 +21,12 @@
     <string name="phone_hint">11位手机号</string>
     <string name="password_space">密&#160;&#160;&#160;&#160;码</string>
     <string name="pwd_hint_text">6–16位字符</string>
+    <string name="input_pwd">请输入密码,6–16个字符</string>
+    <string name="input_phone">请输入正确格式的手机号码</string>
+    <string name="do_not_contains_chinese_in_pwd">密码中请不要设置中文</string>
+    <string name="pwd_too_simple">您的密码过于简单，请重新输入</string>
+    <string name="delete_sure">确认删除吗</string>
+    <string name="remind">提示</string>
+    <string name="confirm_phone_num">确认手机号</string>
+    <string name="send_captcha_to_phone">我们将会发送验证码到您的手机:</string>
 </resources>

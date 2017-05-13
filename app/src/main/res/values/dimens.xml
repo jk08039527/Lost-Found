@@ -11,8 +11,11 @@
     <dimen name="eight_dp">8dp</dimen>
     <dimen name="nine_dp">9dp</dimen>
     <dimen name="twelve_dp">12dp</dimen>
+    <dimen name="thirteen_dp">13dp</dimen>
     <dimen name="fourteen_dp">14dp</dimen>
     <dimen name="fifteen_dp">15dp</dimen>
+    <dimen name="sixteen_dp">16dp</dimen>
+    <dimen name="twenty_dp">20dp</dimen>
     <dimen name="thirty_dp">30dp</dimen>
     <dimen name="_38dp">38dp</dimen>
     <dimen name="_48dp">48dp</dimen>

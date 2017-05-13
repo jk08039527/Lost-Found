@@ -48,6 +48,6 @@ abstract class TitleBaseActivity extends BaseActivity {
 
     @OnClick({R.id.back})
     public void onClick(final View v) {
-        finish();
+        if (v.getId() == R.id.back) { finish(); }
     }
 }
