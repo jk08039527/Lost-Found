@@ -48,9 +48,8 @@
 
     <TextView
         android:id="@+id/pwd_label"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="@dimen/fifty_dp"
-        android:layout_marginRight="8dp"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/page_margin_left"
@@ -81,7 +80,9 @@
         app:layout_constraintBottom_toBottomOf="@+id/pwd_label"
         app:layout_constraintLeft_toRightOf="@+id/pwd_label"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/pwd_label" />
+        app:layout_constraintTop_toTopOf="@+id/pwd_label"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/view"
