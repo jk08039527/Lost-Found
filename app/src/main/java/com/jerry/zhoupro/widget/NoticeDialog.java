@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 /**
  * 仿ios弹框
  */
-public class AlertIosDialog extends Dialog {
+public class NoticeDialog extends Dialog {
 
     protected Context mContext;
     private int margin = 41;// 默认边距是交互性对话框
@@ -41,7 +41,7 @@ public class AlertIosDialog extends Dialog {
     @BindView(R.id.img_line)
     ImageView mImgLine;
 
-    public AlertIosDialog(@NonNull final Context context) {
+    public NoticeDialog(@NonNull final Context context) {
         super(context, R.style.dialog);
         mContext = context;
     }

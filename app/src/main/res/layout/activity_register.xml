@@ -40,10 +40,42 @@
         android:paddingRight="@dimen/fourteen_dp"
         android:textColorHint="@color/hint_text_color"
         android:textSize="@dimen/_16sp"
-        app:layout_constraintBottom_toTopOf="@+id/pwd_label"
         app:layout_constraintLeft_toRightOf="@+id/phone_label"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/phone_label"
+        app:layout_constraintBottom_toBottomOf="@+id/phone_label"
+        app:type="0" />
+
+    <TextView
+        android:id="@+id/nickname_label"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/inputbox_height"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/page_margin_left"
+        android:paddingRight="@dimen/_22dp"
+        android:text="@string/nickname"
+        android:textColor="@color/primary_text_color"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_label" />
+
+    <com.jerry.zhoupro.widget.MyEditText
+        android:id="@+id/et_nickname"
+        style="@style/input_edittext_style"
+        android:layout_width="0dp"
+        android:background="@color/white"
+        android:drawableRight="@mipmap/delete_btn_nor"
+        android:hint="@string/nickname_hint"
+        android:imeOptions="actionNext"
+        android:maxLength="13"
+        android:paddingRight="@dimen/fourteen_dp"
+        android:textColorHint="@color/hint_text_color"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintBottom_toTopOf="@+id/pwd_label"
+        app:layout_constraintLeft_toRightOf="@+id/nickname_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nickname_label"
         app:type="0" />
 
     <TextView
@@ -58,7 +90,7 @@
         android:textSize="@dimen/_16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="@+id/phone_label"
-        app:layout_constraintTop_toBottomOf="@+id/phone_label" />
+        app:layout_constraintTop_toBottomOf="@+id/nickname_label" />
 
     <com.jerry.zhoupro.widget.MyEditText
         android:id="@+id/et_passwd"
@@ -91,10 +123,16 @@
         app:layout_constraintTop_toTopOf="@+id/pwd_label" />
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/view1"
         style="@style/horizontal_line_color_style"
         android:layout_marginLeft="@dimen/page_margin_left"
         app:layout_constraintBottom_toBottomOf="@+id/phone_label" />
+
+    <View
+        android:id="@+id/view2"
+        style="@style/horizontal_line_color_style"
+        android:layout_marginLeft="@dimen/page_margin_left"
+        app:layout_constraintBottom_toBottomOf="@+id/nickname_label" />
 
     <TextView
         android:id="@+id/tv_register"

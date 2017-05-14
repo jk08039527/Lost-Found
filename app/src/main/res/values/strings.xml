@@ -29,4 +29,16 @@
     <string name="remind">提示</string>
     <string name="confirm_phone_num">确认手机号</string>
     <string name="send_captcha_to_phone">我们将会发送验证码到您的手机:</string>
+    <string name="wait_a_moment">请稍候&#8230;</string>
+    <string name="input_verify_code">填写验证码</string>
+    <string name="captcha">验证码</string>
+    <string name="input_received_captcha">请输入收到的验证码</string>
+    <string name="obtain_again">重新获取</string>
+    <string name="input_phone_captcha">请输入您通过%1$s收到的验证码</string>
+    <string name="nickname">昵&#160;&#160;&#160;&#160;称</string>
+    <string name="nickname_hint">请输入昵称</string>
+    <string name="register_fail">注册失败</string>
+    <string name="remain_seconds">还剩%1$d秒</string>
+    <string name="captcha_not_null">验证码不能为空</string>
+    <string name="cacha_has_send">验证码已发送</string>
 </resources>

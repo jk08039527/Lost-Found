@@ -1,12 +1,15 @@
 package com.jerry.zhoupro.activity;
 
+import com.jerry.zhoupro.MLog.Mlog;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.command.Key;
+import com.jerry.zhoupro.data.User;
 import com.jerry.zhoupro.listener.MyTextWatcherListener;
 import com.jerry.zhoupro.util.PatternsUtil;
 import com.jerry.zhoupro.util.ViewUtil;
-import com.jerry.zhoupro.widget.AlertIosDialog;
+import com.jerry.zhoupro.util.WeakHandler;
 import com.jerry.zhoupro.widget.MyEditText;
+import com.jerry.zhoupro.widget.NoticeDialog;
 import com.jerry.zhoupro.widget.PhoneNumEditText;
 
 import android.content.Intent;
@@ -21,6 +24,8 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 public class RegisterActivity extends TitleBaseActivity {
 
@@ -32,6 +37,8 @@ public class RegisterActivity extends TitleBaseActivity {
     ImageView mIvPwdShow;
     @BindView(R.id.tv_register)
     TextView mRegisterTv;
+    @BindView(R.id.et_nickname)
+    MyEditText mEtNickname;
     private String mPhone, mPwd;
     private boolean isHidden;
 
@@ -112,17 +119,54 @@ public class RegisterActivity extends TitleBaseActivity {
                     toast(R.string.pwd_too_simple);
                     return;
                 }
-                final AlertIosDialog iosDialog = new AlertIosDialog(this);
-                iosDialog.setTitleText(R.string.confirm_phone_num);
-                iosDialog.setMessage(getString(R.string.send_captcha_to_phone) + '\n' + mPhone);
-                iosDialog.setPositiveButtonListener(new View.OnClickListener() {
+                final NoticeDialog noticeDialog = new NoticeDialog(this);
+                noticeDialog.show();
+                noticeDialog.setTitleText(R.string.confirm_phone_num);
+                noticeDialog.setMessage(getString(R.string.send_captcha_to_phone) + '\n' + mPhone);
+                noticeDialog.setPositiveButtonListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        iosDialog.dismiss();
+                        noticeDialog.dismiss();
+                        User user = new User();
+                        user.setMobilePhoneNumber(mPhone);
+                        user.setMobilePhoneNumberVerified(false);
+                        user.setPassword(mPwd);
+                        user.setUsername(mEtNickname.getText().toString().trim());
+                        user.signUp(new SaveListener<User>() {
+                            @Override
+                            public void done(final User s, final BmobException e) {
+                                if (e != null) {
+                                    Mlog.e(e.toString());
+                                    toast(R.string.register_fail);
+                                    return;
+                                }
+                                executeVerifyCallBack();
+                            }
+                        });
                     }
                 });
-                iosDialog.show();
                 break;
         }
+    }
+
+    /**
+     * 获取验证码
+     */
+    private void executeVerifyCallBack() {
+        mRegisterTv.setText(getString(R.string.wait_a_moment));
+        mRegisterTv.setEnabled(false);
+        loadingDialog();
+        //模拟请求网络
+        new WeakHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                closeLoadingDialog();
+                mRegisterTv.setText(getString(R.string.register));
+                mRegisterTv.setEnabled(true);
+                Intent intent = new Intent(RegisterActivity.this, RegisterVerifyCodeActivity.class);
+                intent.putExtra(Key.phone, mPhone);
+                startActivity(intent);
+            }
+        }, 800);
     }
 }

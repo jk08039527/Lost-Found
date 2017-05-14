@@ -1,11 +1,16 @@
 package com.jerry.zhoupro.MLog;
 
+import com.jerry.zhoupro.command.Key;
+
+import android.text.TextUtils;
 import android.util.Log;
 
 /**
  * Created by Administrator on 2016/3/26.
  */
 public class Mlog {
+
+    public static String mTagPrefix = "JerryPro"; // 自定义Tag的前缀，可以是作者名
     public static final int VERBOSE = Log.VERBOSE;
     public static final int DEBUG = Log.DEBUG;
     public static final int INFO = Log.INFO;
@@ -54,10 +59,18 @@ public class Mlog {
      * Debug 日志.
      *
      * @param tag
-     * @param s
+     * @param msg
      */
-    public static void d(String tag, String s) {
-        if (Mlog.DEBUG >= LOGLEVEL) Log.d(tag, s);
+    public static void d(String tag, String msg) {
+        if (Mlog.DEBUG >= LOGLEVEL) { Log.d(tag, msg); }
+    }
+
+    public static void d(String msg) {
+        if (Mlog.DEBUG >= LOGLEVEL) {
+            StackTraceElement caller = getCallerStackTraceElement();
+            String tag = generateTag(caller);
+            Log.d(tag, msg);
+        }
     }
 
     /**
@@ -88,6 +101,14 @@ public class Mlog {
      */
     public static void e(String tag, String s) {
         if (Mlog.ERROR >= LOGLEVEL) Log.e(tag, s);
+    }
+
+    public static void e(String msg) {
+        if (Mlog.ERROR >= LOGLEVEL) {
+            StackTraceElement caller = getCallerStackTraceElement();
+            String tag = generateTag(caller);
+            Log.e(tag, msg);
+        }
     }
 
     /**
@@ -198,5 +219,23 @@ public class Mlog {
      */
     public static void e(String tag, String s, Object... args) {
         if (Mlog.ERROR >= LOGLEVEL) Log.e(tag, String.format(s, args));
+    }
+
+    private static String generateTag(StackTraceElement caller) {
+        String tag = "%s.%s()"; // 占位符
+        try {
+            String callerClazzName = caller.getClassName(); // 获取到类名
+            callerClazzName = callerClazzName.substring(callerClazzName.lastIndexOf(".") + 1);
+            tag = String.format(tag, callerClazzName, caller.getMethodName()); // 替换
+        } catch (IndexOutOfBoundsException e) {
+            Log.d(mTagPrefix, e.toString());
+            return mTagPrefix;
+        }
+        tag = TextUtils.isEmpty(mTagPrefix) ? tag : mTagPrefix + Key.COLON + tag;
+        return tag;
+    }
+
+    private static StackTraceElement getCallerStackTraceElement() {
+        return Thread.currentThread().getStackTrace()[4];
     }
 }

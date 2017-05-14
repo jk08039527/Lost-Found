@@ -42,5 +42,8 @@
     <dimen name="four_dp">4dp</dimen>
     <dimen name="inputbox_height">51dp</dimen>
     <dimen name="_22dp">22dp</dimen>
+    <dimen name="_42dp">42dp</dimen>
+    <dimen name="forty_dp">40dp</dimen>
+    <dimen name="seventy_dp">70dp</dimen>
 
 </resources>

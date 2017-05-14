@@ -17,6 +17,9 @@ import butterknife.BindView;
  */
 public class UserFragment extends TitleBaseFragment implements View.OnClickListener {
 
+    private static final int REGISTER = 0x1;
+    private static final int LOGIN = 0x2;
+
     @BindView(R.id.ptz_user)
     PullToZoomScrollViewEx mPtzUser;
 
@@ -53,10 +56,22 @@ public class UserFragment extends TitleBaseFragment implements View.OnClickListe
     public void onClick(final View v) {
         switch (v.getId()) {
             case R.id.tv_register:
-                startActivity(new Intent(getContext(), RegisterActivity.class));
+                startActivityForResult(new Intent(getContext(), RegisterActivity.class), REGISTER);
                 break;
             case R.id.tv_login:
-                startActivity(new Intent(getContext(), LoginActivity.class));
+                startActivityForResult(new Intent(getContext(), LoginActivity.class), LOGIN);
+                break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case REGISTER:
+
+                break;
+            case LOGIN:
                 break;
         }
     }
