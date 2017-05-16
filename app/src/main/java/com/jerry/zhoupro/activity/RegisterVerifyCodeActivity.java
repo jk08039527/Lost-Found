@@ -6,6 +6,7 @@ import com.jerry.zhoupro.listener.MyTextWatcherListener;
 import com.jerry.zhoupro.util.TimeCount;
 import com.jerry.zhoupro.util.WeakHandler;
 
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
@@ -91,7 +92,10 @@ public class RegisterVerifyCodeActivity extends TitleBaseActivity implements Tim
                 mButtonCommit.setText(getString(R.string.ok));
                 mButtonCommit.setEnabled(true);
                 //登录流程
-
+                Intent intent = new Intent();
+                intent.putExtra(Key.has_register, true);
+                setResult(RESULT_OK, intent);
+                finish();
             }
         }, 800);
     }
@@ -111,5 +115,13 @@ public class RegisterVerifyCodeActivity extends TitleBaseActivity implements Tim
     @Override
     public void onCountTick(final long millisUntilFinished) {
         mCalTv.setText(getString(R.string.remain_seconds, millisUntilFinished / 1000));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mCountDownTimer != null) {
+            mCountDownTimer.cancel();
+        }
     }
 }

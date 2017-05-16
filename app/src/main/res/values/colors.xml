@@ -23,6 +23,7 @@
 
     <color name="red_primary">#fb4e46</color>
     <color name="blue_primary">#3097fd</color>
+    <color name="blue_second">#5782ac</color>
     <color name="blue_pressed">#1088ff</color>
     <color name="blue_disable">#7cbeff</color>
 

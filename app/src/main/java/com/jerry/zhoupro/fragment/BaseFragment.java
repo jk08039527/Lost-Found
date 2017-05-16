@@ -1,6 +1,8 @@
 package com.jerry.zhoupro.fragment;
 
 
+import com.jerry.zhoupro.util.ToastTools;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -61,4 +63,9 @@ public abstract class BaseFragment extends Fragment {
      * 数据处理
      */
     protected void initData() {}
+
+
+    protected void toast(int resId) {
+        ToastTools.showShort(getContext(), resId);
+    }
 }

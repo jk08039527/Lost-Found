@@ -509,6 +509,12 @@ public class StringUtils {
         return ret.toString();
     }
 
+    /**
+     * 手机号马赛克
+     */
+    public static String phoneMosaic(String phone) {
+        return phone.substring(0, 3) + "****" + phone.substring(7, phone.length());
+    }
 
     /**
      * 将html占位符转化为正常字符

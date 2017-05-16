@@ -165,8 +165,19 @@ public class RegisterActivity extends TitleBaseActivity {
                 mRegisterTv.setEnabled(true);
                 Intent intent = new Intent(RegisterActivity.this, RegisterVerifyCodeActivity.class);
                 intent.putExtra(Key.phone, mPhone);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
             }
         }, 800);
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK) { return; }
+        Intent intent = new Intent();
+        intent.putExtra(Key.phone, mPhone);
+        intent.putExtra(Key.password, mPwd);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

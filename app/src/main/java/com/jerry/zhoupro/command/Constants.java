@@ -15,6 +15,4 @@ public class Constants {
     public static final String TAB_RELEASE = "tabRelease";
     public static final String TAB_MSG = "tabMsg";
     public static final String TAB_ME = "tabMe";
-
-    public static final String NIL = "";
 }

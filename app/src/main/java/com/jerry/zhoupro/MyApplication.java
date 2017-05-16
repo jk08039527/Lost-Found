@@ -5,6 +5,7 @@ import com.jerry.zhoupro.command.Constants;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 
 import cn.bmob.v3.Bmob;
@@ -27,5 +28,9 @@ public class MyApplication extends Application {
         //注意该方法要再setContentView方法之前实现
         SDKInitializer.initialize(getApplicationContext());
         Bmob.initialize(this, BMOB_ID);
+    }
+
+    public static Context getInstances() {
+        return mApp;
     }
 }

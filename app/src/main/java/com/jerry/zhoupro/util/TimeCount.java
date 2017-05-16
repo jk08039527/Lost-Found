@@ -3,7 +3,7 @@ package com.jerry.zhoupro.util;
 import android.os.CountDownTimer;
 
 /**
- * @author th 2015-7-30 类说明：倒计时工具
+ * @author wzl 2015-7-30 类说明：倒计时工具
  */
 public class TimeCount extends CountDownTimer {
 

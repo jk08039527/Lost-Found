@@ -161,7 +161,7 @@ public class MainActivity extends BaseActivity {
         }
     }
     private void setSelectTab(Bundle extras) {
-        String tabTag = Constants.NIL;
+        String tabTag = Key.NIL;
         if (extras != null) {
             tabTag = extras.getString(Key.tabTag);
         }
