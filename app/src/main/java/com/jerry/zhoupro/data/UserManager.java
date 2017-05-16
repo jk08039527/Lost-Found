@@ -73,7 +73,7 @@ public class UserManager {
         return !TextUtils.isEmpty(PreferenceUtil.getPreference(Key.USER));
     }
 
-    public void clearLoginInfo() {
+    public static void clearLoginInfo() {
         PreferenceUtil.setPreference(Key.USER, Key.NIL);
         PreferenceUtil.setPreference(Key.USER_MOBLIE, Key.NIL);
         PreferenceUtil.setPreference(Key.USER_NICKNAME, Key.NIL);

@@ -11,8 +11,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.jerry.zhoupro.R.id.tv_user_name;
+import butterknife.OnClick;
 
 /**
  * Created by wzl-pc on 2017/5/13.
@@ -20,10 +19,11 @@ import static com.jerry.zhoupro.R.id.tv_user_name;
 
 public class UserHeadView extends LinearLayout {
 
-    protected Context mContext;
+    private Context mContext;
+    private ClickListener mClickListener;
     @BindView(R.id.iv_user_head)
     ImageView mIvUserHead;
-    @BindView(tv_user_name)
+    @BindView(R.id.tv_user_name)
     TextView mTvUserName;
     @BindView(R.id.tv_register)
     TextView mTvRegister;
@@ -77,5 +77,34 @@ public class UserHeadView extends LinearLayout {
             mTvLogin.setVisibility(VISIBLE);
             mTvLogout.setVisibility(GONE);
         }
+    }
+
+    @OnClick({R.id.tv_register, R.id.tv_login, R.id.tv_logout})
+    public void onClick(View view) {
+        if (mClickListener == null) {return;}
+        switch (view.getId()) {
+            case R.id.tv_register:
+                mClickListener.register();
+                break;
+            case R.id.tv_login:
+                mClickListener.login();
+                break;
+            case R.id.tv_logout:
+                mClickListener.logout();
+                break;
+        }
+    }
+
+    public void setClickListener(final ClickListener clickListener) {
+        mClickListener = clickListener;
+    }
+
+    public interface ClickListener {
+
+        void register();
+
+        void login();
+
+        void logout();
     }
 }

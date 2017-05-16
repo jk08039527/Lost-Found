@@ -10,6 +10,7 @@ import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.data.User;
 import com.jerry.zhoupro.data.UserManager;
 import com.jerry.zhoupro.view.UserHeadView;
+import com.jerry.zhoupro.widget.NoticeDialog;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,7 +25,7 @@ import cn.bmob.v3.listener.SaveListener;
 /**
  * Created by wzl-pc on 2017/5/9.
  */
-public class UserFragment extends TitleBaseFragment implements View.OnClickListener {
+public class UserFragment extends TitleBaseFragment implements UserHeadView.ClickListener {
 
     private static final int REGISTER = 0x1;
     private static final int LOGIN = 0x2;
@@ -54,8 +55,7 @@ public class UserFragment extends TitleBaseFragment implements View.OnClickListe
 
     private void loadViewForCode(ViewGroup view) {
         headView = new UserHeadView(getContext());//头部扩展view
-        headView.findViewById(R.id.tv_register).setOnClickListener(this);
-        headView.findViewById(R.id.tv_login).setOnClickListener(this);
+        headView.setClickListener(this);
         View zoomView = LayoutInflater.from(getContext()).inflate(R.layout.profile_zoom_view, view, false);//拉伸背景view
         View contentView = LayoutInflater.from(getContext()).inflate(R.layout.profile_content_view, view, false);
         mPtzUser.setHeaderView(headView);
@@ -70,15 +70,29 @@ public class UserFragment extends TitleBaseFragment implements View.OnClickListe
     }
 
     @Override
-    public void onClick(final View v) {
-        switch (v.getId()) {
-            case R.id.tv_register:
-                startActivityForResult(new Intent(getActivity(), RegisterActivity.class), REGISTER);
-                break;
-            case R.id.tv_login:
-                startActivityForResult(new Intent(getContext(), LoginActivity.class), LOGIN);
-                break;
-        }
+    public void register() {
+        startActivityForResult(new Intent(getActivity(), RegisterActivity.class), REGISTER);
+    }
+
+    @Override
+    public void login() {
+        startActivityForResult(new Intent(getContext(), LoginActivity.class), LOGIN);
+    }
+
+    @Override
+    public void logout() {
+        final NoticeDialog noticeDialog = new NoticeDialog(getContext());
+        noticeDialog.show();
+        noticeDialog.setTitleText(R.string.remind);
+        noticeDialog.setMessage(getString(R.string.confirm_logout));
+        noticeDialog.setPositiveButtonListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                noticeDialog.dismiss();
+                UserManager.clearLoginInfo();
+                updateHeadView(false);
+            }
+        });
     }
 
     @Override
