@@ -43,4 +43,5 @@
     <string name="cacha_has_send">验证码已发送</string>
     <string name="login_fail">登录失败</string>
     <string name="forget_pwd">忘记密码</string>
+    <string name="logout">退出登录</string>
 </resources>

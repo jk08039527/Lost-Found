@@ -8,12 +8,14 @@ import com.jerry.zhoupro.activity.LoginActivity;
 import com.jerry.zhoupro.activity.RegisterActivity;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.data.User;
-import com.jerry.zhoupro.util.PreferenceUtil;
+import com.jerry.zhoupro.data.UserManager;
+import com.jerry.zhoupro.view.UserHeadView;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import butterknife.BindView;
 import cn.bmob.v3.exception.BmobException;
@@ -26,6 +28,8 @@ public class UserFragment extends TitleBaseFragment implements View.OnClickListe
 
     private static final int REGISTER = 0x1;
     private static final int LOGIN = 0x2;
+    private String userName = "";
+    private UserHeadView headView;
 
     @BindView(R.id.ptz_user)
     PullToZoomScrollViewEx mPtzUser;
@@ -45,18 +49,24 @@ public class UserFragment extends TitleBaseFragment implements View.OnClickListe
         super.initView(view);
         setGone(titleBack);
         setGone(titleMore);
-        loadViewForCode();
+        loadViewForCode((ViewGroup) view);
     }
 
-    private void loadViewForCode() {
-        View headView = LayoutInflater.from(getContext()).inflate(R.layout.profile_head_view, null, false);//头部扩展view
+    private void loadViewForCode(ViewGroup view) {
+        headView = new UserHeadView(getContext());//头部扩展view
         headView.findViewById(R.id.tv_register).setOnClickListener(this);
         headView.findViewById(R.id.tv_login).setOnClickListener(this);
-        View zoomView = LayoutInflater.from(getContext()).inflate(R.layout.profile_zoom_view, null, false);//拉伸背景view
-        View contentView = LayoutInflater.from(getContext()).inflate(R.layout.profile_content_view, null, false);
+        View zoomView = LayoutInflater.from(getContext()).inflate(R.layout.profile_zoom_view, view, false);//拉伸背景view
+        View contentView = LayoutInflater.from(getContext()).inflate(R.layout.profile_content_view, view, false);
         mPtzUser.setHeaderView(headView);
         mPtzUser.setZoomView(zoomView);
         mPtzUser.setScrollContentView(contentView);
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        updateHeadView(UserManager.hasLogin());
     }
 
     @Override
@@ -77,9 +87,8 @@ public class UserFragment extends TitleBaseFragment implements View.OnClickListe
         if (resultCode != Activity.RESULT_OK) { return; }
         switch (requestCode) {
             case REGISTER:
-            case LOGIN:
                 User user = new User();
-                user.setMobilePhoneNumber(data.getStringExtra(Key.phone));
+                user.setUsername(data.getStringExtra(Key.phone));
                 user.setPassword(data.getStringExtra(Key.password));
                 user.login(new SaveListener<User>() {
                     @Override
@@ -88,13 +97,18 @@ public class UserFragment extends TitleBaseFragment implements View.OnClickListe
                             Mlog.e(e.toString());
                             toast(R.string.login_fail);
                         }
-                        PreferenceUtil.setPreference(Key.USER, user.getObjectId());
-                        PreferenceUtil.setPreference(Key.USER_MOBLIE, user.getMobilePhoneNumber());
-                        PreferenceUtil.setPreference(Key.USER_NICKNAME, user.getUsername());
-                        PreferenceUtil.setPreference(Key.USER_SESSIONTOKEN, user.getSessionToken());
+                        UserManager.getInstance().saveToLocal(user);
                     }
                 });
                 break;
+            case LOGIN:
+                break;
         }
+        updateHeadView(true);
+    }
+
+    private void updateHeadView(boolean hasLogin) {
+        headView.setUserText(hasLogin ? UserManager.getInstance().getNickname() : Key.NIL);
+        headView.updateUI(hasLogin);
     }
 }

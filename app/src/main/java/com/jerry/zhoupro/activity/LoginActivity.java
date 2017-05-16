@@ -1,7 +1,10 @@
 package com.jerry.zhoupro.activity;
 
+import com.jerry.zhoupro.MLog.Mlog;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.command.Key;
+import com.jerry.zhoupro.data.User;
+import com.jerry.zhoupro.data.UserManager;
 import com.jerry.zhoupro.listener.MyTextWatcherListener;
 import com.jerry.zhoupro.util.ImeUtils;
 import com.jerry.zhoupro.util.PreferenceUtil;
@@ -22,6 +25,8 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 public class LoginActivity extends TitleBaseActivity {
 
@@ -58,14 +63,14 @@ public class LoginActivity extends TitleBaseActivity {
         mEtAccount.addTextChangedListener(new MyTextWatcherListener() {
             @Override
             public void afterTextChanged(Editable s) {
-                mTvLogin.setEnabled(mEtAccount.getText().length() > 5 && s.length() > 10);
+                mTvLogin.setEnabled(mEtPasswd.getText().length() > 5 && s.length() > 10);
             }
         });
 
         mEtPasswd.addTextChangedListener(new MyTextWatcherListener() {
             @Override
             public void afterTextChanged(Editable s) {
-                mTvLogin.setEnabled(mEtPasswd.getText().length() > 10 && s.length() > 5);
+                mTvLogin.setEnabled(mEtAccount.getText().length() > 10 && s.length() > 5);
             }
         });
         if (!TextUtils.isEmpty(lastPhone)) {
@@ -83,6 +88,7 @@ public class LoginActivity extends TitleBaseActivity {
         switch (v.getId()) {
             case R.id.tv_reg:
                 startActivityForResult(new Intent(this, RegisterActivity.class), Key.CODE_101);
+                finish();
                 break;
 //            case R.id.tv_forget_pwd:
 //                startActivityForResult(new Intent(this, ResetPwdActivity.class), Key.CODE_101);
@@ -105,11 +111,22 @@ public class LoginActivity extends TitleBaseActivity {
                 if (TextUtils.isEmpty(username) || TextUtils.isEmpty(passWd)) {
                     return;
                 }
-                ImeUtils.hideIme(this);
-                Intent intent = new Intent();
-                intent.putExtra(Key.phone, username);
-                intent.putExtra(Key.password, passWd);
-                setResult(RESULT_OK, intent);
+                User user = new User();
+                user.setUsername(username);
+                user.setPassword(passWd);
+                user.login(new SaveListener<User>() {
+                    @Override
+                    public void done(final User user, final BmobException e) {
+                        if (e != null) {
+                            Mlog.e(e.toString());
+                            toast(R.string.login_fail);
+                        }
+                        UserManager.getInstance().saveToLocal(user);
+                        ImeUtils.hideIme(LoginActivity.this);
+                        setResult(RESULT_OK);
+                        finish();
+                    }
+                });
                 break;
         }
     }

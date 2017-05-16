@@ -6,7 +6,6 @@
     android:background="@color/gray_bg">
 
     <include
-        android:id="@+id/include_title_bar"
         layout="@layout/title_bar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -25,7 +24,7 @@
         android:textColor="@color/primary_text_color"
         android:textSize="@dimen/_16sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_title_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/title_bar" />
 
     <com.jerry.zhoupro.widget.PhoneNumEditText
         android:id="@+id/et_account"

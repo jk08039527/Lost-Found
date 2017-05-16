@@ -128,10 +128,11 @@ public class RegisterActivity extends TitleBaseActivity {
                     public void onClick(View v) {
                         noticeDialog.dismiss();
                         User user = new User();
+                        user.setUsername(mPhone);
                         user.setMobilePhoneNumber(mPhone);
                         user.setMobilePhoneNumberVerified(false);
                         user.setPassword(mPwd);
-                        user.setUsername(mEtNickname.getText().toString().trim());
+                        user.setNickname(mEtNickname.getText().toString().trim());
                         user.signUp(new SaveListener<User>() {
                             @Override
                             public void done(final User s, final BmobException e) {
