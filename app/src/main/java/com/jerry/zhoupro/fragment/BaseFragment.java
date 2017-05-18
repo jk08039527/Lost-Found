@@ -17,7 +17,7 @@ import butterknife.Unbinder;
 /**
  * Created by Administrator on 2016/3/26.
  */
-public abstract class BaseFragment extends Fragment {
+abstract class BaseFragment extends Fragment {
 
     private static final String LOG_TAG = BaseFragment.class.getSimpleName();
     private Context mContext;

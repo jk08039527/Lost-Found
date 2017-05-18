@@ -2,7 +2,7 @@
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/imageView"
+    android:id="@+id/iv_menu"
     android:src="@mipmap/splash01"
     android:contentDescription="@string/app_name"
     android:scaleType="centerCrop"

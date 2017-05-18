@@ -9,6 +9,7 @@ import com.jerry.zhoupro.activity.RegisterActivity;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.data.User;
 import com.jerry.zhoupro.data.UserManager;
+import com.jerry.zhoupro.view.UserContentView;
 import com.jerry.zhoupro.view.UserHeadView;
 import com.jerry.zhoupro.widget.NoticeDialog;
 
@@ -17,6 +18,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import butterknife.BindView;
 import cn.bmob.v3.exception.BmobException;
@@ -25,7 +27,7 @@ import cn.bmob.v3.listener.SaveListener;
 /**
  * Created by wzl-pc on 2017/5/9.
  */
-public class UserFragment extends TitleBaseFragment implements UserHeadView.ClickListener {
+public class UserFragment extends TitleBaseFragment implements UserHeadView.ClickListener, AdapterView.OnItemClickListener {
 
     private static final int REGISTER = 0x1;
     private static final int LOGIN = 0x2;
@@ -57,7 +59,8 @@ public class UserFragment extends TitleBaseFragment implements UserHeadView.Clic
         headView = new UserHeadView(getContext());//头部扩展view
         headView.setClickListener(this);
         View zoomView = LayoutInflater.from(getContext()).inflate(R.layout.profile_zoom_view, view, false);//拉伸背景view
-        View contentView = LayoutInflater.from(getContext()).inflate(R.layout.profile_content_view, view, false);
+        UserContentView contentView = new UserContentView(getContext());
+        contentView.setOnItemClickListener(this);
         mPtzUser.setHeaderView(headView);
         mPtzUser.setZoomView(zoomView);
         mPtzUser.setScrollContentView(contentView);
@@ -124,5 +127,16 @@ public class UserFragment extends TitleBaseFragment implements UserHeadView.Clic
     private void updateHeadView(boolean hasLogin) {
         headView.setUserText(hasLogin ? UserManager.getInstance().getNickname() : Key.NIL);
         headView.updateUI(hasLogin);
+    }
+
+    /**
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
+    @Override
+    public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
+        //TODO UserMenu点击事件
     }
 }

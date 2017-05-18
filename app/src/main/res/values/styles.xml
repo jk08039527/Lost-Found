@@ -60,6 +60,13 @@
         <item name="android:background">@color/gray_line_color_primary</item>
     </style>
 
+
+    <style name="tab_horizontal_line_color_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/half_px</item>
+        <item name="android:background">@color/gray_line_color_second</item>
+    </style>
+
     <style name="primary_btn_style">
         <item name="android:layout_marginLeft">@dimen/page_margin_left</item>
         <item name="android:layout_marginRight">@dimen/page_margin_left</item>
