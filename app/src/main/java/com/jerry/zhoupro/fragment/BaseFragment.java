@@ -68,4 +68,16 @@ abstract class BaseFragment extends Fragment {
     protected void toast(int resId) {
         ToastTools.showShort(getContext(), resId);
     }
+
+    protected void setGone(View view) {
+        view.setVisibility(View.GONE);
+    }
+
+    protected void setVisible(View view) {
+        view.setVisibility(View.VISIBLE);
+    }
+
+    protected void setInvisible(View view) {
+        view.setVisibility(View.INVISIBLE);
+    }
 }

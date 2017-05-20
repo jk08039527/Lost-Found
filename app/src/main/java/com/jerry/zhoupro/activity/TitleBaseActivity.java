@@ -34,18 +34,6 @@ abstract class TitleBaseActivity extends BaseActivity {
         titleText.setText(getTitleText());
     }
 
-    protected void setGone(View view) {
-        view.setVisibility(View.GONE);
-    }
-
-    protected void setVisible(View view) {
-        view.setVisibility(View.VISIBLE);
-    }
-
-    protected void setInvisible(View view) {
-        view.setVisibility(View.INVISIBLE);
-    }
-
     @OnClick({R.id.back})
     public void onClick(final View v) {
         if (v.getId() == R.id.back) { finish(); }

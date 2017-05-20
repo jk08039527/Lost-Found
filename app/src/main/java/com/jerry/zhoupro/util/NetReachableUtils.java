@@ -5,8 +5,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.NetworkInfo.State;
 
-import com.jerry.zhoupro.MLog.Mlog;
-
 /**
  * Created by Administrator on 2016/3/27.
  * 检测网络是否可以连接工具类

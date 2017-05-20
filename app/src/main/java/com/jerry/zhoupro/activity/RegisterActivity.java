@@ -1,6 +1,6 @@
 package com.jerry.zhoupro.activity;
 
-import com.jerry.zhoupro.MLog.Mlog;
+import com.jerry.zhoupro.util.Mlog;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.data.User;

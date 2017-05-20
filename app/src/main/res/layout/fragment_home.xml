@@ -3,10 +3,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        layout="@layout/title_bar"
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/blue_primary"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingTop="@dimen/status_bar_height">
 
+        <RadioGroup
+            android:id="@+id/rg_main"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_29dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/ten_dp"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:background="@drawable/tab_title_bg"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_lost"
+                style="@style/home_live_tab_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_27dp"
+                android:layout_marginLeft="@dimen/one_dp"
+                android:background="@drawable/tab_title_left_selector"
+                android:button="@null"
+                android:checked="true"
+                android:paddingLeft="@dimen/eight_dp"
+                android:paddingRight="@dimen/eight_dp"
+                android:text="@string/lost_info" />
+
+            <RadioButton
+                android:id="@+id/rb_found"
+                style="@style/home_live_tab_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_27dp"
+                android:layout_marginRight="@dimen/one_dp"
+                android:background="@drawable/tab_title_right_selector"
+                android:button="@null"
+                android:paddingLeft="@dimen/eight_dp"
+                android:paddingRight="@dimen/eight_dp"
+                android:text="@string/found_info" />
+
+        </RadioGroup>
+
+    </FrameLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_lost_found"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 </android.support.constraint.ConstraintLayout>

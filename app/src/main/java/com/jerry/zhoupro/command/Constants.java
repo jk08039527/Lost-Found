@@ -15,4 +15,10 @@ public class Constants {
     public static final String TAB_RELEASE = "tabRelease";
     public static final String TAB_MSG = "tabMsg";
     public static final String TAB_ME = "tabMe";
+
+    /**
+     * Lost & Found
+     */
+    public static final int LOST = 0x1;
+    public static final int FOUND = 0x2;
 }

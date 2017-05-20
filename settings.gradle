@@ -1,1 +1,1 @@
-include ':app',':pullZoomLibrary'
+include ':app',':pullZoomLibrary','pullToRefreshLibrary'

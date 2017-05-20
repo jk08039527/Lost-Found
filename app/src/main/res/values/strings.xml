@@ -45,4 +45,8 @@
     <string name="forget_pwd">忘记密码</string>
     <string name="logout">退出登录</string>
     <string name="confirm_logout">确认要退出登录吗？</string>
+    <string name="lost">失物</string>
+    <string name="found">招领</string>
+    <string name="lost_info">失物信息</string>
+    <string name="found_info">招领信息</string>
 </resources>

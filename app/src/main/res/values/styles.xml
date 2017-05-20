@@ -104,6 +104,12 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <style name="home_live_tab_title_text">
+        <item name="android:textColor">@color/tab_title_text_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/_15sp</item>
+    </style>
+
     <declare-styleable name="PhoneNumEditText">
         <attr name="type" format="integer" />
     </declare-styleable>

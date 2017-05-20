@@ -33,16 +33,4 @@ public abstract class TitleBaseFragment extends BaseFragment {
         super.initView(view);
         titleText.setText(getTitleText());
     }
-
-    protected void setGone(View view) {
-        view.setVisibility(View.GONE);
-    }
-
-    protected void setVisible(View view) {
-        view.setVisibility(View.VISIBLE);
-    }
-
-    protected void setInvisible(View view) {
-        view.setVisibility(View.INVISIBLE);
-    }
 }

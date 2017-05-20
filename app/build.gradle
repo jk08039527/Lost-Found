@@ -41,6 +41,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':pullZoomLibrary')
+    compile project(':pullToRefreshLibrary')
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
     //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
     compile 'com.android.support.constraint:constraint-layout:1.0.2'

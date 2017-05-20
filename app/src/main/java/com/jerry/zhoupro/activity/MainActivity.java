@@ -6,8 +6,8 @@ import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.fragment.FindFragment;
 import com.jerry.zhoupro.fragment.HomeFragment;
 import com.jerry.zhoupro.fragment.MsgFragment;
-import com.jerry.zhoupro.fragment.ReleaseFragment;
 import com.jerry.zhoupro.fragment.UserFragment;
+import com.jerry.zhoupro.pop.ReleasePopWindow;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -114,12 +114,7 @@ public class MainActivity extends BaseActivity {
                 }
                 break;
             case Constants.TAB_RELEASE:
-                if (null == fragmentRelease) {
-                    fragmentRelease = new ReleaseFragment();
-                    transaction.add(R.id.content, fragmentRelease);
-                } else {
-                    transaction.show(fragmentRelease);
-                }
+                new ReleasePopWindow(this).show();
                 break;
             case Constants.TAB_MSG:
                 if (null == fragmentMsg) {

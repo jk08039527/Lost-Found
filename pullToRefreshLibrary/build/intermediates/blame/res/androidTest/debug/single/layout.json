@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/wzl-pc/Androidpro/fws/FYApp/pullToRefreshLibrary/build/intermediates/res/merged/androidTest/debug/layout/pull_to_refresh_header_vertical.xml",
+        "source": "/Users/wzl-pc/Androidpro/fws/FYApp/pullToRefreshLibrary/build/intermediates/bundles/debug/res/layout/pull_to_refresh_header_vertical.xml"
+    },
+    {
+        "merged": "/Users/wzl-pc/Androidpro/fws/FYApp/pullToRefreshLibrary/build/intermediates/res/merged/androidTest/debug/layout/pull_to_refresh_header_horizontal.xml",
+        "source": "/Users/wzl-pc/Androidpro/fws/FYApp/pullToRefreshLibrary/build/intermediates/bundles/debug/res/layout/pull_to_refresh_header_horizontal.xml"
+    },
+    {
+        "merged": "/Users/wzl-pc/Desktop/study/pullToRefresh/library/build/intermediates/res/merged/androidTest/debug/layout/pull_to_refresh_header_vertical.xml",
+        "source": "/Users/wzl-pc/Desktop/study/pullToRefresh/library/build/intermediates/bundles/debug/res/layout/pull_to_refresh_header_vertical.xml"
+    },
+    {
+        "merged": "/Users/wzl-pc/Desktop/study/pullToRefresh/library/build/intermediates/res/merged/androidTest/debug/layout/pull_to_refresh_header_horizontal.xml",
+        "source": "/Users/wzl-pc/Desktop/study/pullToRefresh/library/build/intermediates/bundles/debug/res/layout/pull_to_refresh_header_horizontal.xml"
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/wzl-pc/Desktop/study/pullToRefresh/library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/indicator_arrow.png",
+        "source": "/Users/wzl-pc/Desktop/study/pullToRefresh/library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/indicator_arrow.png"
+    },
+    {
+        "merged": "/Users/wzl-pc/Androidpro/fws/FYApp/pullToRefreshLibrary/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/default_ptr_rotate.png",
+        "source": "/Users/wzl-pc/Androidpro/fws/FYApp/pullToRefreshLibrary/build/intermediates/bundles/debug/res/drawable-hdpi-v4/default_ptr_rotate.png"
+    },
+    {
+        "merged": "/Users/wzl-pc/Androidpro/fws/FYApp/pullToRefreshLibrary/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/indicator_arrow.png",
+        "source": "/Users/wzl-pc/Androidpro/fws/FYApp/pullToRefreshLibrary/build/intermediates/bundles/debug/res/drawable-hdpi-v4/indicator_arrow.png"
+    },
+    {
+        "merged": "/Users/wzl-pc/Androidpro/fws/FYApp/pullToRefreshLibrary/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/default_ptr_flip.png",
+        "source": "/Users/wzl-pc/Androidpro/fws/FYApp/pullToRefreshLibrary/build/intermediates/bundles/debug/res/drawable-hdpi-v4/default_ptr_flip.png"
+    },
+    {
+        "merged": "/Users/wzl-pc/Desktop/study/pullToRefresh/library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/default_ptr_rotate.png",
+        "source": "/Users/wzl-pc/Desktop/study/pullToRefresh/library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/default_ptr_rotate.png"
+    },
+    {
+        "merged": "/Users/wzl-pc/Desktop/study/pullToRefresh/library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/default_ptr_flip.png",
+        "source": "/Users/wzl-pc/Desktop/study/pullToRefresh/library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/default_ptr_flip.png"
+    }
+]

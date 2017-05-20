@@ -20,7 +20,7 @@ import butterknife.OnClick;
 public class UserHeadView extends LinearLayout {
 
     private Context mContext;
-    private ClickListener mClickListener;
+    private HeadClickListener mHeadClickListener;
     @BindView(R.id.iv_user_head)
     ImageView mIvUserHead;
     @BindView(R.id.tv_user_name)
@@ -81,25 +81,25 @@ public class UserHeadView extends LinearLayout {
 
     @OnClick({R.id.tv_register, R.id.tv_login, R.id.tv_logout})
     public void onClick(View view) {
-        if (mClickListener == null) {return;}
+        if (mHeadClickListener == null) {return;}
         switch (view.getId()) {
             case R.id.tv_register:
-                mClickListener.register();
+                mHeadClickListener.register();
                 break;
             case R.id.tv_login:
-                mClickListener.login();
+                mHeadClickListener.login();
                 break;
             case R.id.tv_logout:
-                mClickListener.logout();
+                mHeadClickListener.logout();
                 break;
         }
     }
 
-    public void setClickListener(final ClickListener clickListener) {
-        mClickListener = clickListener;
+    public void setHeadClickListener(final HeadClickListener headClickListener) {
+        mHeadClickListener = headClickListener;
     }
 
-    public interface ClickListener {
+    public interface HeadClickListener {
 
         void register();
 

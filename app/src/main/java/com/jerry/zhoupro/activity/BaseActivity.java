@@ -5,6 +5,7 @@ import com.jerry.zhoupro.util.ToastTools;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -52,6 +53,18 @@ abstract class BaseActivity extends AppCompatActivity {
         if (null != progressDialog && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
+    }
+
+    protected void setGone(View view) {
+        view.setVisibility(View.GONE);
+    }
+
+    protected void setVisible(View view) {
+        view.setVisibility(View.VISIBLE);
+    }
+
+    protected void setInvisible(View view) {
+        view.setVisibility(View.INVISIBLE);
     }
 
     protected void toast(int resId) {

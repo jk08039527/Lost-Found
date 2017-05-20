@@ -6,7 +6,7 @@ import java.util.List;
 import android.content.Context;
 import android.widget.BaseAdapter;
 
-abstract class CommonAdapter<T> extends BaseAdapter {
+public abstract class CommonAdapter<T> extends BaseAdapter {
 
     Context mContext;
     List<T> mDatas;

@@ -2,7 +2,7 @@ package com.jerry.zhoupro.fragment;
 
 
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
-import com.jerry.zhoupro.MLog.Mlog;
+import com.jerry.zhoupro.util.Mlog;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.activity.LoginActivity;
 import com.jerry.zhoupro.activity.RegisterActivity;
@@ -27,11 +27,10 @@ import cn.bmob.v3.listener.SaveListener;
 /**
  * Created by wzl-pc on 2017/5/9.
  */
-public class UserFragment extends TitleBaseFragment implements UserHeadView.ClickListener, AdapterView.OnItemClickListener {
+public class UserFragment extends TitleBaseFragment implements AdapterView.OnItemClickListener {
 
     private static final int REGISTER = 0x1;
     private static final int LOGIN = 0x2;
-    private String userName = "";
     private UserHeadView headView;
 
     @BindView(R.id.ptz_user)
@@ -57,7 +56,33 @@ public class UserFragment extends TitleBaseFragment implements UserHeadView.Clic
 
     private void loadViewForCode(ViewGroup view) {
         headView = new UserHeadView(getContext());//头部扩展view
-        headView.setClickListener(this);
+        headView.setHeadClickListener(new UserHeadView.HeadClickListener() {
+            @Override
+            public void register() {
+                startActivityForResult(new Intent(getActivity(), RegisterActivity.class), REGISTER);
+            }
+
+            @Override
+            public void login() {
+                startActivityForResult(new Intent(getContext(), LoginActivity.class), LOGIN);
+            }
+
+            @Override
+            public void logout() {
+                final NoticeDialog noticeDialog = new NoticeDialog(getContext());
+                noticeDialog.show();
+                noticeDialog.setTitleText(R.string.remind);
+                noticeDialog.setMessage(getString(R.string.confirm_logout));
+                noticeDialog.setPositiveButtonListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        noticeDialog.dismiss();
+                        UserManager.clearLoginInfo();
+                        updateHeadView(false);
+                    }
+                });
+            }
+        });
         View zoomView = LayoutInflater.from(getContext()).inflate(R.layout.profile_zoom_view, view, false);//拉伸背景view
         UserContentView contentView = new UserContentView(getContext());
         contentView.setOnItemClickListener(this);
@@ -70,32 +95,6 @@ public class UserFragment extends TitleBaseFragment implements UserHeadView.Clic
     protected void initData() {
         super.initData();
         updateHeadView(UserManager.hasLogin());
-    }
-
-    @Override
-    public void register() {
-        startActivityForResult(new Intent(getActivity(), RegisterActivity.class), REGISTER);
-    }
-
-    @Override
-    public void login() {
-        startActivityForResult(new Intent(getContext(), LoginActivity.class), LOGIN);
-    }
-
-    @Override
-    public void logout() {
-        final NoticeDialog noticeDialog = new NoticeDialog(getContext());
-        noticeDialog.show();
-        noticeDialog.setTitleText(R.string.remind);
-        noticeDialog.setMessage(getString(R.string.confirm_logout));
-        noticeDialog.setPositiveButtonListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                noticeDialog.dismiss();
-                UserManager.clearLoginInfo();
-                updateHeadView(false);
-            }
-        });
     }
 
     @Override

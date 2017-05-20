@@ -3,8 +3,6 @@ package com.jerry.zhoupro.util;
 
 import android.text.TextUtils;
 
-import com.jerry.zhoupro.MLog.Mlog;
-
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;

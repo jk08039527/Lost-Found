@@ -6,20 +6,33 @@
     <dimen name="half_px">0.5px</dimen>
     <dimen name="half_dp">0.5dp</dimen>
     <dimen name="one_dp">1dp</dimen>
+    <dimen name="four_dp">4dp</dimen>
     <dimen name="five_dp">5dp</dimen>
     <dimen name="seven_dp">7dp</dimen>
     <dimen name="eight_dp">8dp</dimen>
     <dimen name="nine_dp">9dp</dimen>
+    <dimen name="ten_dp">10dp</dimen>
     <dimen name="twelve_dp">12dp</dimen>
     <dimen name="thirteen_dp">13dp</dimen>
     <dimen name="fourteen_dp">14dp</dimen>
     <dimen name="fifteen_dp">15dp</dimen>
     <dimen name="sixteen_dp">16dp</dimen>
     <dimen name="twenty_dp">20dp</dimen>
+    <dimen name="_22dp">22dp</dimen>
+    <dimen name="_27dp">27dp</dimen>
+    <dimen name="_29dp">29dp</dimen>
     <dimen name="thirty_dp">30dp</dimen>
     <dimen name="_38dp">38dp</dimen>
+    <dimen name="_45dp">45dp</dimen>
+    <dimen name="row_height">45dp</dimen>
+    <dimen name="forty_dp">40dp</dimen>
+    <dimen name="_42dp">42dp</dimen>
     <dimen name="_48dp">48dp</dimen>
     <dimen name="fifty_dp">50dp</dimen>
+    <dimen name="inputbox_height">51dp</dimen>
+    <dimen name="sixty_dp">60dp</dimen>
+    <dimen name="seventy_dp">70dp</dimen>
+    <dimen name="eighty_dp">80dp</dimen>
 
     <!--title or tab-->
     <dimen name="status_bar_height">0dp</dimen>
@@ -37,15 +50,5 @@
     <dimen name="_17sp">17sp</dimen>
     <dimen name="_18sp">18sp</dimen>
     <dimen name="_20sp">20sp</dimen>
-    <dimen name="row_height">45dp</dimen>
-    <dimen name="_45dp">45dp</dimen>
-    <dimen name="four_dp">4dp</dimen>
-    <dimen name="inputbox_height">51dp</dimen>
-    <dimen name="_22dp">22dp</dimen>
-    <dimen name="_42dp">42dp</dimen>
-    <dimen name="forty_dp">40dp</dimen>
-    <dimen name="seventy_dp">70dp</dimen>
-    <dimen name="sixty_dp">60dp</dimen>
-    <dimen name="eighty_dp">80dp</dimen>
 
 </resources>
