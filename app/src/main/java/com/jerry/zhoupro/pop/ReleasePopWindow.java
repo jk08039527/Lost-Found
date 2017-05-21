@@ -1,7 +1,5 @@
 package com.jerry.zhoupro.pop;
 
-import java.lang.ref.WeakReference;
-
 import com.jerry.zhoupro.R;
 
 import android.app.Activity;
@@ -18,12 +16,12 @@ import butterknife.OnClick;
 
 public class ReleasePopWindow extends PopupWindow {
 
-    private WeakReference<Activity> activity;
+    private PopMenuClickListener mPopMenuClickListener;
 
-    public ReleasePopWindow(Activity activity) {
+    public ReleasePopWindow(Activity activity, PopMenuClickListener popMenuClickListener) {
         super(activity);
-        this.activity = new WeakReference<>(activity);
         init(activity);
+        mPopMenuClickListener = popMenuClickListener;
     }
 
     private void init(Activity activity) {
@@ -52,17 +50,21 @@ public class ReleasePopWindow extends PopupWindow {
         super.showAtLocation(getContentView(), Gravity.BOTTOM, 0, 0);
     }
 
-    @OnClick({R.id.tv_release_lost, R.id.tv_release_found, R.id.iv_cancel/*, R.id.out_side_view*/})
+    @OnClick({R.id.tv_release_lost, R.id.tv_release_found, R.id.iv_cancel})
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_release_lost:
-                break;
-            case R.id.tv_release_found:
-                break;
-            case R.id.iv_cancel:
-//            case R.id.out_side_view:
-                dismiss();
-                break;
+        if (view.getId() == R.id.iv_cancel) {
+            dismiss();
+            return;
         }
+        if (mPopMenuClickListener != null) { mPopMenuClickListener.onPopMenuClick(view); }
+    }
+
+    public void setPopMenuClickListener(final PopMenuClickListener popMenuClickListener) {
+        mPopMenuClickListener = popMenuClickListener;
+    }
+
+    public interface PopMenuClickListener {
+
+        void onPopMenuClick(View view);
     }
 }

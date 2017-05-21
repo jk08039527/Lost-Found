@@ -12,7 +12,6 @@ public class Constants {
      */
     public static final String TAB_HOME = "tabHome";
     public static final String TAB_FIND = "tabFind";
-    public static final String TAB_RELEASE = "tabRelease";
     public static final String TAB_MSG = "tabMsg";
     public static final String TAB_ME = "tabMe";
 

@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
     Button mTabMe;
 
     private FragmentManager fragmentManager;
-    private Fragment fragmentHome, fragmentFind, fragmentRelease, fragmentMsg, fragmentMe;
+    private Fragment fragmentHome, fragmentFind, fragmentMsg, fragmentMe;
 
 
     @Override
@@ -71,7 +71,20 @@ public class MainActivity extends BaseActivity {
                 setContentFragment(Constants.TAB_FIND);
                 break;
             case R.id.tab_add:
-                setContentFragment(Constants.TAB_RELEASE);
+                new ReleasePopWindow(this, new ReleasePopWindow.PopMenuClickListener() {
+                    @Override
+                    public void onPopMenuClick(final View view) {
+                        switch (view.getId()){
+                            case R.id.tv_release_lost:
+
+                                break;
+                            case R.id.tv_release_found:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }).show();
                 break;
             case R.id.tab_msg:
                 setContentFragment(Constants.TAB_MSG);
@@ -87,9 +100,6 @@ public class MainActivity extends BaseActivity {
         for (int i = 0; i < mTabBar.getChildCount(); i++) {
             v = mTabBar.getChildAt(i);
             v.setSelected(v.getId() == id);
-        }
-        if (fragmentRelease != null) {
-            fragmentRelease.setUserVisibleHint(Constants.TAB_RELEASE.equals(selectTag));
         }
     }
 
@@ -112,9 +122,6 @@ public class MainActivity extends BaseActivity {
                 } else {
                     transaction.show(fragmentFind);
                 }
-                break;
-            case Constants.TAB_RELEASE:
-                new ReleasePopWindow(this).show();
                 break;
             case Constants.TAB_MSG:
                 if (null == fragmentMsg) {
@@ -144,9 +151,6 @@ public class MainActivity extends BaseActivity {
         }
         if (null != fragmentFind) {
             transaction.hide(fragmentFind);
-        }
-        if (null != fragmentRelease) {
-            transaction.hide(fragmentRelease);
         }
         if (null != fragmentMsg) {
             transaction.hide(fragmentMsg);
