@@ -12,12 +12,12 @@ import cn.bmob.v3.datatype.BmobFile;
 
 public class LostFoundInfo extends BmobObject {
 
-    String title;
-    int type;
-    String date;
-    String place;
-    String content;
-    List<BmobFile> files;
+    private String title;
+    private int type;
+    private String date;
+    private String place;
+    private String content;
+    private List<BmobFile> files;
 
     public LostFoundInfo() {
        files = new ArrayList<>();

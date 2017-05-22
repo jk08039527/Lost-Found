@@ -49,4 +49,34 @@
     <string name="found">招领</string>
     <string name="lost_info">失物信息</string>
     <string name="found_info">招领信息</string>
+    <string name="any_word_to_say">说点什么吧...</string>
+    <string name="lost_place">丢失地点</string>
+    <string name="thing_type">物品类型</string>
+    <string name="lost_date">丢失日期</string>
+    <string name="realese_lost">发布失物</string>
+    <string name="realese_found">发布招领</string>
+
+    <!-- user menu -->
+    <string name="type">分类</string>
+    <string name="all">全部</string>
+    <string name="wallet">钱包</string>
+    <string name="certificates">证件</string>
+    <string name="digital">数码</string>
+    <string name="ornaments">饰品</string>
+    <string name="clothes">衣服</string>
+    <string name="file">文件</string>
+    <string name="book">书籍</string>
+    <string name="pet">宠物</string>
+    <string name="car">车辆</string>
+    <string name="other">其他</string>
+
+    <!-- user menu -->
+    <string name="record_lost">失物记录</string>
+    <string name="record_found">招领记录</string>
+    <string name="record_discover">发现记录</string>
+    <string name="feedback">意见反馈</string>
+    <string name="app_share">app分享</string>
+    <string name="clear_catch">清空缓存</string>
+    <string name="check_update">检查更新</string>
+    <string name="about_us">关于我们</string>
 </resources>

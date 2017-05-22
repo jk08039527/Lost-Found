@@ -9,6 +9,7 @@ import com.jerry.zhoupro.fragment.MsgFragment;
 import com.jerry.zhoupro.fragment.UserFragment;
 import com.jerry.zhoupro.pop.ReleasePopWindow;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -74,15 +75,18 @@ public class MainActivity extends BaseActivity {
                 new ReleasePopWindow(this, new ReleasePopWindow.PopMenuClickListener() {
                     @Override
                     public void onPopMenuClick(final View view) {
+                        Intent intent = new Intent(MainActivity.this, ReleaseActivity.class);
                         switch (view.getId()){
                             case R.id.tv_release_lost:
-
+                                intent.putExtra(Key.TAG_RELEASE_TYPE, Key.TAG_RELEASE_LOST);
                                 break;
                             case R.id.tv_release_found:
+                                intent.putExtra(Key.TAG_RELEASE_TYPE, Key.TAG_RELEASE_FOUND);
                                 break;
                             default:
                                 break;
                         }
+                        startActivity(intent);
                     }
                 }).show();
                 break;

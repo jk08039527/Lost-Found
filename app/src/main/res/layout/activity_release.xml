@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg">
+
+    <include
+        layout="@layout/title_bar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_release_content"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_100dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/normal_editor_bg"
+        android:gravity="left|top"
+        android:hint="@string/any_word_to_say"
+        android:maxLength="200"
+        android:maxLines="9"
+        android:minLines="5"
+        android:padding="@dimen/ten_dp"
+        android:paddingLeft="@dimen/page_margin_left"
+        android:paddingRight="@dimen/page_margin_left"
+        android:textColor="@color/second_text_color"
+        android:textColorHint="@color/hint_text_color"
+        android:textCursorDrawable="@drawable/edit_cursor"
+        android:textSize="@dimen/_14sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar" />
+
+    <com.jerry.zhoupro.view.MeasureGridView
+        android:id="@+id/gridView"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="1dp"
+        android:numColumns="2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_release_content" />
+
+    <TextView
+        android:id="@+id/tv_thing_type"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_45dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/white_bg_selector"
+        android:drawablePadding="@dimen/twelve_dp"
+        android:drawableRight="@mipmap/arrow"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/page_margin_left"
+        android:paddingRight="@dimen/page_margin_left"
+        android:text="@string/thing_type"
+        android:textColor="@color/second_text_color"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridView" />
+
+    <TextView
+        android:id="@+id/tv_thing_date"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_45dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/white_bg_selector"
+        android:drawablePadding="@dimen/twelve_dp"
+        android:drawableRight="@mipmap/arrow"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/page_margin_left"
+        android:paddingRight="@dimen/page_margin_left"
+        android:text="@string/lost_date"
+        android:textColor="@color/second_text_color"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_thing_type" />
+
+    <TextView
+        android:id="@+id/tv_thing_place"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_45dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/white_bg_selector"
+        android:drawablePadding="@dimen/twelve_dp"
+        android:drawableRight="@mipmap/arrow"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/page_margin_left"
+        android:paddingRight="@dimen/page_margin_left"
+        android:text="@string/lost_place"
+        android:textColor="@color/second_text_color"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_thing_date" />
+
+    <TextView
+        android:id="@+id/tv_thing_type_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/forty_dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_thing_type"
+        app:layout_constraintRight_toRightOf="@+id/tv_thing_type"
+        app:layout_constraintTop_toTopOf="@+id/tv_thing_type" />
+
+    <TextView
+        android:id="@+id/tv_thing_date_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/forty_dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_thing_date"
+        app:layout_constraintRight_toRightOf="@+id/tv_thing_date"
+        app:layout_constraintTop_toTopOf="@+id/tv_thing_date" />
+
+    <TextView
+        android:id="@+id/tv_thing_place_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/forty_dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_thing_place"
+        app:layout_constraintRight_toRightOf="@+id/tv_thing_place"
+        app:layout_constraintTop_toTopOf="@+id/tv_thing_place" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_input_add"
+        android:visibility="gone" />
+
+</android.support.constraint.ConstraintLayout>

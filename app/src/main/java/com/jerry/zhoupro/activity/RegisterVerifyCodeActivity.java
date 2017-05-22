@@ -4,7 +4,7 @@ import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.listener.MyTextWatcherListener;
 import com.jerry.zhoupro.util.TimeCount;
-import com.jerry.zhoupro.util.WeakHandler;
+import com.jerry.zhoupro.util.TimeTask;
 
 import android.content.Intent;
 import android.text.Editable;
@@ -85,9 +85,9 @@ public class RegisterVerifyCodeActivity extends TitleBaseActivity implements Tim
         mButtonCommit.setText(getString(R.string.wait_a_moment));
         mButtonCommit.setEnabled(false);
         //模拟请求网络
-        new WeakHandler().postDelayed(new Runnable() {
+        new TimeTask(800, new TimeTask.TimeOverListerner() {
             @Override
-            public void run() {
+            public void onFinished() {
                 closeLoadingDialog();
                 mButtonCommit.setText(getString(R.string.ok));
                 mButtonCommit.setEnabled(true);
@@ -97,7 +97,7 @@ public class RegisterVerifyCodeActivity extends TitleBaseActivity implements Tim
                 setResult(RESULT_OK, intent);
                 finish();
             }
-        }, 800);
+        }).start();
     }
 
     private void countDown() {

@@ -34,7 +34,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.RegisterVerifyCodeActivity"></activity>
+        <activity android:name=".activity.RegisterVerifyCodeActivity" />
+        <activity android:name=".activity.ReleaseActivity" />
+        <activity android:name=".activity.ThingTypeActivity"></activity>
     </application>
 
 </manifest>

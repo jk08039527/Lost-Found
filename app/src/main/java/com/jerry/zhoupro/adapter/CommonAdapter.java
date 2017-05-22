@@ -11,7 +11,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     Context mContext;
     List<T> mDatas;
 
-    CommonAdapter(Context context, List<T> datas) {
+    public CommonAdapter(Context context, List<T> datas) {
         this.mContext = context;
         this.mDatas = datas;
         if (null == mDatas) {

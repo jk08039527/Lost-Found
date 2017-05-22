@@ -6,8 +6,8 @@ import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.data.User;
 import com.jerry.zhoupro.listener.MyTextWatcherListener;
 import com.jerry.zhoupro.util.PatternsUtil;
+import com.jerry.zhoupro.util.TimeTask;
 import com.jerry.zhoupro.util.ViewUtil;
-import com.jerry.zhoupro.util.WeakHandler;
 import com.jerry.zhoupro.widget.MyEditText;
 import com.jerry.zhoupro.widget.NoticeDialog;
 import com.jerry.zhoupro.widget.PhoneNumEditText;
@@ -158,17 +158,16 @@ public class RegisterActivity extends TitleBaseActivity {
         mRegisterTv.setEnabled(false);
         loadingDialog();
         //模拟请求网络
-        new WeakHandler().postDelayed(new Runnable() {
+        new TimeTask(800, new TimeTask.TimeOverListerner() {
             @Override
-            public void run() {
+            public void onFinished() {
                 closeLoadingDialog();
                 mRegisterTv.setText(getString(R.string.register));
                 mRegisterTv.setEnabled(true);
                 Intent intent = new Intent(RegisterActivity.this, RegisterVerifyCodeActivity.class);
                 intent.putExtra(Key.phone, mPhone);
-                startActivityForResult(intent, 0);
             }
-        }, 800);
+        }).start();
     }
 
     @Override

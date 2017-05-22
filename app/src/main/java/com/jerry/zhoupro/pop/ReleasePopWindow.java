@@ -52,11 +52,11 @@ public class ReleasePopWindow extends PopupWindow {
 
     @OnClick({R.id.tv_release_lost, R.id.tv_release_found, R.id.iv_cancel})
     public void onClick(View view) {
-        if (view.getId() == R.id.iv_cancel) {
+        dismiss();
+        if (mPopMenuClickListener != null) {
             dismiss();
-            return;
+            mPopMenuClickListener.onPopMenuClick(view);
         }
-        if (mPopMenuClickListener != null) { mPopMenuClickListener.onPopMenuClick(view); }
     }
 
     public void setPopMenuClickListener(final PopMenuClickListener popMenuClickListener) {

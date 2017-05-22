@@ -33,10 +33,14 @@ public class Key {
     public static final String USER_COLLEGE = "college";
     public static final String USER_CREATEDDATE = "createdDate";
     public static final String USER_SESSIONTOKEN = "sessionToken";
+    public static final String TAG_RELEASE_TYPE = "releaseType";
+    public static final String TAG_RELEASE_LOST = "releaseLost";
+    public static final String TAG_RELEASE_FOUND = "releaseFound";
+
     public static final String USER_ACL = "acl";
+    public static final String THING_TYPE = "thingType";
 
     public static String has_register = "hasRegister";
-
     public static final int CODE_101 = 101;
     public static final int CODE_102 = 102;
     public static final int CODE_103 = 103;
