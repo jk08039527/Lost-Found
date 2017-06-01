@@ -35,8 +35,12 @@
         </activity>
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.RegisterVerifyCodeActivity" />
-        <activity android:name=".activity.ReleaseActivity" />
-        <activity android:name=".activity.ThingTypeActivity"></activity>
+        <activity
+            android:name=".activity.ReleaseActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NPActivityTheme" />
+        <activity android:name=".activity.ThingTypeActivity"/>
     </application>
 
 </manifest>

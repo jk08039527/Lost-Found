@@ -2,6 +2,7 @@ package com.jerry.zhoupro.activity;
 
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.command.Key;
+import com.jerry.zhoupro.pop.CustomDatePickerDialog;
 import com.jerry.zhoupro.view.MeasureGridView;
 
 import android.content.Intent;
@@ -69,6 +70,16 @@ public class ReleaseActivity extends TitleBaseActivity {
                 startActivityForResult(intent, Key.CODE_101);
                 break;
             case R.id.tv_thing_date:
+                final CustomDatePickerDialog dialog = new CustomDatePickerDialog(this);
+                dialog.show();
+                dialog.setPositiveButtonListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        dialog.dismiss();
+                        String date = dialog.getDate();
+                        mTvThingDateValue.setText(date);
+                    }
+                });
                 break;
             case R.id.tv_thing_place:
                 break;
