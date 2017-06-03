@@ -39,6 +39,8 @@ public class Key {
 
     public static final String USER_ACL = "acl";
     public static final String THING_TYPE = "thingType";
+    public static final String ADDRESS= "address";
+    public static final String LOCATION= "location";
 
     public static String has_register = "hasRegister";
     public static final int CODE_101 = 101;

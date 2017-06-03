@@ -25,7 +25,11 @@ public class ReleaseActivity extends TitleBaseActivity {
     TextView mTvThingDateValue;
     @BindView(R.id.tv_thing_place_value)
     TextView mTvThingPlaceValue;
-    private String type;
+    private String releaseType;
+    private String thingType;
+    private String date;
+    private String place;
+    private String location;
 
     @Override
     protected int getContentLayout() {
@@ -35,12 +39,12 @@ public class ReleaseActivity extends TitleBaseActivity {
     @Override
     protected void beforeViews() {
         super.beforeViews();
-        type = getIntent().getStringExtra(Key.TAG_RELEASE_TYPE);
+        releaseType = getIntent().getStringExtra(Key.TAG_RELEASE_TYPE);
     }
 
     @Override
     protected String getTitleText() {
-        return type.equals(Key.TAG_RELEASE_LOST)
+        return releaseType.equals(Key.TAG_RELEASE_LOST)
                 ? getString(R.string.realese_lost)
                 : getString(R.string.realese_found);
     }
@@ -76,12 +80,14 @@ public class ReleaseActivity extends TitleBaseActivity {
                     @Override
                     public void onClick(final View v) {
                         dialog.dismiss();
-                        String date = dialog.getDate();
+                        date = dialog.getDate();
                         mTvThingDateValue.setText(date);
                     }
                 });
                 break;
             case R.id.tv_thing_place:
+                intent = new Intent(this, MapActivity.class);
+                startActivityForResult(intent, Key.CODE_102);
                 break;
         }
     }
@@ -89,10 +95,16 @@ public class ReleaseActivity extends TitleBaseActivity {
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != RESULT_OK) { return; }
+        if (resultCode != RESULT_OK || data == null) { return; }
         switch (requestCode) {
             case Key.CODE_101:
-                mTvThingTypeValue.setText(data.getStringExtra(Key.THING_TYPE));
+                thingType = data.getStringExtra(Key.THING_TYPE);
+                mTvThingTypeValue.setText(thingType);
+                break;
+            case Key.CODE_102:
+                place = data.getStringExtra(Key.ADDRESS);
+                location = data.getStringExtra(Key.LOCATION);
+                mTvThingPlaceValue.setText(place);
                 break;
             default:
                 break;

@@ -28,7 +28,6 @@ public class RegisterVerifyCodeActivity extends TitleBaseActivity implements Tim
     TextView mButtonCommit;
     private String mPhone;
     private TimeCount mCountDownTimer;
-    private boolean isSMSLogin;
 
     @Override
     protected String getTitleText() {
@@ -63,14 +62,17 @@ public class RegisterVerifyCodeActivity extends TitleBaseActivity implements Tim
     }
 
     @OnClick({R.id.cal_tv, R.id.button_commit})
+    @Override
     public void onClick(final View view) {
-        super.onClick(view);
         switch (view.getId()) {
             case R.id.cal_tv:
                 toast(R.string.cacha_has_send);
                 break;
             case R.id.button_commit:
                 checkVerifyCode();
+                break;
+            default:
+                super.onClick(view);
                 break;
         }
     }

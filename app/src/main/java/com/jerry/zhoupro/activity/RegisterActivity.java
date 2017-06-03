@@ -85,8 +85,8 @@ public class RegisterActivity extends TitleBaseActivity {
     }
 
     @OnClick({R.id.iv_pwd_show, R.id.tv_register})
+    @Override
     public void onClick(final View view) {
-        super.onClick(view);
         switch (view.getId()) {
             case R.id.iv_pwd_show:
                 if (isHidden) {
@@ -146,6 +146,9 @@ public class RegisterActivity extends TitleBaseActivity {
                         });
                     }
                 });
+                break;
+            default:
+                super.onClick(view);
                 break;
         }
     }

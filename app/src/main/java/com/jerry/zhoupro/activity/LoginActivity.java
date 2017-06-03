@@ -84,6 +84,7 @@ public class LoginActivity extends TitleBaseActivity {
     }
 
     @OnClick({R.id.tv_reg, R.id.iv_pwd_show, R.id.tv_login})
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_reg:
@@ -127,6 +128,9 @@ public class LoginActivity extends TitleBaseActivity {
                         finish();
                     }
                 });
+                break;
+            default:
+                super.onClick(v);
                 break;
         }
     }
