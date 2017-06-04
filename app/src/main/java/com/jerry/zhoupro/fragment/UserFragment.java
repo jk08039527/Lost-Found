@@ -1,14 +1,18 @@
 package com.jerry.zhoupro.fragment;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
-import com.jerry.zhoupro.util.Mlog;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.activity.LoginActivity;
 import com.jerry.zhoupro.activity.RegisterActivity;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.data.User;
 import com.jerry.zhoupro.data.UserManager;
+import com.jerry.zhoupro.pop.ItemPopupWindow;
+import com.jerry.zhoupro.util.Mlog;
 import com.jerry.zhoupro.view.UserContentView;
 import com.jerry.zhoupro.view.UserHeadView;
 import com.jerry.zhoupro.widget.NoticeDialog;
@@ -30,6 +34,7 @@ import cn.bmob.v3.listener.SaveListener;
 public class UserFragment extends TitleBaseFragment implements AdapterView.OnItemClickListener {
 
     private UserHeadView headView;
+    private ItemPopupWindow itemPopupWindow;
 
     @BindView(R.id.ptz_user)
     PullToZoomScrollViewEx mPtzUser;
@@ -55,6 +60,22 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
     private void loadViewForCode(ViewGroup view) {
         headView = new UserHeadView(getContext());//头部扩展view
         headView.setHeadClickListener(new UserHeadView.HeadClickListener() {
+            @Override
+            public void changePic() {
+                if (itemPopupWindow == null) {
+                    List<String> list = new ArrayList<String>();
+                    list.add(getString(R.string.take_photo));
+                    list.add(getString(R.string.select_photo));
+                    itemPopupWindow = new ItemPopupWindow(getActivity(), list, new ItemPopupWindow.ActionLister() {
+                        @Override
+                        public void stringAction(final int index) {
+
+                        }
+                    });
+                }
+                itemPopupWindow.show();
+            }
+
             @Override
             public void register() {
                 startActivityForResult(new Intent(getActivity(), RegisterActivity.class), Key.REGISTER);

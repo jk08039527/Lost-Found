@@ -1,6 +1,5 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,8 +8,8 @@
 
     <ImageView
         android:id="@+id/iv_user_head"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/sixty_dp"
+        android:layout_height="@dimen/sixty_dp"
         android:layout_marginTop="@dimen/fifty_dp"
         android:src="@mipmap/ic_img_user_default"
         android:contentDescription="@string/app_name"

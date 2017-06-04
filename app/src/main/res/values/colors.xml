@@ -6,8 +6,6 @@
     <color name="empty_list_text_color">#b2b2b2</color>
     <color name="poptext_red">#ffff0000</color>
     <color name="poptext_blue">#ff007aff</color>
-    <color name="pop_bg_pressed">#ddffffff</color>
-    <color name="pop_bg">#e6ffffff</color>
 
     <color name="gray_line_color_primary">#d8d8d8</color>
     <color name="gray_line_color_second">#e6e6e6</color>
@@ -15,6 +13,7 @@
     <!-- bg -->
     <color name="transparent">#00000000</color>
     <color name="black">#ff000000</color>
+    <color name="black_60alpha">#60000000</color>
     <color name="black_40alpha">#40000000</color>
     <color name="white">#ffffff</color>
     <color name="white_press">#e3e3e3</color>

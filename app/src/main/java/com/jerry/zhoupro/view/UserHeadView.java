@@ -79,10 +79,13 @@ public class UserHeadView extends LinearLayout {
         }
     }
 
-    @OnClick({R.id.tv_register, R.id.tv_login, R.id.tv_logout})
+    @OnClick({R.id.iv_user_head, R.id.tv_register, R.id.tv_login, R.id.tv_logout})
     public void onClick(View view) {
         if (mHeadClickListener == null) {return;}
         switch (view.getId()) {
+            case R.id.iv_user_head:
+                mHeadClickListener.changePic();
+                break;
             case R.id.tv_register:
                 mHeadClickListener.register();
                 break;
@@ -100,6 +103,8 @@ public class UserHeadView extends LinearLayout {
     }
 
     public interface HeadClickListener {
+
+        void changePic();
 
         void register();
 
