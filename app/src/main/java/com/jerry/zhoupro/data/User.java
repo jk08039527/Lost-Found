@@ -1,5 +1,7 @@
 package com.jerry.zhoupro.data;
 
+import com.jerry.zhoupro.command.Key;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -17,6 +19,7 @@ public class User extends BmobUser implements Parcelable {
     private String city;
     private String college;
     private BmobFile photo;
+    private String photoUri;
 
     public String getNickname() {
         return nickname;
@@ -50,6 +53,14 @@ public class User extends BmobUser implements Parcelable {
         this.photo = photo;
     }
 
+    public String getPhotoUri() {
+        return photoUri;
+    }
+
+    public void setPhotoUri(final String photoUri) {
+        this.photoUri = photoUri;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -81,5 +92,13 @@ public class User extends BmobUser implements Parcelable {
     @Override
     public <T> Subscription login(final SaveListener<T> listener) {
         return super.login(listener);
+    }
+
+    public void clear() {
+        setObjectId(Key.NIL);
+        setUsername(Key.NIL);
+        setMobilePhoneNumber(Key.NIL);
+        nickname = Key.NIL;
+        photoUri = Key.NIL;
     }
 }

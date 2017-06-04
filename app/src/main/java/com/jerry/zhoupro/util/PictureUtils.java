@@ -4,13 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 /**
  * Created by wzl on 17-1-13.
  */
@@ -47,39 +40,5 @@ public class PictureUtils {
             inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
         }
         return inSampleSize;
-    }
-
-    public static boolean downloadImgByUrl(String urlStr, File file) {
-        boolean isok = false;
-        FileOutputStream fos = null;
-        InputStream is = null;
-        try {
-            URL url = new URL(urlStr);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            is = conn.getInputStream();
-            fos = new FileOutputStream(file);
-            byte[] buf = new byte[1024 * 4];
-            int len = 0;
-            while ((len = is.read(buf)) != -1) {
-                fos.write(buf, 0, len);
-            }
-            isok = true;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (is != null)
-                    is.close();
-            } catch (IOException e) {
-            }
-
-            try {
-                if (fos != null)
-                    fos.close();
-            } catch (IOException e) {
-            }
-        }
-        return isok;
     }
 }

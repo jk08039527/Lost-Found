@@ -24,7 +24,7 @@ public class Key {
     /**
      * 用户信息
      */
-    public static final String USER = "user";
+    public static final String UID = "uid";
     public static final String USER_MOBLIE = "moblie";
     public static final String USER_NICKNAME = "nickname";
     public static final String USER_PHOTO = "photo";
@@ -35,6 +35,8 @@ public class Key {
     public static final String USER_SESSIONTOKEN = "sessionToken";
     public static final String TAG_RELEASE_TYPE = "releaseType";//0:失物，1：招领
     public static final String USER_ACL = "acl";
+    public static final String JPG = ".jpg";
+    public static final String PNG = ".png";
 
     public static final String THING_TYPE = "thingType";
     public static final String ADDRESS= "address";
@@ -48,5 +50,7 @@ public class Key {
     public static final int TAG_RELEASE_FOUND = 1;
     public static final int REGISTER = 3;
     public static final int LOGIN = 4;
-
+    public static final int TAKE_PHOTO = 5;
+    public static final int PICK_PHOTO = 6;
+    public static final int CUT_PHOTO = 7;
 }

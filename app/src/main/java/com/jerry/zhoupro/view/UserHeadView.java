@@ -1,9 +1,11 @@
 package com.jerry.zhoupro.view;
 
+import com.bumptech.glide.Glide;
 import com.jerry.zhoupro.R;
 
 import android.content.Context;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -59,8 +61,20 @@ public class UserHeadView extends LinearLayout {
         return mTvLogout;
     }
 
-    public void setPhotoImg(Uri uri) {
-        mIvUserHead.setImageURI(uri);
+    public void setHeadImg(String uri) {
+        if (TextUtils.isEmpty(uri)) {
+            mIvUserHead.setImageResource(R.mipmap.ic_img_user_default);
+        } else {
+            Glide.with(getContext()).load(uri).into(mIvUserHead);
+        }
+    }
+
+    public void setHeadImg(final Bitmap bm) {
+        if (bm == null) {
+            mIvUserHead.setImageResource(R.mipmap.ic_img_user_default);
+        } else {
+            mIvUserHead.setImageBitmap(bm);
+        }
     }
 
     public void setUserText(String userText) {

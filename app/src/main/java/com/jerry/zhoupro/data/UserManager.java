@@ -23,8 +23,10 @@ public class UserManager {
                     instance = new UserManager();
                     if (null == user) {
                         user = new User();
+                        user.setObjectId(PreferenceUtil.getPreference(Key.UID));
                         user.setMobilePhoneNumber(PreferenceUtil.getPreference(Key.USER_MOBLIE));
                         user.setNickname(PreferenceUtil.getPreference(Key.USER_NICKNAME));
+                        user.setPhotoUri(PreferenceUtil.getPreference(Key.USER_PHOTO));
                         user.setSessionToken(PreferenceUtil.getPreference(Key.USER_SESSIONTOKEN));
                     }
                 }
@@ -53,6 +55,10 @@ public class UserManager {
         user.setNickname(nickname);
     }
 
+    public String getPhotoUrl() {
+        return user.getPhotoUri();
+    }
+
     public String getSessionToken() {
         return user.getSessionToken();
     }
@@ -63,20 +69,23 @@ public class UserManager {
 
     public void saveToLocal(User user) {
         UserManager.user = user;
-        PreferenceUtil.setPreference(Key.USER, user.getObjectId());
+        PreferenceUtil.setPreference(Key.UID, user.getObjectId());
         PreferenceUtil.setPreference(Key.USER_MOBLIE, user.getMobilePhoneNumber());
         PreferenceUtil.setPreference(Key.USER_NICKNAME, user.getNickname());
+        PreferenceUtil.setPreference(Key.USER_PHOTO, user.getPhotoUri());
         PreferenceUtil.setPreference(Key.USER_SESSIONTOKEN, user.getSessionToken());
     }
 
     public static boolean hasLogin() {
-        return !TextUtils.isEmpty(PreferenceUtil.getPreference(Key.USER));
+        return !TextUtils.isEmpty(PreferenceUtil.getPreference(Key.UID));
     }
 
     public static void clearLoginInfo() {
-        PreferenceUtil.setPreference(Key.USER, Key.NIL);
+        user.clear();
+        PreferenceUtil.setPreference(Key.UID, Key.NIL);
         PreferenceUtil.setPreference(Key.USER_MOBLIE, Key.NIL);
         PreferenceUtil.setPreference(Key.USER_NICKNAME, Key.NIL);
+        PreferenceUtil.setPreference(Key.USER_PHOTO, Key.NIL);
         PreferenceUtil.setPreference(Key.USER_SESSIONTOKEN, Key.NIL);
     }
 }

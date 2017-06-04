@@ -1,34 +1,42 @@
 package com.jerry.zhoupro.util;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
-
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 
 /**
  * Created by Administrator on 2016/3/27.
  * FileUtils工具类：文件管理读取
  */
 public class FileUtils {
-    public static final String TAG = "FileUtils";
 
-    public static final String SDCARD = Environment
-            .getExternalStorageDirectory() + "/";
+    private static final String TAG = FileUtils.class.getSimpleName();
 
     /**
-     * 在SD卡上创建文件
+     * 获取文件名称
      *
-     * @param fileName
+     * @param filePath
      * @return
-     * @throws IOException
      */
-    public static boolean creatSDFile(String fileName) throws IOException {
-        return createFile(SDCARD, fileName);
+    private static String getFileName(String filePath) {
+        return filePath.substring(filePath.lastIndexOf("/")).substring(1);
+    }
+
+    /**
+     * 获取文件的目录
+     *
+     * @param filePath
+     * @return
+     */
+    private static String getFilePath(String filePath) {
+        return filePath.substring(0, filePath.lastIndexOf(File.separator));
     }
 
     /**
@@ -38,33 +46,33 @@ public class FileUtils {
      * @return
      */
     public static boolean createFile(String filePath) {
-        String pathName = getFilePath(filePath);
+        String dirPath = getFilePath(filePath);
         String fileName = getFileName(filePath);
-        return createFile(pathName, fileName);
+        return createFile(dirPath, fileName);
     }
 
     /**
      * 创建文件
      *
-     * @param path     文件路径
+     * @param dirPath  文件路径
      * @param filename 文件名
      * @return
      */
-    public static boolean createFile(String path, String filename) {
-        Boolean createFlg = false;
-        if (creatDir(path)) {
-            File file = new File(path + File.separator + filename);
-            if (!file.exists() || !file.isFile()) {
+    private static boolean createFile(String dirPath, String filename) {
+        File dir = new File(dirPath);
+        // 按照指定的路径创建文件夹
+        if (dir.exists() || dir.mkdirs()) {
+            File file = new File(dirPath + File.separator + filename);
+            if (!file.exists()) {
+                // 创建新文件
                 try {
-                    // 创建新文件
-                    createFlg = file.createNewFile();
-                } catch (Exception e) {
-                    Mlog.d(TAG, e.getMessage());
+                    return file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } else
-                return true;
+            }
         }
-        return createFlg;
+        return true;
     }
 
     /**
@@ -75,10 +83,7 @@ public class FileUtils {
     public static boolean creatDir(String dirPath) {
         File file = new File(dirPath);
         // 按照指定的路径创建文件夹
-        if (!file.exists() || !file.isDirectory()) {
-            return file.mkdirs();
-        }
-        return true;
+        return file.exists() || file.mkdirs();
     }
 
     /**
@@ -86,13 +91,11 @@ public class FileUtils {
      *
      * @param dirPath
      */
-    public static void deleteDir(String dirPath) {
+    public static boolean deleteDir(String dirPath) {
         File file = new File(dirPath);
         // 判断文件夹是否存在
-        if (file.exists() && file.isDirectory()) {
-            //删除
-            file.delete();
-        }
+        //删除
+        return !(file.exists() && file.isDirectory()) || file.delete();
     }
 
     /**
@@ -100,13 +103,11 @@ public class FileUtils {
      *
      * @param filePath
      */
-    public static void deleteFile(String filePath) {
+    public static boolean deleteFile(String filePath) {
         File file = new File(filePath);
         // 判断文件是否存在
-        if (file.exists() && file.isFile()) {
-            //删除
-            file.delete();
-        }
+        //删除
+        return !file.exists() || file.delete();
     }
 
     /**
@@ -136,8 +137,7 @@ public class FileUtils {
             e.printStackTrace();
         } finally {
             try {
-                if (output != null)
-                    output.close();
+                if (output != null) { output.close(); }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -160,28 +160,8 @@ public class FileUtils {
         } catch (IOException e) {
             Mlog.w(TAG, "file cache(" + path + ") error!");
         } finally {
-            if (null != os)
-                os.close();
-            os = null;
+            if (null != os) { os.close(); }
         }
-    }
-
-    /**
-     * 判断文件是否存在
-     *
-     * @param path
-     * @return
-     */
-    public static Boolean exist(String path) {
-        File file = new File(path);
-        Boolean exist = false;
-        try {
-            exist = file.exists();
-            file = null;
-        } catch (Exception e) {
-            Mlog.w(TAG, "file exists(" + path + ") error!");
-        }
-        return exist;
     }
 
     /**
@@ -208,16 +188,10 @@ public class FileUtils {
      * @return
      */
     public static boolean isImgFile(String path) {
-        boolean isImgFile = false;
         // 获取扩展名
         String fileEnd = path.substring(path.lastIndexOf(".") + 1,
                 path.length()).toLowerCase();
-        if (fileEnd.equals("png") || fileEnd.equals("jpg")) {
-            isImgFile = true;
-        } else {
-            isImgFile = false;
-        }
-        return isImgFile;
+        return fileEnd.equals("png") || fileEnd.equals("jpg");
     }
 
     /**
@@ -227,16 +201,10 @@ public class FileUtils {
      * @return
      */
     public static boolean isPdfFile(String path) {
-        boolean isPdfFile = false;
         // 获取扩展名
         String fileEnd = path.substring(path.lastIndexOf(".") + 1,
                 path.length()).toLowerCase();
-        if (fileEnd.equals("pdf")) {
-            isPdfFile = true;
-        } else {
-            isPdfFile = false;
-        }
-        return isPdfFile;
+        return fileEnd.equals("pdf");
     }
 
     /**
@@ -246,49 +214,36 @@ public class FileUtils {
      * @return
      */
     public static boolean isVideoFile(String path) {
-        boolean isVideoFile = false;
         // 获取扩展名
         String fileEnd = path.substring(path.lastIndexOf(".") + 1,
                 path.length()).toLowerCase();
-        if (fileEnd.equals("mp4") || fileEnd.equals("3gp")) {
-            isVideoFile = true;
-        } else {
-            isVideoFile = false;
-        }
-        return isVideoFile;
+        return fileEnd.equals("mp4") || fileEnd.equals("3gp");
     }
 
-    /**
-     * 获取文件名称
-     *
-     * @param filePath
-     * @return
-     */
-    public static String getFileName(String filePath) {
-        String fileName = filePath.substring(filePath.lastIndexOf("/")).substring(1);
-        return fileName;
-    }
-
-    /**
-     * 获取文件的目录
-     *
-     * @param filePath
-     * @return
-     */
-    public static String getFilePath(String filePath) {
-        return filePath.substring(0, filePath.lastIndexOf(File.separator));
-    }
-
-    public static Bitmap getDiskBitmap(String pathString) {
+    public static Bitmap getLocalBitmap(String pathString) {
         Bitmap bitmap = null;
-        try {
-            File file = new File(pathString);
-            if (file.exists()) {
-                bitmap = BitmapFactory.decodeFile(pathString);
-            }
-        } catch (Exception e) {
+        File file = new File(pathString);
+        if (file.exists()) {
+            bitmap = BitmapFactory.decodeFile(pathString);
         }
         return bitmap;
     }
 
+    public static Uri saveLocalBitmap(final Bitmap bitmap, final String path) {
+        File img = new File(path);
+        if (!createFile(path)) { return null; }
+        try {
+            FileOutputStream fos = new FileOutputStream(img);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+            return Uri.fromFile(img);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

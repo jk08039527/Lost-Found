@@ -32,9 +32,6 @@ public class ItemPopupWindow extends PopupWindow {
     private List<String> mStringList;//数组
     private ActionLister mActionLister;//点击事件
     private View mBackground;
-    private TextView mHeadText;
-    private TextView mTextItem;
-    private TextView mFootText;
     private ColorStateList headTextColor, textColor, footTextColor;
     private float headTextSize = 16f, textSize = 16f, footTextSize = 16f;
 
@@ -82,7 +79,7 @@ public class ItemPopupWindow extends PopupWindow {
         layoutView.setOrientation(LinearLayout.VERTICAL);
 
         if (!TextUtils.isEmpty(mTitle)) {
-            mHeadText = new TextView(mContext);
+            TextView mHeadText = new TextView(mContext);
             LinearLayout.LayoutParams headlayoutParams = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
@@ -105,7 +102,7 @@ public class ItemPopupWindow extends PopupWindow {
         }
 
         for (int i = 0; i < mStringList.size(); i++) {
-            mTextItem = new TextView(mContext);
+            TextView mTextItem = new TextView(mContext);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     DisplayUtil.dip2px(50)
@@ -142,7 +139,7 @@ public class ItemPopupWindow extends PopupWindow {
             layoutView.addView(mTextItem);
         }
 
-        mFootText = new TextView(mContext);
+        TextView mFootText = new TextView(mContext);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 DisplayUtil.dip2px(50)
