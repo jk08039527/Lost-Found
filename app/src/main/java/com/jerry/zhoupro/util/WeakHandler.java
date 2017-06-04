@@ -22,7 +22,7 @@
  * shared by Android Open Source Project and used according to terms described in the
  * Apache License, Version 2.0
  */
-package com.caipiao166.helper;
+package com.jerry.zhoupro.util;
 
 import java.lang.ref.WeakReference;
 import java.util.concurrent.locks.Lock;
@@ -438,7 +438,7 @@ public class WeakHandler {
 		final WeakRunnable wrapper;
 
 		@NonNull
-		Lock lock;
+        Lock lock;
 
 		ChainedRef(@NonNull Lock lock, @NonNull Runnable r) {
 			this.runnable = r;

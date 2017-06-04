@@ -5,9 +5,10 @@ import java.util.List;
 
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.adapter.UserContentAdapter;
-import com.jerry.zhoupro.bean.UserMenu;
+import com.jerry.zhoupro.bean.UserMenuBean;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 
 /**
@@ -39,10 +40,12 @@ public class UserContentView extends MeasureGridView {
     }
 
     private void init() {
-        List<UserMenu> userMenus = new ArrayList<>();
+        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.gray_bg));
+        setNumColumns(2);
+        List<UserMenuBean> userMenus = new ArrayList<>();
         String[] userMenuStrs = getContext().getResources().getStringArray(R.array.user_menu_title);
         for (int i = 0; i < userMenuStrs.length; i++) {
-            UserMenu userMenu = new UserMenu();
+            UserMenuBean userMenu = new UserMenuBean();
             userMenu.setText(userMenuStrs[i]);
             userMenu.setInco(imgRes[i]);
             userMenus.add(userMenu);

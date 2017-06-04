@@ -33,9 +33,9 @@ public class Key {
     public static final String USER_COLLEGE = "college";
     public static final String USER_CREATEDDATE = "createdDate";
     public static final String USER_SESSIONTOKEN = "sessionToken";
-    public static final String TAG_RELEASE_TYPE = "releaseType";
-    public static final String TAG_RELEASE_LOST = "releaseLost";
-    public static final String TAG_RELEASE_FOUND = "releaseFound";
+    public static final String TAG_RELEASE_TYPE = "releaseType";//0:失物，1：招领
+    public static final int TAG_RELEASE_LOST = 0;
+    public static final int TAG_RELEASE_FOUND = 1;
 
     public static final String USER_ACL = "acl";
     public static final String THING_TYPE = "thingType";

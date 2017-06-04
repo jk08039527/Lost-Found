@@ -3,11 +3,13 @@ package com.jerry.zhoupro.activity;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.command.Constants;
 import com.jerry.zhoupro.command.Key;
+import com.jerry.zhoupro.data.UserManager;
 import com.jerry.zhoupro.fragment.FindFragment;
 import com.jerry.zhoupro.fragment.HomeFragment;
 import com.jerry.zhoupro.fragment.MsgFragment;
 import com.jerry.zhoupro.fragment.UserFragment;
 import com.jerry.zhoupro.pop.ReleasePopWindow;
+import com.jerry.zhoupro.util.TimeTask;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,6 +47,8 @@ public class MainActivity extends BaseActivity {
     private FragmentManager fragmentManager;
     private Fragment fragmentHome, fragmentFind, fragmentMsg, fragmentMe;
 
+    private boolean isExit;
+    private boolean hasTask;
 
     @Override
     protected int getContentLayout() {
@@ -75,18 +79,16 @@ public class MainActivity extends BaseActivity {
                 new ReleasePopWindow(this, new ReleasePopWindow.PopMenuClickListener() {
                     @Override
                     public void onPopMenuClick(final View view) {
-                        Intent intent = new Intent(MainActivity.this, ReleaseActivity.class);
-                        switch (view.getId()){
-                            case R.id.tv_release_lost:
-                                intent.putExtra(Key.TAG_RELEASE_TYPE, Key.TAG_RELEASE_LOST);
-                                break;
-                            case R.id.tv_release_found:
-                                intent.putExtra(Key.TAG_RELEASE_TYPE, Key.TAG_RELEASE_FOUND);
-                                break;
-                            default:
-                                break;
+                        int requestCode = view.getId() == R.id.tv_release_lost ? Key.TAG_RELEASE_LOST : Key.TAG_RELEASE_FOUND;
+                        Intent intent;
+                        if (UserManager.hasLogin()) {
+                            intent = new Intent(MainActivity.this, ReleaseActivity.class);
+                            intent.putExtra(Key.TAG_RELEASE_TYPE, requestCode);
+                            startActivity(intent);
+                        } else {
+                            intent = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivityForResult(intent, requestCode);
                         }
-                        startActivity(intent);
                     }
                 }).show();
                 break;
@@ -173,5 +175,36 @@ public class MainActivity extends BaseActivity {
             return;
         }
         setContentFragment(tabTag);
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            Intent intent = new Intent(MainActivity.this, ReleaseActivity.class);
+            intent.putExtra(Key.TAG_RELEASE_TYPE, requestCode);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!isExit) {
+            isExit = true;
+            toast(R.string.press_again_exit);
+            if (!hasTask) {
+                hasTask = true;
+                new TimeTask(2000, new TimeTask.TimeOverListerner() {
+                    @Override
+                    public void onFinished() {
+                        isExit = false;
+                        hasTask = false;
+                    }
+                }).start();
+            }
+        } else {
+            super.onBackPressed();
+            System.exit(0);
+        }
     }
 }

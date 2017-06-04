@@ -4,7 +4,7 @@ package com.jerry.zhoupro.bean;
  * Created by wzl-pc on 2017/5/17.
  */
 
-public class UserMenu {
+public class UserMenuBean {
     private String text;
     private int inco;
 

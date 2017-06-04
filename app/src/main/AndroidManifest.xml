@@ -42,6 +42,7 @@
         <activity
             android:name=".activity.ReleaseActivity"
             android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden|stateUnchanged"
             android:screenOrientation="portrait"
             android:theme="@style/NPActivityTheme" />
         <activity android:name=".activity.ThingTypeActivity"/>

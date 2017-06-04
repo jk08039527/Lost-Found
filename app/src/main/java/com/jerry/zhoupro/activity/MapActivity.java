@@ -37,8 +37,9 @@ public class MapActivity extends TitleBaseActivity {
     private BaiduMap map;
 
     private String mAddress;
+    private String city;
     private String mCurrentLocation;
-    private LocationClient mLocationClient = null;
+    private LocationClient mLocationClient;
 
     /**
      * 初始化定位
@@ -48,6 +49,7 @@ public class MapActivity extends TitleBaseActivity {
         public void onReceiveLocation(final BDLocation location) {
             double latitude = location.getLatitude();
             double longitude = location.getLongitude();
+            LatLng latLng = new LatLng(latitude, longitude);
             MyLocationData.Builder builder = new MyLocationData.Builder();
             builder.latitude(latitude);
             builder.longitude(longitude);
@@ -56,13 +58,9 @@ public class MapActivity extends TitleBaseActivity {
             MyLocationData locationData = builder.build();
             map.setMyLocationData(locationData);
             map.setMyLocationConfiguration(new MyLocationConfiguration(MyLocationConfiguration.LocationMode.NORMAL, true, null));
-            map.animateMapStatus(MapStatusUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 16));
-            map.setMyLocationEnabled(true);
+            map.animateMapStatus(MapStatusUpdateFactory.newLatLngZoom(latLng, 16));
 
-            mCurrentLocation = location.getLatitude() + "," + location.getLongitude();
-            mAddress = location.getAddress().address;
-            mEtAddress.setSelection(mEtAddress.getText().length());
-            mEtAddress.setText(mAddress);
+            mSearch.reverseGeoCode(new ReverseGeoCodeOption().location(latLng));
         }
     };
     private GeoCoder mSearch;
@@ -83,6 +81,7 @@ public class MapActivity extends TitleBaseActivity {
         setVisible(titleRight);
         titleRight.setText(getString(R.string.ok));
         map = mBmapView.getMap();
+        map.setMyLocationEnabled(true);
         map.setOnMapStatusChangeListener(new MyMapStatusChangeListener() {
             @Override
             public void onMapStatusChangeFinish(final MapStatus mapStatus) {
@@ -96,8 +95,8 @@ public class MapActivity extends TitleBaseActivity {
 
     @Override
     protected void initData() {
-        mLocationClient = new LocationClient(getApplicationContext());
         //声明LocationClient类
+        mLocationClient = new LocationClient(getApplicationContext());
         mLocationClient.registerLocationListener(mLocationListener);
         initLocation();
         initStatusChange();
@@ -111,6 +110,7 @@ public class MapActivity extends TitleBaseActivity {
                 Intent data = new Intent();
                 data.putExtra(Key.ADDRESS, mAddress);
                 data.putExtra(Key.LOCATION, mCurrentLocation);
+                data.putExtra(Key.USER_CITY, city);
                 setResult(RESULT_OK, data);
                 finish();
                 break;
@@ -144,13 +144,18 @@ public class MapActivity extends TitleBaseActivity {
         mLocationClient.stop();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mLocationClient.unRegisterLocationListener(mLocationListener);
+    }
+
     private void initLocation() {
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
         //可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
-
-        option.setIsNeedAddress(true);
-        //可选，设置是否需要地址信息，默认不需要
+        option.setOpenGps(true);// 打开gps
+        option.setIsNeedAddress(true);//可选，设置是否需要地址信息，默认不需要
 
         option.setIsNeedLocationDescribe(true);
         //可选，默认false，设置是否需要位置语义化结果，可以在BDLocation.getLocationDescribe里得到，结果类似于“在北京天安门附近”
@@ -170,7 +175,7 @@ public class MapActivity extends TitleBaseActivity {
         MyGetGeoCoderResultListener resultListener = new MyGetGeoCoderResultListener() {
             @Override
             public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
-                if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
+                if (result == null || isFinishing() || result.error != SearchResult.ERRORNO.NO_ERROR) {
                     //没有找到检索结果
                     toast(R.string.web_not_well);
                     return;
@@ -181,8 +186,16 @@ public class MapActivity extends TitleBaseActivity {
                 mAddress = result.getAddress();
                 mEtAddress.setSelection(mEtAddress.getText().length());
                 mEtAddress.setText(mAddress);
+                city = getCity(result.getAddressDetail().province, result.getAddressDetail().city);
             }
         };
         mSearch.setOnGetGeoCodeResultListener(resultListener);
+    }
+
+    private String getCity(String province, String city) {
+        if (province.equals(city)) {
+            return city;
+        }
+        return province + city;
     }
 }
