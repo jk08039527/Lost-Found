@@ -179,12 +179,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK && requestCode == Key.TAG_RELEASE_LOST || requestCode == Key.TAG_RELEASE_FOUND) {
             Intent intent = new Intent(MainActivity.this, ReleaseActivity.class);
             intent.putExtra(Key.TAG_RELEASE_TYPE, requestCode);
             startActivity(intent);
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

@@ -29,8 +29,6 @@ import cn.bmob.v3.listener.SaveListener;
  */
 public class UserFragment extends TitleBaseFragment implements AdapterView.OnItemClickListener {
 
-    private static final int REGISTER = 0x1;
-    private static final int LOGIN = 0x2;
     private UserHeadView headView;
 
     @BindView(R.id.ptz_user)
@@ -59,12 +57,12 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
         headView.setHeadClickListener(new UserHeadView.HeadClickListener() {
             @Override
             public void register() {
-                startActivityForResult(new Intent(getActivity(), RegisterActivity.class), REGISTER);
+                startActivityForResult(new Intent(getActivity(), RegisterActivity.class), Key.REGISTER);
             }
 
             @Override
             public void login() {
-                startActivityForResult(new Intent(getContext(), LoginActivity.class), LOGIN);
+                startActivityForResult(new Intent(getActivity(), LoginActivity.class), Key.LOGIN);
             }
 
             @Override
@@ -99,10 +97,9 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
 
     @Override
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != Activity.RESULT_OK) { return; }
         switch (requestCode) {
-            case REGISTER:
+            case Key.REGISTER:
                 User user = new User();
                 user.setUsername(data.getStringExtra(Key.phone));
                 user.setPassword(data.getStringExtra(Key.password));
@@ -117,13 +114,14 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
                     }
                 });
                 break;
-            case LOGIN:
+            case Key.LOGIN:
                 break;
         }
         updateHeadView(true);
     }
 
     private void updateHeadView(boolean hasLogin) {
+        String  fds = UserManager.getInstance().getNickname();
         headView.setUserText(hasLogin ? UserManager.getInstance().getNickname() : Key.NIL);
         headView.updateUI(hasLogin);
     }

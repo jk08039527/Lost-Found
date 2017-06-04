@@ -34,16 +34,19 @@ public class Key {
     public static final String USER_CREATEDDATE = "createdDate";
     public static final String USER_SESSIONTOKEN = "sessionToken";
     public static final String TAG_RELEASE_TYPE = "releaseType";//0:失物，1：招领
-    public static final int TAG_RELEASE_LOST = 0;
-    public static final int TAG_RELEASE_FOUND = 1;
-
     public static final String USER_ACL = "acl";
+
     public static final String THING_TYPE = "thingType";
     public static final String ADDRESS= "address";
     public static final String LOCATION= "location";
-
     public static String has_register = "hasRegister";
+
     public static final int CODE_101 = 101;
     public static final int CODE_102 = 102;
     public static final int CODE_103 = 103;
+    public static final int TAG_RELEASE_LOST = 0;
+    public static final int TAG_RELEASE_FOUND = 1;
+    public static final int REGISTER = 3;
+    public static final int LOGIN = 4;
+
 }

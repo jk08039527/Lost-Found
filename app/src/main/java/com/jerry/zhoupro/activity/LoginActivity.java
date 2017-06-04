@@ -88,7 +88,7 @@ public class LoginActivity extends TitleBaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_reg:
-                startActivityForResult(new Intent(this, RegisterActivity.class), Key.CODE_101);
+                startActivityForResult(new Intent(this, RegisterActivity.class), Key.REGISTER);
                 finish();
                 break;
 //            case R.id.tv_forget_pwd:

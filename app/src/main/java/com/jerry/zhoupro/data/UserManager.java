@@ -65,7 +65,7 @@ public class UserManager {
         UserManager.user = user;
         PreferenceUtil.setPreference(Key.USER, user.getObjectId());
         PreferenceUtil.setPreference(Key.USER_MOBLIE, user.getMobilePhoneNumber());
-        PreferenceUtil.setPreference(Key.USER_NICKNAME, user.getUsername());
+        PreferenceUtil.setPreference(Key.USER_NICKNAME, user.getNickname());
         PreferenceUtil.setPreference(Key.USER_SESSIONTOKEN, user.getSessionToken());
     }
 
