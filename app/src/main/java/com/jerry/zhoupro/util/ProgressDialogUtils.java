@@ -4,7 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 
 /**
- * Created by Administrator on 2016/3/27.
+ * Created by wzl-pc on 2016/3/27.
  * ProgressDialogUtils工具类：进度条生成帮助类
  */
 public class ProgressDialogUtils {

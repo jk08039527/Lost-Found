@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 /**
- * Created by Administrator on 2016/3/26.
+ * Created by wzl-pc on 2016/3/26.
  */
 public class Mlog {
 

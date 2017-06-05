@@ -9,7 +9,7 @@ import android.content.Context;
 import cn.bmob.v3.Bmob;
 
 /**
- * Created by Administrator on 2016/3/26.
+ * Created by wzl-pc on 2016/3/26.
  */
 public class MyApplication extends Application {
     public static MyApplication mApp;

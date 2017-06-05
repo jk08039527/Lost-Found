@@ -12,7 +12,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 
 /**
- * Created by Administrator on 2016/3/27.
+ * Created by wzl-pc on 2016/3/27.
  * FileUtils工具类：文件管理读取
  */
 public class FileUtils {
@@ -113,36 +113,33 @@ public class FileUtils {
     /**
      * 将一个InputStream里面的数据写入到文件中
      *
-     * @param path
-     * @param fileName
      * @param input
+     * @param path
      * @return
      */
-    public File writeFromInput(String path, String fileName,
-                               InputStream input) {
-        File file = null;
+    public static void saveFile(InputStream input, String path) {
         OutputStream output = null;
         try {
-            creatDir(path);
-            if (createFile(path + fileName)) {
-                file = new File(path + fileName);
+            if (createFile(path)) {
+                File file = new File(path);
                 output = new FileOutputStream(file);
                 byte buffer[] = new byte[4 * 1024];
                 while ((input.read(buffer)) != -1) {
                     output.write(buffer);
                 }
-                output.flush();
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (output != null) { output.close(); }
+                if (output != null) {
+                    output.flush();
+                    output.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        return file;
     }
 
     /**

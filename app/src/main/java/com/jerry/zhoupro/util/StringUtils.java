@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 /**
- * Created by Administrator on 2016/3/27.
+ * Created by wzl-pc on 2016/3/27.
  */
 public class StringUtils {
     // 随机种子

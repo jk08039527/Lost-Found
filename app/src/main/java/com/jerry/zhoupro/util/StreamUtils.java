@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.Properties;
 
 /**
- * Created by Administrator on 2016/3/27.
+ * Created by wzl-pc on 2016/3/27.
  * StreamUtils工具类：对流的操作
  */
 public class StreamUtils {

@@ -5,7 +5,7 @@ import java.io.OutputStream;
 import java.io.Reader;
 
 /**
- * Created by Administrator on 2016/3/27.
+ * Created by wzl-pc on 2016/3/27.
  * 安全关闭句柄工具类
  */
 public class SafeCloseUtils {

@@ -9,7 +9,7 @@ package com.jerry.zhoupro.util;
 import java.math.BigDecimal;
 
 /**
- * Created by Administrator on 2016/3/27.
+ * Created by wzl-pc on 2016/3/27.
  * FileUtils工具类：金额计算辅助类
  */
 public class MathExtend {

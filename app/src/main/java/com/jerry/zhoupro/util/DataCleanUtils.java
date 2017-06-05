@@ -6,7 +6,7 @@ import android.os.Environment;
 import java.io.File;
 
 /**
- * Created by Administrator on 2016/3/27.
+ * Created by wzl-pc on 2016/3/27.
  * DataCleanUtil工具类:清理app产生的缓存信息
  */
 public class DataCleanUtils {

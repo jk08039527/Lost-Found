@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.adapter.FragmentViewPagerAdapter;
+import com.jerry.zhoupro.bean.ThingInfoBean;
 import com.jerry.zhoupro.command.Constants;
 
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import butterknife.BindView;
+import cn.bmob.v3.BmobQuery;
 
 /**
  * Created by wzl-pc on 2017/5/9.
@@ -66,5 +68,12 @@ public class HomeFragment extends BaseFragment {
         mAdapter = new FragmentViewPagerAdapter(getChildFragmentManager(), tabs, mFragmentList);
         mVpLostFound.setAdapter(mAdapter);
         mVpLostFound.setOffscreenPageLimit(mFragmentList.size());
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        BmobQuery query = new BmobQuery(ThingInfoBean.class.getSimpleName());
+        query.setLimit(10);
     }
 }

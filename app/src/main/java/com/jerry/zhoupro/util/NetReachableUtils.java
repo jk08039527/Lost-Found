@@ -6,7 +6,7 @@ import android.net.NetworkInfo;
 import android.net.NetworkInfo.State;
 
 /**
- * Created by Administrator on 2016/3/27.
+ * Created by wzl-pc on 2016/3/27.
  * 检测网络是否可以连接工具类
  */
 public class NetReachableUtils {

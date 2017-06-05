@@ -9,7 +9,7 @@ import android.os.Environment;
 import android.telephony.TelephonyManager;
 
 /**
- * Created by Administrator on 2016/3/27.
+ * Created by wzl-pc on 2016/3/27.
  * AndroidUtil工具类: 获取DeviceID，设备信息，px与dx的互换，系统版本号，应用版本号
  */
 public class AndroidUtils {

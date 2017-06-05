@@ -6,12 +6,12 @@
 package com.jerry.zhoupro.util;
 
 /**
- * Created by Administrator on 2016/3/27.
+ * Created by wzl-pc on 2016/3/27.
  * GpsTools帮助类
  */
 public class GpsUtils {
     /**
-     * Created by Administrator on 2016/3/27.
+     * Created by wzl-pc on 2016/3/27.
      * GpsUtils工具类：计算距离
      */
     private static final double EARTH_RADIUS = 6378137.0;

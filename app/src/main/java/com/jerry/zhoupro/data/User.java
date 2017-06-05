@@ -11,7 +11,7 @@ import cn.bmob.v3.listener.SaveListener;
 import rx.Subscription;
 
 /**
- * Created by drakeet on 8/11/15.
+ * Created by wzl-pc on 8/11/15.
  */
 public class User extends BmobUser implements Parcelable {
 

@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 
 /**
- * Created by Administrator on 2016/3/27.
+ * Created by wzl-pc on 2016/3/27.
  * DigitalUtils工具类：转换为三段数字，四舍五入
  */
 public class DigitalUtils {
