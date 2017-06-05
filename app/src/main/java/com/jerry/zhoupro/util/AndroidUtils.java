@@ -1,15 +1,12 @@
 package com.jerry.zhoupro.util;
 
+import java.lang.reflect.Method;
+
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
-import android.text.TextUtils;
-
-import java.lang.reflect.Method;
-import java.util.UUID;
 
 /**
  * Created by Administrator on 2016/3/27.
@@ -41,46 +38,14 @@ public class AndroidUtils {
     }
 
     /**
-     * 获取手机序列号
-     */
-    public static String getDeviceId(Context ctx) {
-        String deviceID = "";
-        TelephonyManager tm = (TelephonyManager) ctx
-                .getSystemService(Context.TELEPHONY_SERVICE);
-        if (tm.getDeviceId() != null) {
-            deviceID = tm.getDeviceId();
-        } else {
-            deviceID = getUUID(ctx);
-        }
-        return deviceID;
-    }
-
-    /**
-     * 得到全局唯一UUID
-     */
-    public static String getUUID(Context context) {
-        SharedPreferences mShare = context.getSharedPreferences(MOBILE_SETTING,
-                0);
-        String uuid = "";
-        if (mShare != null
-                && !TextUtils.isEmpty(mShare.getString(MOBILE_UUID, ""))) {
-            uuid = mShare.getString(MOBILE_UUID, "");
-        }
-        if (TextUtils.isEmpty(uuid)) {
-            uuid = UUID.randomUUID().toString();
-            mShare.edit().putString(MOBILE_UUID, uuid).commit();
-        }
-        Mlog.d("getUUID", "getUUID : " + uuid);
-        return uuid;
-    }
-
-    /**
      * 获取客户端的设备信息
      */
     public static String getClientDeviceInfo(Context ctx) {
         String deviceID = "";
         String serial = "";
-        deviceID = getDeviceId(ctx);
+        TelephonyManager tm = (TelephonyManager) ctx
+                .getSystemService(Context.TELEPHONY_SERVICE);
+        deviceID = tm.getDeviceId();
         try {
             Class<?> c = Class.forName("android.os.SystemProperties");
             Method get = c.getMethod("get", String.class);

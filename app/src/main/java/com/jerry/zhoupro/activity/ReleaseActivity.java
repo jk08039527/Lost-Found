@@ -38,9 +38,6 @@ public class ReleaseActivity extends TitleBaseActivity {
     @BindView(R.id.tv_thing_place_value)
     TextView mTvThingPlaceValue;
     private int releaseType;
-    private String thingType;
-    private String date;
-    private String place;
     private String latlng;
     private String city;
     private LocationClient mLocationClient;
@@ -84,14 +81,13 @@ public class ReleaseActivity extends TitleBaseActivity {
             public void onReceiveLocation(final BDLocation bdLocation) {
                 if (isFinishing()) { return; }
                 mLocationClient.stop();
-                Address address = bdLocation.getAddress();
+                final Address address = bdLocation.getAddress();
                 city = getCity(address.province, address.city);
-                place = address.address;
                 latlng = bdLocation.getLatitude() + "," + bdLocation.getLongitude();
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mTvThingPlaceValue.setText(place);
+                        mTvThingPlaceValue.setText(address.address);
                     }
                 });
             }
@@ -124,7 +120,7 @@ public class ReleaseActivity extends TitleBaseActivity {
                     @Override
                     public void onClick(final View v) {
                         dialog.dismiss();
-                        date = dialog.getDate();
+                        String date = dialog.getDate();
                         mTvThingDateValue.setText(date);
                     }
                 });
@@ -185,11 +181,11 @@ public class ReleaseActivity extends TitleBaseActivity {
         if (resultCode != RESULT_OK || data == null) { return; }
         switch (requestCode) {
             case Key.CODE_101:
-                thingType = data.getStringExtra(Key.THING_TYPE);
+                String thingType = data.getStringExtra(Key.THING_TYPE);
                 mTvThingTypeValue.setText(thingType);
                 break;
             case Key.CODE_102:
-                place = data.getStringExtra(Key.ADDRESS);
+                String place = data.getStringExtra(Key.ADDRESS);
                 latlng = data.getStringExtra(Key.LOCATION);
                 city = data.getStringExtra(Key.USER_CITY);
                 mTvThingPlaceValue.setText(place);

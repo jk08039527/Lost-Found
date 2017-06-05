@@ -127,13 +127,13 @@ public class MapActivity extends TitleBaseActivity {
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         mBmapView.onResume();
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         mBmapView.onPause();
     }
