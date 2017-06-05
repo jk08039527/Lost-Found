@@ -11,6 +11,10 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+        ndk {
+            //选择要添加的对应cpu类型的.so库
+            abiFilters 'armeabi'
+        }
     }
     buildTypes {
         release {
