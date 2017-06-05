@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity {
 
     private FragmentManager fragmentManager;
     private Fragment fragmentHome, fragmentFind, fragmentMsg, fragmentMe;
-
+    private ReleasePopWindow mReleasePopWindow;
     private boolean isExit;
     private boolean hasTask;
 
@@ -76,21 +76,24 @@ public class MainActivity extends BaseActivity {
                 setContentFragment(Constants.TAB_FIND);
                 break;
             case R.id.tab_add:
-                new ReleasePopWindow(this, new ReleasePopWindow.PopMenuClickListener() {
-                    @Override
-                    public void onPopMenuClick(final View view) {
-                        int requestCode = view.getId() == R.id.tv_release_lost ? Key.TAG_RELEASE_LOST : Key.TAG_RELEASE_FOUND;
-                        Intent intent;
-                        if (UserManager.hasLogin()) {
-                            intent = new Intent(MainActivity.this, ReleaseActivity.class);
-                            intent.putExtra(Key.TAG_RELEASE_TYPE, requestCode);
-                            startActivity(intent);
-                        } else {
-                            intent = new Intent(MainActivity.this, LoginActivity.class);
-                            startActivityForResult(intent, requestCode);
+                if (mReleasePopWindow == null) {
+                    mReleasePopWindow = new ReleasePopWindow(this, new ReleasePopWindow.PopMenuClickListener() {
+                        @Override
+                        public void onPopMenuClick(final View view) {
+                            int requestCode = view.getId() == R.id.tv_release_lost ? Key.TAG_RELEASE_LOST : Key.TAG_RELEASE_FOUND;
+                            Intent intent;
+                            if (UserManager.hasLogin()) {
+                                intent = new Intent(MainActivity.this, ReleaseActivity.class);
+                                intent.putExtra(Key.TAG_RELEASE_TYPE, requestCode);
+                                startActivity(intent);
+                            } else {
+                                intent = new Intent(MainActivity.this, LoginActivity.class);
+                                startActivityForResult(intent, requestCode);
+                            }
                         }
-                    }
-                }).show();
+                    });
+                }
+                mReleasePopWindow.show();
                 break;
             case R.id.tab_msg:
                 setContentFragment(Constants.TAB_MSG);
