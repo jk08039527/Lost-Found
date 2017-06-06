@@ -55,7 +55,7 @@ public class ReleaseActivity extends TitleBaseActivity {
     TextView mTvThingPlaceValue;
     @BindView(R.id.iv_pic_info)
     ImageView mIvPicInfo;
-    private int releaseType;
+    private int releaseType;//0:失物，1:招领
     private String latlng;
     private String city;
     private LocationClient mLocationClient;
@@ -213,7 +213,7 @@ public class ReleaseActivity extends TitleBaseActivity {
                             return;
                         }
                         ThingInfoBean thingInfo = new ThingInfoBean();
-                        thingInfo.setReleaseType(Key.TAG_RELEASE_LOST);
+                        thingInfo.setReleaseType(releaseType);
                         thingInfo.setTitle(titleText.getText().toString());
                         thingInfo.setThingType(thingType);
                         thingInfo.setDate(date);
