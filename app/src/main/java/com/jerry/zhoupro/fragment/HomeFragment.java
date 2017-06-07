@@ -28,7 +28,7 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.rg_main)
     RadioGroup mRgMain;
     @BindView(R.id.vp_lost_found)
-    private ViewPager mVpLostFound;
+    ViewPager mVpLostFound;
     private int type;
     private List<Fragment> mFragmentList;
     private FragmentViewPagerAdapter mAdapter;

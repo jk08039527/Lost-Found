@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="thing"
+            type="com.jerry.zhoupro.bean.ThingInfoBean" />
+        <!--<variable-->
+            <!--name="user"-->
+            <!--type="com.jerry.zhoupro.data.User" />-->
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/page_margin_left">
+
+            <ImageView
+                android:id="@+id/iv_releaser"
+                android:layout_width="@dimen/sixty_dp"
+                android:layout_height="@dimen/sixty_dp"
+                android:layout_marginLeft="@dimen/sixteen_dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/ic_img_user_default" />
+
+            <TextView
+                android:id="@+id/tv_releaser_nickname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/thirty_dp"
+                android:layout_marginRight="@dimen/eight_dp"
+                android:layout_marginStart="@dimen/thirty_dp"
+                android:layout_marginTop="@dimen/eight_dp"
+                android:text="{user.nickname}"
+                app:layout_constraintLeft_toRightOf="@+id/iv_releaser"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_releaser" />
+
+            <TextView
+                android:id="@+id/tv_release_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sixteen_dp"
+                android:text="@{thing.createdAt}"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_releaser_nickname"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_releaser_nickname" />
+
+            <TextView
+                android:id="@+id/tv_release_theme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sixteen_dp"
+                android:text="@{thing.title}"
+                android:textColor="@android:color/holo_orange_light"
+                android:textSize="@dimen/_18sp"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_releaser"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_releaser" />
+
+            <TextView
+                android:id="@+id/tv_happen_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/eight_dp"
+                android:text="@{thing.date}"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_releaser"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_release_theme" />
+
+            <TextView
+                android:id="@+id/tv_happen_place"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/eight_dp"
+                android:text="@{thing.place}"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_releaser"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_happen_time" />
+
+            <TextView
+                android:id="@+id/tv_happen_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/eight_dp"
+                android:text="@{thing.content}"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_releaser"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_happen_place" />
+
+            <ImageView
+                android:id="@+id/tv_happen_pic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="@dimen/thirty_dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_happen_content"
+                app:srcCompat="@drawable/bg_pop_cancel" />
+
+            <Button
+                android:id="@+id/btn_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sixteen_dp"
+                android:text="@string/call"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/btn_sms"
+                app:layout_constraintTop_toBottomOf="@+id/tv_happen_pic" />
+
+            <Button
+                android:id="@+id/btn_sms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_sms"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_call"
+                app:layout_constraintLeft_toRightOf="@+id/btn_call"
+                app:layout_constraintRight_toLeftOf="@+id/btn_share"
+                app:layout_constraintTop_toTopOf="@+id/btn_call" />
+
+            <Button
+                android:id="@+id/btn_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/share"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_call"
+                app:layout_constraintLeft_toRightOf="@+id/btn_sms"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btn_call" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</layout>
