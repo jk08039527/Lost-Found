@@ -1,6 +1,6 @@
 package com.jerry.zhoupro.fragment;
 
-import com.jerry.zhoupro.data.LostFoundInfo;
+import com.jerry.zhoupro.bean.ThingInfoBean;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobQueryResult;
@@ -16,10 +16,10 @@ public class InfoListLostFragment extends InfoListBaseFragment {
     @Override
     protected void initData() {
         super.initData();
-        BmobQuery<LostFoundInfo> bmobQuery = new BmobQuery<>();
-        bmobQuery.doSQLQuery(new SQLQueryListener<LostFoundInfo>() {
+        BmobQuery<ThingInfoBean> bmobQuery = new BmobQuery<>();
+        bmobQuery.doSQLQuery(new SQLQueryListener<ThingInfoBean>() {
             @Override
-            public void done(final BmobQueryResult<LostFoundInfo> bmobQueryResult, final BmobException e) {
+            public void done(final BmobQueryResult<ThingInfoBean> bmobQueryResult, final BmobException e) {
 
             }
         });

@@ -15,6 +15,7 @@
     <color name="black">#ff000000</color>
     <color name="black_60alpha">#60000000</color>
     <color name="black_40alpha">#40000000</color>
+    <color name="black_4dalpha">#4d000000</color>
     <color name="white">#ffffff</color>
     <color name="white_press">#e3e3e3</color>
     <color name="white_80alpha">#80ffffff</color>
@@ -37,6 +38,7 @@
     <color name="text_color_52">#525252</color>
     <color name="text_gray">#bebebe</color>
     <color name="alertdialog_line">#c6c6c6</color>
+    <color name="skip_text_color">#f5f5f5</color>
 
 
 </resources>

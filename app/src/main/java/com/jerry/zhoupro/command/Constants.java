@@ -22,8 +22,8 @@ public class Constants {
     /**
      * Lost & Found
      */
-    public static final int LOST = 0x1;
-    public static final int FOUND = 0x2;
+    public static final int LOST = 0;
+    public static final int FOUND = 1;
     public static final String PATH_ROOT_CATCH = Environment.getExternalStorageDirectory() + File.separator + "JerryPro" + File.separator;
     public static final String PATH_SETTING_CATCH = PATH_ROOT_CATCH + "catch" + File.separator;
     public static final String PATH_HEAD_PICTURE = PATH_SETTING_CATCH + "head.jpg";

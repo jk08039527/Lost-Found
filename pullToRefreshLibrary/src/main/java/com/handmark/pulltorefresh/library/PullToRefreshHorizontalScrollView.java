@@ -17,8 +17,6 @@ package com.handmark.pulltorefresh.library;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -50,11 +48,7 @@ public class PullToRefreshHorizontalScrollView extends PullToRefreshBase<Horizon
 	protected HorizontalScrollView createRefreshableView(Context context, AttributeSet attrs) {
 		HorizontalScrollView scrollView;
 
-		if (VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
-			scrollView = new InternalHorizontalScrollViewSDK9(context, attrs);
-		} else {
-			scrollView = new HorizontalScrollView(context, attrs);
-		}
+		scrollView = new InternalHorizontalScrollViewSDK9(context, attrs);
 
 		scrollView.setId(R.id.scrollview);
 		return scrollView;
