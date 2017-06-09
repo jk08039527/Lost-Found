@@ -11,11 +11,9 @@ import cn.bmob.v3.listener.SQLQueryListener;
  * Created by wzl-pc on 2017/5/20.
  */
 
-public class InfoListLostFragment extends InfoListBaseFragment {
+public class InfoListLostFragment{
 
-    @Override
     protected void initData() {
-        super.initData();
         BmobQuery<ThingInfoBean> bmobQuery = new BmobQuery<>();
         bmobQuery.doSQLQuery(new SQLQueryListener<ThingInfoBean>() {
             @Override

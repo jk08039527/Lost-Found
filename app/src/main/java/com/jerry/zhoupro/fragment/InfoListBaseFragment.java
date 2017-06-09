@@ -8,7 +8,6 @@ import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.adapter.CommonAdapter;
 import com.jerry.zhoupro.adapter.LostFoundInfoListAdapter;
 import com.jerry.zhoupro.bean.ThingInfoBean;
-import com.jerry.zhoupro.command.Constants;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.util.Mlog;
 
@@ -23,7 +22,7 @@ import cn.bmob.v3.listener.FindListener;
  * Created by wzl-pc on 2017/5/20.
  */
 
-public abstract class InfoListBaseFragment extends BaseFragment {
+public class InfoListBaseFragment extends BaseFragment {
 
     @BindView(R.id.pull_refresh_list)
     PullToRefreshListView mPullRefreshList;
@@ -33,11 +32,7 @@ public abstract class InfoListBaseFragment extends BaseFragment {
 
     public static InfoListBaseFragment newInstance(int type) {
         InfoListBaseFragment fragment;
-        if (type == Constants.LOST) {
-            fragment = new InfoListLostFragment();
-        } else {
-            fragment = new InfoListFoundFragment();
-        }
+        fragment = new InfoListBaseFragment();
         fragment.type = type;
         return fragment;
     }
@@ -60,7 +55,7 @@ public abstract class InfoListBaseFragment extends BaseFragment {
         BmobQuery<ThingInfoBean> query = new BmobQuery<>(ThingInfoBean.class.getSimpleName());
         query.addWhereEqualTo(Key.TAG_RELEASE_TYPE, type);
         query.setLimit(10);
-        query.order(Key.CREATEDAT);
+        query.order("-" + Key.CREATEDAT);
         query.findObjects(new FindListener<ThingInfoBean>() {
             @Override
             public void done(final List<ThingInfoBean> list, final BmobException e) {
@@ -70,9 +65,9 @@ public abstract class InfoListBaseFragment extends BaseFragment {
                 }
                 for (ThingInfoBean thingInfoBean : list) {
                     Mlog.d(thingInfoBean.toString());
-                    mLostFoundInfos.addAll(list);
-                    mAdapter.notifyDataSetChanged();
                 }
+                mLostFoundInfos.addAll(list);
+                mAdapter.notifyDataSetChanged();
             }
         });
     }

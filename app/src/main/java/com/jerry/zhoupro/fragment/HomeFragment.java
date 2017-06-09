@@ -6,6 +6,7 @@ import java.util.List;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.adapter.FragmentViewPagerAdapter;
 import com.jerry.zhoupro.command.Constants;
+import com.jerry.zhoupro.listener.MyViewPageChangeListener;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -50,8 +51,16 @@ public class HomeFragment extends BaseFragment {
         });
 
         mFragmentList = new ArrayList<>(2);
+        String[] tabs = {getString(R.string.lost), getString(R.string.found)};
+        mAdapter = new FragmentViewPagerAdapter(getChildFragmentManager(), tabs, mFragmentList);
         mVpLostFound.setAdapter(mAdapter);
         mVpLostFound.setOffscreenPageLimit(mFragmentList.size());
+        mVpLostFound.addOnPageChangeListener(new MyViewPageChangeListener() {
+            @Override
+            public void onPageSelected(final int position) {
+                mRgMain.check(position == 0 ? R.id.rb_lost : R.id.rb_found);
+            }
+        });
         initFragment();
     }
 
@@ -62,9 +71,6 @@ public class HomeFragment extends BaseFragment {
         }
         mFragmentList.add(InfoListBaseFragment.newInstance(Constants.LOST));
         mFragmentList.add(InfoListBaseFragment.newInstance(Constants.FOUND));
-        String[] tabs = {getString(R.string.lost), getString(R.string.found)};
-        mAdapter = new FragmentViewPagerAdapter(getChildFragmentManager(), tabs, mFragmentList);
-        mVpLostFound.setAdapter(mAdapter);
-        mVpLostFound.setOffscreenPageLimit(mFragmentList.size());
+        mAdapter.notifyDataSetChanged();
     }
 }
