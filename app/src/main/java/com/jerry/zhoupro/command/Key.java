@@ -37,21 +37,23 @@ public class Key {
     public static final String JPG = ".jpg";
     public static final String PNG = ".png";
     public static final String THING_TYPE = "thingType";
+    public static final String RELEASE_TYPE = "releaseType";//0:失物，1：招领
 
     public static final String ADDRESS= "address";
     public static final String LOCATION= "location";
-    public static String has_register = "hasRegister";
-    public static final int CODE_101 = 101;
 
+    public static String has_register = "hasRegister";
+    public static final int _1 = -1;
+    public static final int CODE_101 = 101;
     public static final int CODE_102 = 102;
+
     public static final int CODE_103 = 103;
     public static final int TAG_RELEASE_LOST = 0;
     public static final int TAG_RELEASE_FOUND = 1;
-    public static final String TAG_RELEASE_TYPE = "releaseType";//0:失物，1：招领
-    public static final int REGISTER = 3;
-    public static final int LOGIN = 4;
-    public static final int TAKE_PHOTO = 5;
-    public static final int PICK_PHOTO = 6;
-    public static final int CUT_PHOTO = 7;
+    public static final int REGISTER = 2;
+    public static final int LOGIN = 3;
+    public static final int TAKE_PHOTO = 4;
+    public static final int PICK_PHOTO = 5;
+    public static final int CUT_PHOTO = 6;
     public static final String CREATEDAT = "createdAt";
 }

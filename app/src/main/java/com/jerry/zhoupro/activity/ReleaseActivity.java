@@ -70,7 +70,7 @@ public class ReleaseActivity extends TitleBaseActivity {
     @Override
     protected void beforeViews() {
         super.beforeViews();
-        releaseType = getIntent().getIntExtra(Key.TAG_RELEASE_TYPE, -1);
+        releaseType = getIntent().getIntExtra(Key.RELEASE_TYPE, -1);
         mHandler = new WeakHandler();
     }
 

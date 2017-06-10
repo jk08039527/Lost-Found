@@ -14,10 +14,10 @@ public class Constants {
     /**
      * Bottom Tab shift
      */
-    public static final String TAB_HOME = "tabHome";
-    public static final String TAB_FIND = "tabFind";
-    public static final String TAB_MSG = "tabMsg";
-    public static final String TAB_ME = "tabMe";
+    public static final int TAB_HOME = 0;
+    public static final int TAB_FIND = 1;
+    public static final int TAB_MSG = 2;
+    public static final int TAB_ME = 3;
 
     /**
      * Lost & Found

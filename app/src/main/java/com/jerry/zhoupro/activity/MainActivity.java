@@ -16,33 +16,30 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
-    public static String selectTag = Constants.TAB_HOME;
+    public static int selectTag = Constants.TAB_HOME;
 
     @BindView(R.id.content)
     FrameLayout mContent;
     @BindView(R.id.tab_bar)
     LinearLayout mTabBar;
     @BindView(R.id.tab_home)
-    Button mTabHome;
+    TextView mTabHome;
     @BindView(R.id.tab_find)
-    Button mTabFind;
-    @BindView(R.id.tab_add)
-    Button mTabAdd;
+    TextView mTabFind;
     @BindView(R.id.tab_msg)
-    Button mTabMsg;
+    TextView mTabMsg;
     @BindView(R.id.tab_me)
-    Button mTabMe;
+    TextView mTabMe;
 
     private FragmentManager fragmentManager;
     private Fragment fragmentHome, fragmentFind, fragmentMsg, fragmentMe;
@@ -66,7 +63,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.tab_home, R.id.tab_find, R.id.tab_add, R.id.tab_msg, R.id.tab_me})
+    @OnClick({R.id.tab_home, R.id.tab_find, R.id.iv_release, R.id.tab_msg, R.id.tab_me})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tab_home:
@@ -75,7 +72,7 @@ public class MainActivity extends BaseActivity {
             case R.id.tab_find:
                 setContentFragment(Constants.TAB_FIND);
                 break;
-            case R.id.tab_add:
+            case R.id.iv_release:
                 if (mReleasePopWindow == null) {
                     mReleasePopWindow = new ReleasePopWindow(this, new ReleasePopWindow.PopMenuClickListener() {
                         @Override
@@ -84,7 +81,7 @@ public class MainActivity extends BaseActivity {
                             Intent intent;
                             if (UserManager.hasLogin()) {
                                 intent = new Intent(MainActivity.this, ReleaseActivity.class);
-                                intent.putExtra(Key.TAG_RELEASE_TYPE, requestCode);
+                                intent.putExtra(Key.RELEASE_TYPE, requestCode);
                                 startActivity(intent);
                             } else {
                                 intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -101,18 +98,19 @@ public class MainActivity extends BaseActivity {
             case R.id.tab_me:
                 setContentFragment(Constants.TAB_ME);
                 break;
+            default:
+                break;
         }
     }
 
-    private void changeSelect(int id) {
-        View v;
-        for (int i = 0; i < mTabBar.getChildCount(); i++) {
-            v = mTabBar.getChildAt(i);
-            v.setSelected(v.getId() == id);
-        }
+    private void changeSelect(int index) {
+        mTabHome.setSelected(index == Constants.TAB_HOME);
+        mTabFind.setSelected(index == Constants.TAB_FIND);
+        mTabMsg.setSelected(index == Constants.TAB_MSG);
+        mTabMe.setSelected(index == Constants.TAB_ME);
     }
 
-    private void setContentFragment(String selectTag) {
+    private void setContentFragment(int selectTag) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         hideFragments(transaction);
         switch (selectTag) {
@@ -152,6 +150,7 @@ public class MainActivity extends BaseActivity {
                 break;
         }
         transaction.commitAllowingStateLoss();
+        changeSelect(selectTag);
     }
 
     private void hideFragments(FragmentTransaction transaction) {
@@ -169,11 +168,11 @@ public class MainActivity extends BaseActivity {
         }
     }
     private void setSelectTab(Bundle extras) {
-        String tabTag = Key.NIL;
+        int tabTag = 0;
         if (extras != null) {
-            tabTag = extras.getString(Key.tabTag);
+            tabTag = extras.getInt(Key.tabTag, -1);
         }
-        if (TextUtils.isEmpty(tabTag)) {
+        if (tabTag == -1) {
             setContentFragment(Constants.TAB_HOME);
             return;
         }
@@ -184,7 +183,7 @@ public class MainActivity extends BaseActivity {
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         if (resultCode == RESULT_OK && requestCode == Key.TAG_RELEASE_LOST || requestCode == Key.TAG_RELEASE_FOUND) {
             Intent intent = new Intent(MainActivity.this, ReleaseActivity.class);
-            intent.putExtra(Key.TAG_RELEASE_TYPE, requestCode);
+            intent.putExtra(Key.RELEASE_TYPE, requestCode);
             startActivity(intent);
         }
         super.onActivityResult(requestCode, resultCode, data);

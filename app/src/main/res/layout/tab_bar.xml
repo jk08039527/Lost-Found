@@ -12,31 +12,39 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_48dp"
         android:background="@color/white"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <Button
+        <TextView
             android:id="@+id/tab_home"
             style="@style/tab_bar_text_style"
+            android:drawableTop="@drawable/selector_tab_home"
             android:text="@string/tab_home" />
 
-        <Button
+        <TextView
             android:id="@+id/tab_find"
             style="@style/tab_bar_text_style"
+            android:drawableTop="@drawable/selector_tab_find"
             android:text="@string/discover" />
 
-        <Button
-            android:id="@+id/tab_add"
+        <ImageView
+            android:id="@+id/iv_release"
             style="@style/tab_bar_text_style"
-            android:text="@string/realese" />
+            android:layout_height="match_parent"
+            android:contentDescription="@string/realese"
+            android:layout_marginBottom="@dimen/four_dp"
+            android:src="@mipmap/tab_release" />
 
-        <Button
+        <TextView
             android:id="@+id/tab_msg"
             style="@style/tab_bar_text_style"
+            android:drawableTop="@drawable/selector_tab_msg"
             android:text="@string/message" />
 
-        <Button
+        <TextView
             android:id="@+id/tab_me"
             style="@style/tab_bar_text_style"
+            android:drawableTop="@drawable/selector_tab_me"
             android:text="@string/me" />
     </LinearLayout>
 </merge>

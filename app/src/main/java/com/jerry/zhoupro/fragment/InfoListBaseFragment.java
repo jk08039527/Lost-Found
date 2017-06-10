@@ -53,7 +53,7 @@ public class InfoListBaseFragment extends BaseFragment {
     protected void initData() {
         super.initData();
         BmobQuery<ThingInfoBean> query = new BmobQuery<>(ThingInfoBean.class.getSimpleName());
-        query.addWhereEqualTo(Key.TAG_RELEASE_TYPE, type);
+        query.addWhereEqualTo(Key.RELEASE_TYPE, type);
         query.setLimit(10);
         query.order("-" + Key.CREATEDAT);
         query.findObjects(new FindListener<ThingInfoBean>() {
