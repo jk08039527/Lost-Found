@@ -209,6 +209,7 @@ public class ReleaseActivity extends TitleBaseActivity {
                     @Override
                     public void done(final BmobException e) {
                         if (e != null) {
+                            Mlog.e(e.toString());
                             toast(R.string.error);
                             return;
                         }
@@ -224,11 +225,12 @@ public class ReleaseActivity extends TitleBaseActivity {
                         List<BmobFile> pictures = new ArrayList<>();
                         pictures.add(file);
                         thingInfo.setPictures(pictures);
-                        thingInfo.setReleaser(UserManager.getInstance().getUser().getObjectId());
+                        thingInfo.setReleaser(UserManager.getInstance().getUser());
                         thingInfo.save(new SaveListener<String>() {
                             @Override
                             public void done(final String thingInfo, final BmobException e) {
                                 if (e != null) {
+                                    Mlog.e(e.toString());
                                     toast(R.string.error);
                                     return;
                                 }

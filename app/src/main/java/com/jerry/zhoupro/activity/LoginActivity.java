@@ -97,10 +97,10 @@ public class LoginActivity extends TitleBaseActivity {
             case R.id.iv_pwd_show:
                 if (isHidden) {
                     mEtPasswd.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    mIvPwdShow.setImageResource(R.mipmap.eye_hide);
+                    mIvPwdShow.setImageResource(R.drawable.eye_hide);
                 } else {
                     mEtPasswd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    mIvPwdShow.setImageResource(R.mipmap.eye_show);
+                    mIvPwdShow.setImageResource(R.drawable.eye_show);
                 }
                 isHidden = !isHidden;
                 ViewUtil.setEditSelection(mEtPasswd);

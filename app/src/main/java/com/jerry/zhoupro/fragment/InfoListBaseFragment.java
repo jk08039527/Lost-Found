@@ -3,6 +3,7 @@ package com.jerry.zhoupro.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.adapter.CommonAdapter;
@@ -12,6 +13,7 @@ import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.util.Mlog;
 
 import android.view.View;
+import android.widget.ListView;
 
 import butterknife.BindView;
 import cn.bmob.v3.BmobQuery;
@@ -45,8 +47,14 @@ public class InfoListBaseFragment extends BaseFragment {
     @Override
     public void initView(final View view) {
         super.initView(view);
-        mAdapter = new LostFoundInfoListAdapter(getContext(), mLostFoundInfos);
+        mAdapter = new LostFoundInfoListAdapter(getActivity(), mLostFoundInfos);
         mPullRefreshList.setAdapter(mAdapter);
+        mPullRefreshList.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+            @Override
+            public void onRefresh(final PullToRefreshBase<ListView> refreshView) {
+                initData();
+            }
+        });
     }
 
     @Override
@@ -56,18 +64,22 @@ public class InfoListBaseFragment extends BaseFragment {
         query.addWhereEqualTo(Key.RELEASE_TYPE, type);
         query.setLimit(10);
         query.order("-" + Key.CREATEDAT);
+        query.include(Key.RELEASER);// 希望在查询帖子信息的同时也把发布人的信息查询出来
         query.findObjects(new FindListener<ThingInfoBean>() {
             @Override
             public void done(final List<ThingInfoBean> list, final BmobException e) {
                 if (e != null) {
+                    Mlog.e(e.toString());
                     toast(R.string.error);
                     return;
                 }
                 for (ThingInfoBean thingInfoBean : list) {
                     Mlog.d(thingInfoBean.toString());
                 }
+                mLostFoundInfos.clear();
                 mLostFoundInfos.addAll(list);
                 mAdapter.notifyDataSetChanged();
+                mPullRefreshList.onRefreshComplete();
             }
         });
     }

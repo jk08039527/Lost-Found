@@ -11,7 +11,7 @@
         android:layout_width="@dimen/sixty_dp"
         android:layout_height="@dimen/sixty_dp"
         android:layout_marginTop="@dimen/fifty_dp"
-        android:src="@mipmap/ic_img_user_default"
+        android:src="@drawable/ic_img_user_default"
         android:contentDescription="@string/app_name"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

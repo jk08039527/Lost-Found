@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_48dp"
         android:background="@drawable/titlebar_btn_selector"
-        android:drawableLeft="@mipmap/title_back_icon"
+        android:drawableLeft="@drawable/title_back_icon"
         android:drawablePadding="@dimen/five_dp"
         android:gravity="center"
         android:paddingLeft="@dimen/fourteen_dp"
@@ -30,7 +30,7 @@
         android:layout_height="@dimen/_48dp"
         android:paddingLeft="@dimen/fourteen_dp"
         android:paddingRight="@dimen/fourteen_dp"
-        android:src="@mipmap/titlebar_close"
+        android:src="@drawable/titlebar_close"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -82,7 +82,7 @@
             android:background="@drawable/titlebar_btn_selector"
             android:paddingLeft="@dimen/fourteen_dp"
             android:paddingRight="@dimen/fourteen_dp"
-            android:src="@mipmap/titlebar_more_icon"
+            android:src="@drawable/titlebar_more_icon"
             android:visibility="gone"/>
 
         <TextView

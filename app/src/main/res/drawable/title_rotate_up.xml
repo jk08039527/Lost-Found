@@ -2,7 +2,7 @@
 <rotate xmlns:android="http://schemas.android.com/apk/res/android"
         android:fillAfter="true"
         android:fromDegrees="0"
-        android:drawable="@mipmap/titlebar_expand"
+        android:drawable="@drawable/titlebar_expand"
         android:interpolator="@android:anim/linear_interpolator"
         android:pivotX="50%"
         android:pivotY="50%"

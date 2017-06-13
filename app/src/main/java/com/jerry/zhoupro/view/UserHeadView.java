@@ -63,7 +63,7 @@ public class UserHeadView extends LinearLayout {
 
     public void setHeadImg(String uri) {
         if (TextUtils.isEmpty(uri)) {
-            mIvUserHead.setImageResource(R.mipmap.ic_img_user_default);
+            mIvUserHead.setImageResource(R.drawable.ic_img_user_default);
         } else {
             Glide.with(getContext()).load(uri).into(mIvUserHead);
         }
@@ -71,7 +71,7 @@ public class UserHeadView extends LinearLayout {
 
     public void setHeadImg(final Bitmap bm) {
         if (bm == null) {
-            mIvUserHead.setImageResource(R.mipmap.ic_img_user_default);
+            mIvUserHead.setImageResource(R.drawable.ic_img_user_default);
         } else {
             mIvUserHead.setImageBitmap(bm);
         }

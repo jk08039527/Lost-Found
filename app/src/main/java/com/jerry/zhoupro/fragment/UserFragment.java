@@ -244,6 +244,7 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
                     @Override
                     public void done(final BmobException e) {
                         if (e != null) {
+                            Mlog.e(e.toString());
                             toast(R.string.error);
                             return;
                         }

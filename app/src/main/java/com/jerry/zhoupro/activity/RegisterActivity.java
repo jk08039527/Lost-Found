@@ -39,7 +39,8 @@ public class RegisterActivity extends TitleBaseActivity {
     TextView mRegisterTv;
     @BindView(R.id.et_nickname)
     MyEditText mEtNickname;
-    private String mPhone, mPwd;
+    private String mPhone;
+    private String mPwd;
     private boolean isHidden;
 
     @Override
@@ -91,10 +92,10 @@ public class RegisterActivity extends TitleBaseActivity {
             case R.id.iv_pwd_show:
                 if (isHidden) {
                     mPasswdEt.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    mIvPwdShow.setImageResource(R.mipmap.eye_hide);
+                    mIvPwdShow.setImageResource(R.drawable.eye_hide);
                 } else {
                     mPasswdEt.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    mIvPwdShow.setImageResource(R.mipmap.eye_show);
+                    mIvPwdShow.setImageResource(R.drawable.eye_show);
                 }
                 isHidden = !isHidden;
                 ViewUtil.setEditSelection(mPasswdEt);

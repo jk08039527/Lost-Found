@@ -99,4 +99,6 @@
     <string name="call">电话</string>
     <string name="send_sms">短信</string>
     <string name="share">分享</string>
+    <string name="call_to_phone">打电话联系：%1$s</string>
+    <string name="sms_to_phone">发短信给电话：%1$s</string>
 </resources>

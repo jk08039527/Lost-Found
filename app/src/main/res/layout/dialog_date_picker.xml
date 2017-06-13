@@ -19,7 +19,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/datepicker_bg"
+        android:background="@drawable/datepicker_bg"
         android:gravity="center"
         android:orientation="horizontal" >
 

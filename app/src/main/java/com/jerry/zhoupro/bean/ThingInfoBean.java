@@ -2,6 +2,8 @@ package com.jerry.zhoupro.bean;
 
 import java.util.List;
 
+import com.jerry.zhoupro.data.User;
+
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobFile;
 
@@ -16,7 +18,7 @@ public class ThingInfoBean extends BmobObject {
     private String place;
     private List<BmobFile> pictures;
     private String content;
-    private String releaser;//发布者，这里储存id
+    private User releaser;//发布者，这里储存id
     private String thingType;
     private String city;
     private String latLng;
@@ -69,11 +71,11 @@ public class ThingInfoBean extends BmobObject {
         this.content = content;
     }
 
-    public String getReleaser() {
+    public User getReleaser() {
         return releaser;
     }
 
-    public void setReleaser(final String releaser) {
+    public void setReleaser(final User releaser) {
         this.releaser = releaser;
     }
 

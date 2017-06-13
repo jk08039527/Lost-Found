@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/realese"
             android:layout_marginBottom="@dimen/four_dp"
-            android:src="@mipmap/tab_release" />
+            android:src="@drawable/tab_release" />
 
         <TextView
             android:id="@+id/tab_msg"
