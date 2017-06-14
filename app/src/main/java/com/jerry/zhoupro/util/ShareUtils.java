@@ -5,27 +5,57 @@ import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
-import com.umeng.socialize.shareboard.ShareBoardConfig;
-import com.umeng.socialize.utils.ShareBoardlistener;
 
 import android.app.Activity;
-import android.graphics.Color;
+import android.util.Log;
 
 /**
  * Created by wzl on 16-9-26.
  */
 
 public class ShareUtils {
-    public static void share(final Activity activity, UMShareListener umShareListener, ShareBoardlistener shareBoardlistener) {
-        ShareBoardConfig boardConfig = new ShareBoardConfig();
-        boardConfig.setIndicatorVisibility(false);
-        boardConfig.setMenuItemBackgroundColor(Color.TRANSPARENT);
+
+    public static void share(final Activity activity, final String text, final String picUri) {
+        final UMShareListener umShareListener = new UMShareListener() {
+            @Override
+            public void onStart(final SHARE_MEDIA share_media) {
+
+            }
+
+            @Override
+            public void onResult(SHARE_MEDIA platform) {
+                Log.d("plat", "platform" + platform);
+                ToastTools.showShort(activity, R.string.umeng_share_completed);
+            }
+
+            @Override
+            public void onError(SHARE_MEDIA platform, Throwable t) {
+                ToastTools.showShort(activity, R.string.umeng_share_failed);
+                if (t != null) {
+                    Log.d("throw", "throw" + t.getMessage());
+                }
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA platform) {
+                ToastTools.showShort(activity, R.string.umeng_share_canceled);
+            }
+        };
+
+//        ShareBoardConfig boardConfig = new ShareBoardConfig();
+//        boardConfig.setIndicatorVisibility(false);
+//        boardConfig.setMenuItemBackgroundColor(Color.TRANSPARENT);
+//        UMWeb web = new UMWeb("http://www.baidu.com/");
+//        web.setTitle("This is music title");//标题
+//        web.setThumb(new UMImage(activity, R.mipmap.ic_launcher));  //缩略图
+//        web.setDescription("my description");//描述
         new ShareAction(activity)
-                .withText(activity.getString(R.string.share))
-                .withMedia(new UMImage(activity, R.mipmap.ic_launcher))
-                .setShareboardclickCallback(shareBoardlistener)
-                .setDisplayList(SHARE_MEDIA.SMS, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.SINA)
-                .setCallback(umShareListener).open(boardConfig);
+                .withText(text)
+                .withMedia(new UMImage(activity, picUri))
+                .setCallback(umShareListener)
+                .setDisplayList(SHARE_MEDIA.SMS, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE,
+                        SHARE_MEDIA.SINA, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE)
+                .open();
 
     }
 }

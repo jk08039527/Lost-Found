@@ -86,7 +86,7 @@ public class AndroidUtils {
      * 获取应用版本号
      */
     public static int getVersionCode() {
-        Context context = MyApplication.getInstances().getApplicationContext();
+        Context context = MyApplication.getInstance().getApplicationContext();
         try {
             PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             return info.versionCode;

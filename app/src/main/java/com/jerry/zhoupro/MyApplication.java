@@ -20,8 +20,8 @@ public class MyApplication extends Application {
 
     static {
         PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
-        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
-        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com");
+        PlatformConfig.setQQZone("1106223214", "nF9ambER3c9bIYEW");
+        PlatformConfig.setSinaWeibo("1652481113", "be2af8b9f9af661dc848acb17facbd63", "http://sns.whalecloud.com");
     }
 
     @Override
@@ -37,7 +37,7 @@ public class MyApplication extends Application {
                 (this, UMENG_KEY, "Channel_ID", MobclickAgent.EScenarioType.E_UM_NORMAL));
     }
 
-    public static Context getInstances() {
+    public static Context getInstance() {
         return mApp;
     }
 }

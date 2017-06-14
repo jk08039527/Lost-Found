@@ -47,7 +47,7 @@ public class InfoListBaseFragment extends BaseFragment {
     @Override
     public void initView(final View view) {
         super.initView(view);
-        mAdapter = new LostFoundInfoListAdapter(getActivity(), mLostFoundInfos);
+        mAdapter = new LostFoundInfoListAdapter(getActivity(), type, mLostFoundInfos);
         mPullRefreshList.setAdapter(mAdapter);
         mPullRefreshList.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override

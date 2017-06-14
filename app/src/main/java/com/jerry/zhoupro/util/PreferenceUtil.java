@@ -19,7 +19,7 @@ public class PreferenceUtil {
         throw new UnsupportedOperationException();
     }
 
-    private static SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MyApplication.getInstances());
+    private static SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MyApplication.getInstance());
 
     /**
      * 判断是否第一次

@@ -101,4 +101,6 @@
     <string name="share">分享</string>
     <string name="call_to_phone">打电话联系：%1$s</string>
     <string name="sms_to_phone">发短信给电话：%1$s</string>
+    <string name="share_lost">亲爱的小伙伴们，我的一个好朋友丢了一件心爱的宝贝，希望找到的小伙伴能和我联系哦！</string>
+    <string name="share_found">亲爱的小伙伴们，我的一个好朋友捡到一件宝贝，是哪位小伙伴不小心丢的和我联系哦！</string>
 </resources>

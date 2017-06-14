@@ -26,12 +26,13 @@
 
             <ImageView
                 android:id="@+id/iv_releaser"
-                android:layout_width="@dimen/sixty_dp"
-                android:layout_height="@dimen/sixty_dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="@dimen/sixteen_dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_img_user_default" />
+                app:srcCompat="@drawable/ic_img_user_default"
+                android:layout_marginStart="@dimen/sixteen_dp" />
 
             <TextView
                 android:id="@+id/tv_releaser_nickname"
@@ -44,7 +45,8 @@
                 android:text="@{thing.releaser.nickname}"
                 app:layout_constraintLeft_toRightOf="@+id/iv_releaser"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/iv_releaser" />
+                app:layout_constraintTop_toTopOf="@+id/iv_releaser"
+                android:layout_marginEnd="@dimen/eight_dp" />
 
             <TextView
                 android:id="@+id/tv_release_time"
@@ -100,7 +102,7 @@
 
             <ImageView
                 android:id="@+id/iv_happen_pic"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="@dimen/thirty_dp"
                 android:onClick="@{myClick}"
