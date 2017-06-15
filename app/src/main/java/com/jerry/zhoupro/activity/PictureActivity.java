@@ -41,6 +41,7 @@ public class PictureActivity extends TitleBaseActivity {
     @Override
     protected void initData() {
         ViewCompat.setTransitionName(picture, TRANSIT_PIC);
+        Glide.with(this).load(dataUrl).preload();
         Glide.with(this).load(dataUrl).into(picture);
         attacher = new PhotoViewAttacher(picture);
     }
