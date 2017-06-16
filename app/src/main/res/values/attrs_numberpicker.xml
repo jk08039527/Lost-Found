@@ -1,5 +1,6 @@
 <resources>
 
+    <!--NumberPicker Start-->
     <attr name="numberPickerStyle" format="reference" />
 
     <declare-styleable name="NumberPicker">
@@ -22,14 +23,7 @@
         <!-- @hide The layout of the number picker. -->
         <attr name="internalLayout" format="reference" />
         <!-- @hide The drawable for pressed virtual (increment/decrement) buttons. -->
-        <attr name="virtualButtonPressedDrawable" format="reference"/>
-    </declare-styleable>
-
-    <declare-styleable name="CircleImageView">
-        <attr name="civ_border_width" format="dimension" />
-        <attr name="civ_border_color" format="color" />
-        <attr name="civ_border_overlay" format="boolean" />
-        <attr name="civ_fill_color" format="color" />
+        <attr name="virtualButtonPressedDrawable" format="reference" />
     </declare-styleable>
 
     <style name="NPWidget">
@@ -51,5 +45,13 @@
         <item name="internalMaxHeight">180dp</item>
         <item name="virtualButtonPressedDrawable">@color/transparent</item>
     </style>
-    
+    <!--NumberPicker End-->
+
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+    </declare-styleable>
+
 </resources>

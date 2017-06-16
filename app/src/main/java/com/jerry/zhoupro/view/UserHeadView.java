@@ -18,10 +18,8 @@ import butterknife.OnClick;
 /**
  * Created by wzl-pc on 2017/5/13.
  */
-
 public class UserHeadView extends LinearLayout {
 
-    private Context mContext;
     private HeadClickListener mHeadClickListener;
     @BindView(R.id.iv_user_head)
     ImageView mIvUserHead;
@@ -36,8 +34,7 @@ public class UserHeadView extends LinearLayout {
 
     public UserHeadView(final Context context) {
         super(context);
-        mContext = context;
-        View.inflate(mContext, R.layout.profile_head_view, this);
+        View.inflate(context, R.layout.profile_head_view, this);
         ButterKnife.bind(this);
     }
 
