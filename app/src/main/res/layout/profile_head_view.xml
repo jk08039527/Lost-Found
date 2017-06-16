@@ -6,13 +6,16 @@
     android:layout_gravity="bottom"
     android:gravity="bottom">
 
-    <ImageView
+    <com.jerry.zhoupro.widget.CircleImageView
         android:id="@+id/iv_user_head"
         android:layout_width="@dimen/sixty_dp"
         android:layout_height="@dimen/sixty_dp"
         android:layout_marginTop="@dimen/fifty_dp"
         android:src="@drawable/ic_img_user_default"
         android:contentDescription="@string/app_name"
+        app:civ_border_color="@color/white"
+        app:civ_border_overlay="false"
+        app:civ_border_width="1dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
