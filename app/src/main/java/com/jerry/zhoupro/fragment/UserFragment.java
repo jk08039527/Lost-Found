@@ -258,7 +258,7 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
                             toast(R.string.error);
                             return;
                         }
-                        FileUtils.deleteFiles(PATH_SETTING_CATCH);
+                        FileUtils.deleteFiles(new File(PATH_SETTING_CATCH));
                         headView.setHeadImg(bm);
                     }
                 });

@@ -113,14 +113,13 @@ public class FileUtils {
     /**
      * 删除指定目录下的所有文件
      *
-     * @param dirPath
+     * @param dir
      */
-    public static void deleteFiles(final String dirPath) {
-        File dir = new File(dirPath);
+    public static void deleteFiles(final File dir) {
         if (!dir.exists()) { return; }
         if (dir.isDirectory()) {
-            String[] files = dir.list();
-            for (String file : files) {
+            File[] files = dir.listFiles();
+            for (File file : files) {
                 deleteFiles(file);
             }
         } else {

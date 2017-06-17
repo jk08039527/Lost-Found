@@ -244,7 +244,7 @@ public class ReleaseActivity extends TitleBaseActivity {
                                 Mlog.d(thingInfo);
                                 toast(R.string.release_success);
                                 closeLoadingDialog();
-                                FileUtils.deleteFiles(PATH_SETTING_CATCH);
+                                FileUtils.deleteFiles(new File(PATH_SETTING_CATCH));
                                 finish();
                             }
                         });
