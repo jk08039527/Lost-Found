@@ -26,7 +26,9 @@ public class ShareUtils {
             @Override
             public void onResult(SHARE_MEDIA platform) {
                 Log.d("plat", "platform" + platform);
-                ToastTools.showShort(activity, R.string.umeng_share_completed);
+                if (platform != SHARE_MEDIA.SMS) {
+                    ToastTools.showShort(activity, R.string.umeng_share_completed);
+                }
             }
 
             @Override
