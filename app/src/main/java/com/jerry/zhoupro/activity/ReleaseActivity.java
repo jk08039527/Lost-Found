@@ -14,7 +14,6 @@ import com.baidu.location.LocationClientOption;
 import com.bumptech.glide.Glide;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.bean.ThingInfoBean;
-import com.jerry.zhoupro.command.Constants;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.data.UserManager;
 import com.jerry.zhoupro.pop.CustomDatePickerDialog;
@@ -25,8 +24,8 @@ import com.jerry.zhoupro.util.WeakHandler;
 import com.jerry.zhoupro.view.MeasureGridView;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
@@ -40,6 +39,8 @@ import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UploadFileListener;
+
+import static com.jerry.zhoupro.command.Constants.PATH_SETTING_CATCH;
 
 public class ReleaseActivity extends TitleBaseActivity {
 
@@ -61,6 +62,7 @@ public class ReleaseActivity extends TitleBaseActivity {
     private LocationClient mLocationClient;
     private WeakHandler mHandler;
     private ItemPopupWindow itemPopupWindow;
+    private String PATH_RELEASE_PIC;
 
     @Override
     protected int getContentLayout() {
@@ -156,18 +158,23 @@ public class ReleaseActivity extends TitleBaseActivity {
                     itemPopupWindow = new ItemPopupWindow(this, list, new ItemPopupWindow.ActionLister() {
                         @Override
                         public void stringAction(final int index) {
+                            String sdStatus = Environment.getExternalStorageState();
+                            if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // 检测sd是否可用
+                                Mlog.i("TestFile",
+                                        "SD card is not avaiable/writeable right now.");
+                                toast(R.string.no_sdCard);
+                                return;
+                            }
+                            setReleasePicTemp();
                             Intent intent;
                             switch (index) {
                                 case 0://拍照
-                                    if (!FileUtils.createFile(Constants.PATH_HEAD_CATCH_PICTURE)) {
+                                    if (!FileUtils.createFile(PATH_RELEASE_PIC)) {
                                         return;
                                     }
                                     intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                    intent.putExtra("return-data", false);
                                     intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                                            Uri.fromFile(new File(Constants.PATH_HEAD_CATCH_PICTURE)));
-                                    intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-                                    intent.putExtra("noFaceDetection", true);
+                                            Uri.fromFile(new File(PATH_RELEASE_PIC)));
                                     startActivityForResult(intent, Key.TAKE_PHOTO);
                                     break;
                                 case 1:  //相册
@@ -204,7 +211,7 @@ public class ReleaseActivity extends TitleBaseActivity {
                     return;
                 }
                 loadingDialog();
-                final BmobFile file = new BmobFile(new File(Constants.PATH_RELEASE_PIC));
+                final BmobFile file = new BmobFile(new File(PATH_RELEASE_PIC));
                 file.upload(new UploadFileListener() {
                     @Override
                     public void done(final BmobException e) {
@@ -237,6 +244,7 @@ public class ReleaseActivity extends TitleBaseActivity {
                                 Mlog.d(thingInfo);
                                 toast(R.string.release_success);
                                 closeLoadingDialog();
+                                FileUtils.deleteFiles(PATH_SETTING_CATCH);
                                 finish();
                             }
                         });
@@ -262,13 +270,13 @@ public class ReleaseActivity extends TitleBaseActivity {
                 mTvThingPlaceValue.setText(place);
                 break;
             case Key.TAKE_PHOTO:
-                Glide.with(this).load(Constants.PATH_RELEASE_PIC).into(mIvPicInfo);
+                Glide.with(this).load(PATH_RELEASE_PIC).into(mIvPicInfo);
                 break;
             case Key.PICK_PHOTO:
                 Uri uri = data.getData();
                 try {
                     InputStream inputStream = getContentResolver().openInputStream(uri);
-                    FileUtils.saveFile(inputStream, Constants.PATH_RELEASE_PIC);
+                    FileUtils.saveFile(inputStream, PATH_RELEASE_PIC);
                     Glide.with(this).load(uri).into(mIvPicInfo);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -284,5 +292,9 @@ public class ReleaseActivity extends TitleBaseActivity {
             return city;
         }
         return province + city;
+    }
+
+    public void setReleasePicTemp() {
+        PATH_RELEASE_PIC = PATH_SETTING_CATCH + System.currentTimeMillis() + Key.JPG;
     }
 }

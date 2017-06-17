@@ -111,6 +111,24 @@ public class FileUtils {
     }
 
     /**
+     * 删除指定目录下的所有文件
+     *
+     * @param dirPath
+     */
+    public static void deleteFiles(final String dirPath) {
+        File dir = new File(dirPath);
+        if (!dir.exists()) { return; }
+        if (dir.isDirectory()) {
+            String[] files = dir.list();
+            for (String file : files) {
+                deleteFiles(file);
+            }
+        } else {
+            dir.delete();
+        }
+    }
+
+    /**
      * 将一个InputStream里面的数据写入到文件中
      *
      * @param input

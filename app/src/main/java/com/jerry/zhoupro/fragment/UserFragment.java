@@ -9,7 +9,6 @@ import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.activity.LoginActivity;
 import com.jerry.zhoupro.activity.RegisterActivity;
-import com.jerry.zhoupro.command.Constants;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.data.User;
 import com.jerry.zhoupro.data.UserManager;
@@ -26,6 +25,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -42,6 +42,7 @@ import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
+import static com.jerry.zhoupro.command.Constants.PATH_SETTING_CATCH;
 import static com.jerry.zhoupro.command.Key.CUT_PHOTO;
 
 /**
@@ -56,6 +57,7 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
     PullToZoomScrollViewEx mPtzUser;
     private String uid = Key.NIL;
     private String photoUrl;
+    private String PATH_HEAD_PICTURE;
 
     @Override
     public int getContentLayout() {
@@ -88,16 +90,24 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
                         itemPopupWindow = new ItemPopupWindow(getActivity(), list, new ItemPopupWindow.ActionLister() {
                             @Override
                             public void stringAction(final int index) {
+                                String sdStatus = Environment.getExternalStorageState();
+                                if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // 检测sd是否可用
+                                    Mlog.i("TestFile",
+                                            "SD card is not avaiable/writeable right now.");
+                                    toast(R.string.no_sdCard);
+                                    return;
+                                }
+                                setHeadPicTemp();
                                 Intent intent;
                                 switch (index) {
                                     case 0://拍照
-                                        if (!FileUtils.createFile(Constants.PATH_HEAD_CATCH_PICTURE)) {
+                                        if (!FileUtils.createFile(PATH_HEAD_PICTURE)) {
                                             return;
                                         }
                                         intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                                         intent.putExtra("return-data", false);
                                         intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                                                Uri.fromFile(new File(Constants.PATH_HEAD_CATCH_PICTURE)));
+                                                Uri.fromFile(new File(PATH_HEAD_PICTURE)));
                                         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
                                         intent.putExtra("noFaceDetection", true);
                                         startActivityForResult(intent, Key.TAKE_PHOTO);
@@ -179,7 +189,7 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
                 });
                 break;
             case Key.TAKE_PHOTO:
-                startZoomActivity(Uri.fromFile(new File(Constants.PATH_HEAD_CATCH_PICTURE)));
+                startZoomActivity(Uri.fromFile(new File(PATH_HEAD_PICTURE)));
                 break;
             case Key.PICK_PHOTO:
                 if (data != null) {
@@ -192,7 +202,7 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
                     Bundle extras = data.getExtras();
                     if (extras != null) {
                         final Bitmap bm = extras.getParcelable("data");
-                        FileUtils.saveLocalBitmap(bm, Constants.PATH_SETTING_CATCH + uid + Key.JPG);
+                        FileUtils.saveLocalBitmap(bm, PATH_SETTING_CATCH + uid + Key.JPG);
                         uploadPic(bm);
                     }
                 }
@@ -219,7 +229,7 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
     }
 
     private void doUpdate(final Bitmap bm) {
-        final BmobFile picture = new BmobFile(new File(Constants.PATH_SETTING_CATCH + uid + Key.JPG));
+        final BmobFile picture = new BmobFile(new File(PATH_SETTING_CATCH + uid + Key.JPG));
         picture.upload(new UploadFileListener() {
             @Override
             public void done(final BmobException e) {
@@ -248,7 +258,7 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
                             toast(R.string.error);
                             return;
                         }
-                        FileUtils.deleteFile(Constants.PATH_HEAD_CATCH_PICTURE);
+                        FileUtils.deleteFiles(PATH_SETTING_CATCH);
                         headView.setHeadImg(bm);
                     }
                 });
@@ -290,5 +300,9 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
     @Override
     public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
         //TODO UserMenu点击事件
+    }
+
+    public void setHeadPicTemp() {
+        PATH_HEAD_PICTURE = PATH_SETTING_CATCH + System.currentTimeMillis() + Key.JPG;
     }
 }

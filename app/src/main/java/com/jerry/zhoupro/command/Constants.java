@@ -26,8 +26,5 @@ public class Constants {
     public static final int FOUND = 1;
     public static final String PATH_ROOT_CATCH = Environment.getExternalStorageDirectory() + File.separator + "JerryPro" + File.separator;
     public static final String PATH_SETTING_CATCH = PATH_ROOT_CATCH + "catch" + File.separator;
-    public static final String PATH_HEAD_PICTURE = PATH_SETTING_CATCH + "head.jpg";
-    public static final String PATH_RELEASE_PIC = PATH_SETTING_CATCH + "release.jpg";
-    public static final String PATH_HEAD_CATCH_PICTURE = PATH_SETTING_CATCH + "head_catch.jpg";
 
 }
