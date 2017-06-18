@@ -14,13 +14,13 @@
         <item>@string/other</item>
     </string-array>
     <string-array name="user_menu_title">
-        <item>@string/record_lost</item>
-        <item>@string/record_found</item>
-        <item>@string/record_discover</item>
-        <item>@string/feedback</item>
+        <!--<item>@string/record_lost</item>-->
+        <!--<item>@string/record_found</item>-->
+        <!--<item>@string/record_discover</item>-->
         <item>@string/app_share</item>
-        <item>@string/clear_catch</item>
+        <item>@string/feedback</item>
         <item>@string/check_update</item>
+        <item>@string/clear_catch</item>
         <item>@string/about_us</item>
     </string-array>
 </resources>

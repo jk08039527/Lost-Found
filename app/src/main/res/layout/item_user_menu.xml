@@ -9,7 +9,7 @@
         android:id="@+id/iv_menu"
         android:layout_width="@dimen/fifty_dp"
         android:layout_height="@dimen/fifty_dp"
-        android:layout_marginTop="@dimen/twelve_dp"
+        android:layout_marginTop="@dimen/eight_dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/eight_dp"
         android:textColor="@color/primary_text_color"
-        android:textSize="@dimen/_16sp"
+        android:textSize="@dimen/_14sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_menu" />
@@ -28,7 +28,7 @@
     <View
         android:id="@+id/horizontal_line"
         style="@style/tab_horizontal_line_color_style"
-        android:layout_marginTop="@dimen/fourteen_dp"
+        android:layout_marginTop="@dimen/eight_dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

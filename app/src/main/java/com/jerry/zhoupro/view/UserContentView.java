@@ -18,15 +18,11 @@ import android.util.AttributeSet;
 public class UserContentView extends MeasureGridView {
 
     private int[] imgRes = {
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher
+            R.drawable.app_share,
+            R.drawable.feedback,
+            R.drawable.check_update,
+            R.drawable.clear_catch,
+            R.drawable.about_us
     };
 
 
