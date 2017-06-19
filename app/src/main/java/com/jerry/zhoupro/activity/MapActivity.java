@@ -36,7 +36,6 @@ public class MapActivity extends TitleBaseActivity {
     EditText mEtAddress;
     private BaiduMap map;
 
-    private String mAddress;
     private String city;
     private String mCurrentLocation;
     private LocationClient mLocationClient;
@@ -108,7 +107,7 @@ public class MapActivity extends TitleBaseActivity {
         switch (v.getId()) {
             case R.id.tv_right:
                 Intent data = new Intent();
-                data.putExtra(Key.ADDRESS, mAddress);
+                data.putExtra(Key.ADDRESS, mEtAddress.getText().toString());
                 data.putExtra(Key.LOCATION, mCurrentLocation);
                 data.putExtra(Key.USER_CITY, city);
                 setResult(RESULT_OK, data);
@@ -183,9 +182,9 @@ public class MapActivity extends TitleBaseActivity {
                 //获取反向地理编码结果
                 LatLng latLng = result.getLocation();
                 mCurrentLocation = latLng.latitude + "," + latLng.longitude;
-                mAddress = result.getAddress();
+                String address = result.getAddress();
+                mEtAddress.setText(address);
                 mEtAddress.setSelection(mEtAddress.getText().length());
-                mEtAddress.setText(mAddress);
                 city = getCity(result.getAddressDetail().province, result.getAddressDetail().city);
             }
         };
