@@ -8,6 +8,7 @@ import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.util.Log;
 
 /**
@@ -16,7 +17,25 @@ import android.util.Log;
 
 public class ShareUtils {
 
-    public static void share(final Activity activity, final String text, final String picUri) {
+    public static void share(final Activity activity, final String url, final String title, final String description, final String text, final int picUri) {
+        new UMImage(activity, picUri);
+        UMWeb web = new UMWeb(TextUtils.isEmpty(url) ? "http://www.baidu.com/" : url);
+        web.setTitle(title);//标题
+        web.setThumb(new UMImage(activity, picUri));  //缩略图
+        web.setDescription(description);//描述
+        share(activity, web, text);
+    }
+
+    public static void share(final Activity activity, final String url, final String title, final String description, final String text, final String picUri) {
+        new UMImage(activity, picUri);
+        UMWeb web = new UMWeb(TextUtils.isEmpty(url) ? "http://www.baidu.com/" : url);
+        web.setTitle(title);//标题
+        web.setThumb(new UMImage(activity, picUri));  //缩略图
+        web.setDescription(description);//描述
+        share(activity, web, text);
+    }
+
+    private static void share(final Activity activity, final UMWeb web, final String text) {
         final UMShareListener umShareListener = new UMShareListener() {
             @Override
             public void onStart(final SHARE_MEDIA share_media) {
@@ -44,14 +63,6 @@ public class ShareUtils {
                 ToastTools.showShort(activity, R.string.umeng_share_canceled);
             }
         };
-
-//        ShareBoardConfig boardConfig = new ShareBoardConfig();
-//        boardConfig.setIndicatorVisibility(false);
-//        boardConfig.setMenuItemBackgroundColor(Color.TRANSPARENT);
-        UMWeb web = new UMWeb("http://www.baidu.com/");
-        web.setTitle("This is music title");//标题
-        web.setThumb(new UMImage(activity, picUri));  //缩略图
-        web.setDescription("my description");//描述
         new ShareAction(activity)
                 .withText(text)
                 .withMedia(web)

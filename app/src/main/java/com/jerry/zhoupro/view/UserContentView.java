@@ -17,6 +17,12 @@ import android.util.AttributeSet;
 
 public class UserContentView extends MeasureGridView {
 
+    public static final int MENU_APP_SHARE = 0;
+    public static final int MENU_FEEDBACK = 1;
+    public static final int MENU_UPDATE = 2;
+    public static final int MENU_CLEAR_CATCH = 3;
+    public static final int MENU_ABOUT_ME = 4;
+
     private int[] imgRes = {
             R.drawable.app_share,
             R.drawable.feedback,

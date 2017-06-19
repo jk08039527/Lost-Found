@@ -16,6 +16,7 @@ import com.jerry.zhoupro.pop.ItemPopupWindow;
 import com.jerry.zhoupro.util.FileUtils;
 import com.jerry.zhoupro.util.Mlog;
 import com.jerry.zhoupro.util.PreferenceUtil;
+import com.jerry.zhoupro.util.ShareUtils;
 import com.jerry.zhoupro.view.UserContentView;
 import com.jerry.zhoupro.view.UserHeadView;
 import com.jerry.zhoupro.widget.NoticeDialog;
@@ -299,7 +300,26 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
      */
     @Override
     public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
-        //TODO UserMenu点击事件
+        switch (position) {
+            case UserContentView.MENU_APP_SHARE:
+                ShareUtils.share(getActivity(),
+                        "http://www.baidu.com/",
+                        getString(R.string.app_share),
+                        getString(R.string.app_name),
+                        getString(R.string.word_app_share),
+                        R.mipmap.ic_launcher);
+                break;
+            case UserContentView.MENU_FEEDBACK:
+                break;
+            case UserContentView.MENU_UPDATE:
+                break;
+            case UserContentView.MENU_CLEAR_CATCH:
+                break;
+            case UserContentView.MENU_ABOUT_ME:
+                break;
+            default:
+                break;
+        }
     }
 
     public void setHeadPicTemp() {

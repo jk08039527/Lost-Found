@@ -80,7 +80,11 @@ public class LostFoundInfoListAdapter extends CommonAdapter<ThingInfoBean> {
                         break;
                     case R.id.iv_share:
                         if (UserManager.hasLogin()) {
-                            ShareUtils.share(mActivity, mType == 0 ? mActivity.getString(R.string.share_lost) : mActivity.getString(R.string.share_found),
+                            ShareUtils.share(mActivity,
+                                    "http:www.baidu.com/",
+                                    mType == 0 ? mActivity.getString(R.string.share_lost) : mActivity.getString(R.string.share_found),
+                                    thing.getTitle(),
+                                    thing.getContent(),
                                     thing.getPictures().get(0).getUrl());
                         } else {
                             mActivity.startActivity(new Intent(mActivity, LoginActivity.class));
