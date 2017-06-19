@@ -77,4 +77,8 @@
         <attr name="ptrDrawableBottom" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="StateLayout">
+        <attr name="empty_text" format="string" />
+    </declare-styleable>
+
 </resources>

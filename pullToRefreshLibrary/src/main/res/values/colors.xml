@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="state_text_color">#666666</color>
+    <color name="state_red_primary">#fb4e46</color>
+    <color name="state_red_pressed">#e1463f</color>
+    <color name="state_white">#ffffff</color>
+    <color name="light_text_color">#999999</color>
+    <color name="transparent">#00000000</color>
+</resources>

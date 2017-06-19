@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
 import com.jerry.zhoupro.R;
+import com.jerry.zhoupro.activity.FeedbackActivity;
 import com.jerry.zhoupro.activity.LoginActivity;
 import com.jerry.zhoupro.activity.RegisterActivity;
 import com.jerry.zhoupro.command.Key;
@@ -310,6 +311,7 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
                         R.mipmap.ic_launcher);
                 break;
             case UserContentView.MENU_FEEDBACK:
+                startActivity(new Intent(getActivity(), FeedbackActivity.class));
                 break;
             case UserContentView.MENU_UPDATE:
                 break;

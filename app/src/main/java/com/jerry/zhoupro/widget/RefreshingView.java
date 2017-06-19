@@ -13,7 +13,7 @@ import android.view.View;
 
 
 /**
- * Created by th on 16/3/10. 类说明:刷新动画View
+ * Created by wzl-pc on 16/3/10. 类说明:刷新动画View
  */
 public class RefreshingView extends View {
 	private int w;
@@ -36,7 +36,7 @@ public class RefreshingView extends View {
 	private void init(Context context) {
 		mPaint1 = new Paint(1);
 		mPaint2 = new Paint(1);
-		mPaint1.setColor(ContextCompat.getColor(context, R.color.red_primary));
+		mPaint1.setColor(ContextCompat.getColor(context, R.color.state_red_primary));
 		mPaint2.setColor(ContextCompat.getColor(context, R.color.blue_primary));
 		w = DisplayUtil.dip2px(10);
 		h = DisplayUtil.dip2px(10);

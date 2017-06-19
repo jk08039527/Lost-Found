@@ -53,6 +53,8 @@
             android:theme="@style/NPActivityTheme" />
         <activity android:name=".activity.ThingTypeActivity"/>
         <activity android:name=".activity.PictureActivity" />
+        <activity android:name=".activity.FeedbackActivity" />
+        <activity android:name=".activity.UserFeedbackActivity" />
 
         <!-- 分享 -->
         <activity

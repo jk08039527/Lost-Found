@@ -25,6 +25,7 @@ public class Key {
      * 用户信息
      */
     public static final String UID = "uid";
+    public static final String USER = "user";
     public static final String USER_MOBLIE = "moblie";
     public static final String USER_NICKNAME = "nickname";
     public static final String USER_PHOTO = "photo";

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.handmark.pulltorefresh.library.stateMan.StateLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/state_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.handmark.pulltorefresh.library.PullToRefreshGridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include layout="@layout/error_empty_view" />
+
+</com.handmark.pulltorefresh.library.stateMan.StateLayout>

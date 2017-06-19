@@ -6,5 +6,22 @@
     <dimen name="indicator_internal_padding">4dp</dimen>
     <dimen name="header_footer_left_right_padding">24dp</dimen>
     <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+    <dimen name="ten_dp">10dp</dimen>
+    <dimen name="_20sp">20sp</dimen>
+
+
+    <!-- load error view -->
+    <dimen name="load_error_iv_height">65dp</dimen>
+    <dimen name="load_error_view_line_margin">27dp</dimen>
+    <dimen name="load_error_view_margin_12">12dp</dimen>
+    <dimen name="load_error_view_margin_8">8dp</dimen>
+    <dimen name="load_error_view_text_size">14sp</dimen>
+    <dimen name="_17sp">17sp</dimen>
+    <dimen name="_25dp">25dp</dimen>
+    <dimen name="five_dp">5dp</dimen>
+    <dimen name="fifty_dp">50dp</dimen>
+    <dimen name="_14sp">14sp</dimen>
+    <dimen name="_13sp">13sp</dimen>
+
 
 </resources>

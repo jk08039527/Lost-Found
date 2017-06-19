@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        layout="@layout/title_bar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_feedback_content"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_margin="@dimen/page_margin_left"
+        android:background="@drawable/normal_editor_bg"
+        android:gravity="left|top"
+        android:hint="@string/any_word_to_say"
+        android:maxLength="200"
+        android:maxLines="9"
+        android:minLines="5"
+        android:padding="@dimen/ten_dp"
+        android:textColor="@color/state_text_color"
+        android:textColorHint="@color/hint_text_color"
+        android:textCursorDrawable="@drawable/edit_cursor"
+        android:textSize="@dimen/_14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar" />
+
+    <TextView
+        android:id="@+id/tv_commit_suggestion"
+        android:layout_width="110dp"
+        android:layout_height="35dp"
+        android:layout_marginRight="@dimen/page_margin_left"
+        android:layout_marginTop="@dimen/page_margin_left"
+        android:background="@drawable/btn_login_bg"
+        android:clickable="true"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingBottom="@dimen/five_dp"
+        android:paddingLeft="@dimen/ten_dp"
+        android:paddingRight="@dimen/ten_dp"
+        android:paddingTop="@dimen/five_dp"
+        android:text="@string/commit_comment"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_feedback_content" />
+
+    <TextView
+        android:id="@+id/tv_content_size"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingLeft="@dimen/page_margin_left"
+        android:paddingRight="@dimen/page_margin_left"
+        android:text="@string/input_remain"
+        android:textColor="@color/state_text_color"
+        android:textSize="@dimen/_14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_commit_suggestion"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_commit_suggestion"
+        app:layout_constraintTop_toTopOf="@+id/tv_commit_suggestion" />
+
+</android.support.constraint.ConstraintLayout>

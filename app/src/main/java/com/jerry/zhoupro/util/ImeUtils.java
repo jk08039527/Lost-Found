@@ -10,7 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 /**
- * Created by wzl on 05/04/2017
+ * Created by wzl-pc on 05/04/2017
  *
  * @description soft input method utils
  */

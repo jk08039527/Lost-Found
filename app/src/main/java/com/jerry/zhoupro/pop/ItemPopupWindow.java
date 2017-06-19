@@ -23,7 +23,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 /**
- * Created by wzl on 16-6-16.
+ * Created by wzl-pc on 16-6-16.
  */
 public class ItemPopupWindow extends PopupWindow {
 

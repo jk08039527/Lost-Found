@@ -12,7 +12,7 @@ import android.util.AttributeSet;
 import android.view.inputmethod.EditorInfo;
 
 /**
- * Created by th on 16/8/15. 类说明: 银行卡号/手机号码输入框
+ * Created by wzl-pc on 16/8/15. 类说明: 银行卡号/手机号码输入框
  */
 public class PhoneNumEditText extends MyEditText {
 

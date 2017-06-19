@@ -28,8 +28,8 @@ public class InfoListBaseFragment extends BaseFragment {
 
     @BindView(R.id.pull_refresh_list)
     PullToRefreshListView mPullRefreshList;
-    protected CommonAdapter<ThingInfoBean> mAdapter;
-    protected List<ThingInfoBean> mLostFoundInfos = new ArrayList<>();
+    private CommonAdapter<ThingInfoBean> mAdapter;
+    private List<ThingInfoBean> mLostFoundInfos = new ArrayList<>();
     private int type;// Lost 0；Found 1；
 
     public static InfoListBaseFragment newInstance(int type) {

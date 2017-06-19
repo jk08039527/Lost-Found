@@ -105,4 +105,11 @@
     <string name="share_found">亲爱的小伙伴们，我的一个好朋友捡到一件宝贝，是哪位小伙伴不小心丢的和我联系哦！</string>
     <string name="no_sdCard">未检测到SD卡，不能支持该功能</string>
     <string name="word_app_share">LandF，寻找最珍贵的。快来下载吧！</string>
+    <string name="commit_comment">提交留言</string>
+    <string name="input_remain">还可以输入</string>
+    <string name="user_feedback">我的反馈</string>
+    <string name="word">字</string>
+    <string name="input_your_feedback_please">请输入您要留言的内容</string>
+    <string name="enter_least_3_msg_word">请输入最少3个字的留言内容</string>
+    <string name="conmmit_success">提交成功</string>
 </resources>

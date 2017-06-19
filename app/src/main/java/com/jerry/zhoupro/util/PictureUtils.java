@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 
 /**
- * Created by wzl on 17-1-13.
+ * Created by wzl-pc on 17-1-13.
  */
 
 public class PictureUtils {

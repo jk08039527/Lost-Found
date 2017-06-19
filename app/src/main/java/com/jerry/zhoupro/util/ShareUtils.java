@@ -12,7 +12,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 /**
- * Created by wzl on 16-9-26.
+ * Created by wzl-pc on 16-9-26.
  */
 
 public class ShareUtils {
