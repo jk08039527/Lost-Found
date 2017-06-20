@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ecloud.pulltozoomview.PullToZoomBase;
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.activity.FeedbackActivity;
@@ -14,8 +15,8 @@ import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.data.User;
 import com.jerry.zhoupro.data.UserManager;
 import com.jerry.zhoupro.pop.ItemPopupWindow;
+import com.jerry.zhoupro.util.DataCleanUtils;
 import com.jerry.zhoupro.util.FileUtils;
-import com.jerry.zhoupro.util.GlideCacheUtil;
 import com.jerry.zhoupro.util.Mlog;
 import com.jerry.zhoupro.util.PreferenceUtil;
 import com.jerry.zhoupro.util.ShareUtils;
@@ -185,7 +186,7 @@ public class UserFragment extends TitleBaseFragment {
 
             @Override
             public void clearCacheClick() {
-                GlideCacheUtil.getInstance().clearImageAllCache(getContext());
+                DataCleanUtils.getInstance(getContext()).cleanCatch();
                 new TimeTask(1000, new TimeTask.TimeOverListerner() {
                     @Override
                     public void onFinished() {
@@ -202,6 +203,17 @@ public class UserFragment extends TitleBaseFragment {
         mPtzUser.setHeaderView(headView);
         mPtzUser.setZoomView(zoomView);
         mPtzUser.setScrollContentView(contentView);
+        mPtzUser.setOnPullZoomListener(new PullToZoomBase.OnPullZoomListener() {
+            @Override
+            public void onPullZooming(final int newScrollValue) {
+
+            }
+
+            @Override
+            public void onPullZoomEnd() {
+                contentView.updateCatchText();
+            }
+        });
     }
 
     @Override

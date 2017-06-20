@@ -1,7 +1,7 @@
 package com.jerry.zhoupro.view;
 
 import com.jerry.zhoupro.R;
-import com.jerry.zhoupro.util.GlideCacheUtil;
+import com.jerry.zhoupro.util.DataCleanUtils;
 
 import android.content.Context;
 import android.view.View;
@@ -11,8 +11,6 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.umeng.socialize.utils.DeviceConfig.context;
 
 /**
  * Created by wzl-pc on 2017/5/17.
@@ -38,7 +36,7 @@ public class UserContentView extends LinearLayout {
     }
 
     public void updateCatchText() {
-        mTvCacheSize.setText(GlideCacheUtil.getInstance().getCacheSize(context));
+        mTvCacheSize.setText(DataCleanUtils.getInstance(getContext()).getCatchSize());
     }
 
     @OnClick({R.id.tv_app_share, R.id.tv_feedback, R.id.tv_check_update, R.id.ll_clear_cache, R.id.tv_about_us})
