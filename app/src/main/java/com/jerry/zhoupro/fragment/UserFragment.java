@@ -8,6 +8,7 @@ import java.util.List;
 import com.ecloud.pulltozoomview.PullToZoomBase;
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
 import com.jerry.zhoupro.R;
+import com.jerry.zhoupro.activity.AboutUsActivity;
 import com.jerry.zhoupro.activity.FeedbackActivity;
 import com.jerry.zhoupro.activity.LoginActivity;
 import com.jerry.zhoupro.activity.RegisterActivity;
@@ -197,7 +198,7 @@ public class UserFragment extends TitleBaseFragment {
 
             @Override
             public void aboutUsClick() {
-
+                startActivity(new Intent(getActivity(), AboutUsActivity.class));
             }
         });
         mPtzUser.setHeaderView(headView);
