@@ -48,13 +48,14 @@
         <activity
             android:name=".activity.ReleaseActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="stateHidden|stateUnchanged"
             android:screenOrientation="portrait"
-            android:theme="@style/NPActivityTheme" />
-        <activity android:name=".activity.ThingTypeActivity"/>
+            android:theme="@style/NPActivityTheme"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity android:name=".activity.ThingTypeActivity" />
         <activity android:name=".activity.PictureActivity" />
         <activity android:name=".activity.FeedbackActivity" />
         <activity android:name=".activity.UserFeedbackActivity" />
+        <activity android:name=".activity.AboutUsActivity" />
 
         <!-- 分享 -->
         <activity
@@ -63,17 +64,16 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
             android:excludeFromRecents="true"

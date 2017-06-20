@@ -15,9 +15,11 @@ import com.jerry.zhoupro.data.User;
 import com.jerry.zhoupro.data.UserManager;
 import com.jerry.zhoupro.pop.ItemPopupWindow;
 import com.jerry.zhoupro.util.FileUtils;
+import com.jerry.zhoupro.util.GlideCacheUtil;
 import com.jerry.zhoupro.util.Mlog;
 import com.jerry.zhoupro.util.PreferenceUtil;
 import com.jerry.zhoupro.util.ShareUtils;
+import com.jerry.zhoupro.util.TimeTask;
 import com.jerry.zhoupro.view.UserContentView;
 import com.jerry.zhoupro.view.UserHeadView;
 import com.jerry.zhoupro.widget.NoticeDialog;
@@ -33,7 +35,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import butterknife.BindView;
 import cn.bmob.v3.BmobQuery;
@@ -50,13 +51,13 @@ import static com.jerry.zhoupro.command.Key.CUT_PHOTO;
 /**
  * Created by wzl-pc on 2017/5/9.
  */
-public class UserFragment extends TitleBaseFragment implements AdapterView.OnItemClickListener {
-
-    private UserHeadView headView;
-    private ItemPopupWindow itemPopupWindow;
+public class UserFragment extends TitleBaseFragment {
 
     @BindView(R.id.ptz_user)
     PullToZoomScrollViewEx mPtzUser;
+    private UserHeadView headView;
+    private UserContentView contentView;
+    private ItemPopupWindow itemPopupWindow;
     private String uid = Key.NIL;
     private String photoUrl;
     private String PATH_HEAD_PICTURE;
@@ -80,10 +81,9 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
     }
 
     private void loadViewForCode(ViewGroup view) {
-        headView = new UserHeadView(getContext());//头部扩展view
-        headView.setHeadClickListener(new UserHeadView.HeadClickListener() {
+        headView = new UserHeadView(getContext(), new UserHeadView.HeadClickListener() {
             @Override
-            public void changePic() {
+            public void changePicClick() {
                 if (UserManager.hasLogin()) {
                     if (itemPopupWindow == null) {
                         List<String> list = new ArrayList<String>();
@@ -130,17 +130,17 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
             }
 
             @Override
-            public void register() {
+            public void registerClick() {
                 startActivityForResult(new Intent(getActivity(), RegisterActivity.class), Key.REGISTER);
             }
 
             @Override
-            public void login() {
+            public void loginClick() {
                 startActivityForResult(new Intent(getActivity(), LoginActivity.class), Key.LOGIN);
             }
 
             @Override
-            public void logout() {
+            public void logoutClick() {
                 final NoticeDialog noticeDialog = new NoticeDialog(getContext());
                 noticeDialog.show();
                 noticeDialog.setTitleText(R.string.remind);
@@ -156,8 +156,49 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
             }
         });
         View zoomView = LayoutInflater.from(getContext()).inflate(R.layout.profile_zoom_view, view, false);//拉伸背景view
-        UserContentView contentView = new UserContentView(getContext());
-        contentView.setOnItemClickListener(this);
+        contentView = new UserContentView(getActivity(), new UserContentView.ContentClickListener() {
+            @Override
+            public void appShareClick() {
+                ShareUtils.share(getActivity(),
+                        "http://www.baidu.com/",
+                        getString(R.string.app_share),
+                        getString(R.string.app_name),
+                        getString(R.string.word_app_share),
+                        R.mipmap.ic_launcher);
+            }
+
+            @Override
+            public void feedbackClick() {
+                startActivity(new Intent(getActivity(), FeedbackActivity.class));
+            }
+
+            @Override
+            public void checkUpdateClick() {
+                toast(R.string.checking_update);
+                new TimeTask(1000, new TimeTask.TimeOverListerner() {
+                    @Override
+                    public void onFinished() {
+                        toast(R.string.last_version_now);
+                    }
+                }).start();
+            }
+
+            @Override
+            public void clearCacheClick() {
+                GlideCacheUtil.getInstance().clearImageAllCache(getContext());
+                new TimeTask(1000, new TimeTask.TimeOverListerner() {
+                    @Override
+                    public void onFinished() {
+                        contentView.updateCatchText();
+                    }
+                }).start();
+            }
+
+            @Override
+            public void aboutUsClick() {
+
+            }
+        });
         mPtzUser.setHeaderView(headView);
         mPtzUser.setZoomView(zoomView);
         mPtzUser.setScrollContentView(contentView);
@@ -291,37 +332,6 @@ public class UserFragment extends TitleBaseFragment implements AdapterView.OnIte
         intent.putExtra("return-data", true);
 
         startActivityForResult(intent, Key.CUT_PHOTO);
-    }
-
-    /**
-     * @param parent
-     * @param view
-     * @param position
-     * @param id
-     */
-    @Override
-    public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
-        switch (position) {
-            case UserContentView.MENU_APP_SHARE:
-                ShareUtils.share(getActivity(),
-                        "http://www.baidu.com/",
-                        getString(R.string.app_share),
-                        getString(R.string.app_name),
-                        getString(R.string.word_app_share),
-                        R.mipmap.ic_launcher);
-                break;
-            case UserContentView.MENU_FEEDBACK:
-                startActivity(new Intent(getActivity(), FeedbackActivity.class));
-                break;
-            case UserContentView.MENU_UPDATE:
-                break;
-            case UserContentView.MENU_CLEAR_CATCH:
-                break;
-            case UserContentView.MENU_ABOUT_ME:
-                break;
-            default:
-                break;
-        }
     }
 
     public void setHeadPicTemp() {

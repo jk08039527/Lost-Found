@@ -1,13 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/custom_scrollbar_style"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/blue_disable"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:overScrollMode="never">
 
-    <com.jerry.zhoupro.view.UserContentView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="2"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_app_share"
+            style="@style/style_user_menu"
+            android:drawableLeft="@drawable/app_share"
+            android:text="@string/app_share" />
+
+        <View style="@style/horizontal_line_color_style" />
+
+        <TextView
+            android:id="@+id/tv_feedback"
+            style="@style/style_user_menu"
+            android:drawableLeft="@drawable/feedback"
+            android:text="@string/feedback" />
+
+        <View style="@style/horizontal_line_color_style" />
+
+
+        <TextView
+            android:id="@+id/tv_check_update"
+            style="@style/style_user_menu"
+            android:drawableLeft="@drawable/check_update"
+            android:text="@string/check_update" />
+
+        <View style="@style/horizontal_line_color_style" />
+
+        <LinearLayout
+            android:id="@+id/ll_clear_cache"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/row_height"
+            android:background="@drawable/white_bg_selector">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/row_height"
+                android:drawableLeft="@drawable/clear_catch"
+                android:drawablePadding="@dimen/eight_dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/page_margin_left"
+                android:paddingRight="@dimen/page_margin_left"
+                android:text="@string/clear_catch"
+                android:textColor="@color/second_text_color"
+                android:textSize="@dimen/_16sp" />
+
+            <TextView
+                android:id="@+id/tv_cache_size"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/row_height"
+                android:gravity="center_vertical|right"
+                android:paddingLeft="@dimen/page_margin_left"
+                android:paddingRight="@dimen/page_margin_left"
+                android:textColor="@color/second_text_color"
+                android:textSize="@dimen/_16sp" />
+        </LinearLayout>
+
+        <View style="@style/horizontal_line_color_style" />
+
+        <TextView
+            android:id="@+id/tv_about_us"
+            style="@style/style_user_menu"
+            android:drawableLeft="@drawable/about_us"
+            android:text="@string/about_us" />
+
+    </LinearLayout>
+</ScrollView>

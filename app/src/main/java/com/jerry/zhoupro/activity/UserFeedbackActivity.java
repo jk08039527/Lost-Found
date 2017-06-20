@@ -72,6 +72,7 @@ public class UserFeedbackActivity extends SimpleStateBaseActivity {
                 if (e != null) {
                     Mlog.e(e.toString());
                     toast(R.string.error);
+                    setCurrentState(mErrorState);
                     return;
                 }
                 if (list.size() == 0) {

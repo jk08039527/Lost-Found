@@ -1,57 +1,80 @@
 package com.jerry.zhoupro.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.jerry.zhoupro.R;
-import com.jerry.zhoupro.adapter.UserContentAdapter;
-import com.jerry.zhoupro.bean.UserMenuBean;
+import com.jerry.zhoupro.util.GlideCacheUtil;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.util.AttributeSet;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static com.umeng.socialize.utils.DeviceConfig.context;
 
 /**
  * Created by wzl-pc on 2017/5/17.
  */
 
-public class UserContentView extends MeasureGridView {
+public class UserContentView extends LinearLayout {
 
     public static final int MENU_APP_SHARE = 0;
     public static final int MENU_FEEDBACK = 1;
     public static final int MENU_UPDATE = 2;
     public static final int MENU_CLEAR_CATCH = 3;
-    public static final int MENU_ABOUT_ME = 4;
+    public static final int MENU_ABOUT_US = 4;
+    @BindView(R.id.tv_cache_size)
+    TextView mTvCacheSize;
+    private ContentClickListener mContentClickListener;
 
-    private int[] imgRes = {
-            R.drawable.app_share,
-            R.drawable.feedback,
-            R.drawable.check_update,
-            R.drawable.clear_catch,
-            R.drawable.about_us
-    };
-
-
-    public UserContentView(final Context context) {
-        this(context, null);
+    public UserContentView(final Context context, final ContentClickListener contentClickListener) {
+        super(context, null);
+        mContentClickListener = contentClickListener;
+        View.inflate(context, R.layout.profile_content_view, this);
+        ButterKnife.bind(this);
+        updateCatchText();
     }
 
-    public UserContentView(final Context paramContext, final AttributeSet paramAttributeSet) {
-        super(paramContext, paramAttributeSet);
-        init();
+    public void updateCatchText() {
+        mTvCacheSize.setText(GlideCacheUtil.getInstance().getCacheSize(context));
     }
 
-    private void init() {
-        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.gray_bg));
-        setNumColumns(2);
-        List<UserMenuBean> userMenus = new ArrayList<>();
-        String[] userMenuStrs = getContext().getResources().getStringArray(R.array.user_menu_title);
-        for (int i = 0; i < userMenuStrs.length; i++) {
-            UserMenuBean userMenu = new UserMenuBean();
-            userMenu.setText(userMenuStrs[i]);
-            userMenu.setInco(imgRes[i]);
-            userMenus.add(userMenu);
+    @OnClick({R.id.tv_app_share, R.id.tv_feedback, R.id.tv_check_update, R.id.ll_clear_cache, R.id.tv_about_us})
+    public void onViewClicked(View view) {
+        if (mContentClickListener == null) { return; }
+        switch (view.getId()) {
+            case R.id.tv_app_share:
+                mContentClickListener.appShareClick();
+                break;
+            case R.id.tv_feedback:
+                mContentClickListener.feedbackClick();
+                break;
+            case R.id.tv_check_update:
+                mContentClickListener.checkUpdateClick();
+                break;
+            case R.id.ll_clear_cache:
+                mContentClickListener.clearCacheClick();
+                break;
+            case R.id.tv_about_us:
+                mContentClickListener.aboutUsClick();
+                break;
+            default:
+                break;
         }
-        setAdapter(new UserContentAdapter(getContext(), userMenus));
+    }
+
+    public interface ContentClickListener {
+
+        void appShareClick();
+
+        void feedbackClick();
+
+        void checkUpdateClick();
+
+        void clearCacheClick();
+
+        void aboutUsClick();
     }
 }

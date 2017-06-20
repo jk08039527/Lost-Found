@@ -32,8 +32,9 @@ public class UserHeadView extends LinearLayout {
     @BindView(R.id.tv_logout)
     TextView mTvLogout;
 
-    public UserHeadView(final Context context) {
+    public UserHeadView(final Context context, final HeadClickListener headClickListener) {
         super(context);
+        mHeadClickListener = headClickListener;
         View.inflate(context, R.layout.profile_head_view, this);
         ButterKnife.bind(this);
     }
@@ -95,32 +96,28 @@ public class UserHeadView extends LinearLayout {
         if (mHeadClickListener == null) {return;}
         switch (view.getId()) {
             case R.id.iv_user_head:
-                mHeadClickListener.changePic();
+                mHeadClickListener.changePicClick();
                 break;
             case R.id.tv_register:
-                mHeadClickListener.register();
+                mHeadClickListener.registerClick();
                 break;
             case R.id.tv_login:
-                mHeadClickListener.login();
+                mHeadClickListener.loginClick();
                 break;
             case R.id.tv_logout:
-                mHeadClickListener.logout();
+                mHeadClickListener.logoutClick();
                 break;
         }
     }
 
-    public void setHeadClickListener(final HeadClickListener headClickListener) {
-        mHeadClickListener = headClickListener;
-    }
-
     public interface HeadClickListener {
 
-        void changePic();
+        void changePicClick();
 
-        void register();
+        void registerClick();
 
-        void login();
+        void loginClick();
 
-        void logout();
+        void logoutClick();
     }
 }

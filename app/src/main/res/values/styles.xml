@@ -114,6 +114,27 @@
         <item name="android:textSize">@dimen/_15sp</item>
     </style>
 
+    <!-- 滑动条样式 -->
+    <style name="custom_scrollbar_style">
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:scrollbarSize">4.5dp</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar_vertical_track</item>
+    </style>
+
+    <style name="style_user_menu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/row_height</item>
+        <item name="android:background">@drawable/white_bg_selector</item>
+        <item name="android:drawablePadding">@dimen/eight_dp</item>
+        <item name="android:drawableRight">@drawable/arrow</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/page_margin_left</item>
+        <item name="android:paddingRight">@dimen/page_margin_left</item>
+        <item name="android:textColor">@color/second_text_color</item>
+        <item name="android:textSize">@dimen/_16sp</item>
+    </style>
+
     <declare-styleable name="PhoneNumEditText">
         <attr name="type" format="integer" />
     </declare-styleable>
