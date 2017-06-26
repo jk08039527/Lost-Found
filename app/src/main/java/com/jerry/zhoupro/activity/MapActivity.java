@@ -35,6 +35,7 @@ public class MapActivity extends TitleBaseActivity {
     @BindView(R.id.et_address)
     EditText mEtAddress;
     private BaiduMap map;
+    private GeoCoder mSearch;
 
     private String city;
     private String mCurrentLocation;
@@ -43,7 +44,7 @@ public class MapActivity extends TitleBaseActivity {
     /**
      * 初始化定位
      */
-    public BDLocationListener mLocationListener = new MyLocationListener() {
+    private BDLocationListener mLocationListener = new MyLocationListener() {
         @Override
         public void onReceiveLocation(final BDLocation location) {
             double latitude = location.getLatitude();
@@ -62,7 +63,6 @@ public class MapActivity extends TitleBaseActivity {
             mSearch.reverseGeoCode(new ReverseGeoCodeOption().location(latLng));
         }
     };
-    private GeoCoder mSearch;
 
     @Override
     protected int getContentLayout() {

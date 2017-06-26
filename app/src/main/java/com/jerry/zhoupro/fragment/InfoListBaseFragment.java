@@ -73,9 +73,6 @@ public class InfoListBaseFragment extends BaseFragment {
                     toast(R.string.error);
                     return;
                 }
-                for (ThingInfoBean thingInfoBean : list) {
-                    Mlog.d(thingInfoBean.toString());
-                }
                 mLostFoundInfos.clear();
                 mLostFoundInfos.addAll(list);
                 mAdapter.notifyDataSetChanged();
