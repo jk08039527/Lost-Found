@@ -5,7 +5,7 @@ package com.jerry.zhoupro.command;
  */
 
 public class Key {
-    public static final String tabTag = "tabTag";
+    public static final String TABTAG = "tabTag";
 
     /**
      * symbols

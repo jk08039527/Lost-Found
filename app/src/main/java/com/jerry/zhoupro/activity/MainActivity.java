@@ -9,13 +9,16 @@ import com.jerry.zhoupro.fragment.HomeFragment;
 import com.jerry.zhoupro.fragment.MsgFragment;
 import com.jerry.zhoupro.fragment.UserFragment;
 import com.jerry.zhoupro.pop.ReleasePopWindow;
+import com.jerry.zhoupro.util.PreferenceUtil;
 import com.jerry.zhoupro.util.TimeTask;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -55,12 +58,11 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
         fragmentManager = getSupportFragmentManager();
-        setSelectTab(getIntent().getExtras());
     }
 
     @Override
     protected void initData() {
-
+        setSelectTab(getIntent().getExtras());
     }
 
     @OnClick({R.id.tab_home, R.id.tab_find, R.id.iv_release, R.id.tab_msg, R.id.tab_me})
@@ -151,6 +153,7 @@ public class MainActivity extends BaseActivity {
         }
         transaction.commitAllowingStateLoss();
         changeSelect(selectTag);
+        PreferenceUtil.setPreference(Key.TABTAG, selectTag);
     }
 
     private void hideFragments(FragmentTransaction transaction) {
@@ -168,13 +171,11 @@ public class MainActivity extends BaseActivity {
         }
     }
     private void setSelectTab(Bundle extras) {
-        int tabTag = 0;
+        int tabTag;
         if (extras != null) {
-            tabTag = extras.getInt(Key.tabTag, -1);
-        }
-        if (tabTag == -1) {
-            setContentFragment(Constants.TAB_HOME);
-            return;
+            tabTag = extras.getInt(Key.TABTAG, 0);
+        } else {
+            tabTag = PreferenceUtil.getPreference(Key.TABTAG, 0);
         }
         setContentFragment(tabTag);
     }
@@ -208,5 +209,14 @@ public class MainActivity extends BaseActivity {
             super.onBackPressed();
             System.exit(0);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            ActivityCompat.finishAffinity(this);
+            return true;
+        }
+        return false;
     }
 }

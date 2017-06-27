@@ -72,4 +72,8 @@ public class PreferenceUtil {
     public static String getPreference(String key) {
         return sp.getString(key, Key.NIL);
     }
+
+    public static int getPreference(String key, int defualtInt) {
+        return sp.getInt(key, defualtInt);
+    }
 }
