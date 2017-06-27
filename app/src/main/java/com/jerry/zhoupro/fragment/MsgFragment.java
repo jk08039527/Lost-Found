@@ -1,7 +1,6 @@
 package com.jerry.zhoupro.fragment;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.baidu.location.BDLocation;
@@ -14,7 +13,6 @@ import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
@@ -50,7 +48,6 @@ public class MsgFragment extends TitleBaseFragment {
     @BindView(R.id.bmapView)
     MapView mBmapView;
     private BaiduMap map;
-    private Marker mMarkerD;
     private GeoCoder mSearch;
     private String city;
     private LocationClient mLocationClient;
@@ -110,11 +107,35 @@ public class MsgFragment extends TitleBaseFragment {
         super.initData();
         //声明LocationClient类
         mLocationClient = new LocationClient(getApplicationContext());
-        mLocationClient.registerLocationListener(mLocationListener);
         initLocation();
         initStatusChange();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        mLocationClient.registerLocationListener(mLocationListener);
+        mLocationClient.start();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mBmapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mBmapView.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mLocationClient.stop();
+        mLocationClient.unRegisterLocationListener(mLocationListener);
+    }
 
     private void initLocation() {
         LocationClientOption option = new LocationClientOption();
@@ -159,9 +180,8 @@ public class MsgFragment extends TitleBaseFragment {
                             toast(R.string.error);
                             return;
                         }
-                        mMarkerD.remove();
+                        map.clear();
                         // 通过marker的icons设置一组图片，再通过period设置多少帧刷新一次图片资源
-                        ArrayList<BitmapDescriptor> giflist = new ArrayList<>();
                         for (int i = 0, size = list.size(); i < size; i++) {
                             ThingInfoBean thingInfo = list.get(i);
                             String latLngStr = thingInfo.getLatLng();
@@ -169,19 +189,16 @@ public class MsgFragment extends TitleBaseFragment {
                             if (!TextUtils.isEmpty(latLngStr)) {
                                 String[] latLng = latLngStr.split(",");
                                 LatLng point = new LatLng(Double.parseDouble(latLng[0]), Double.parseDouble(latLng[1]));
+                                //构建Marker图标
                                 BitmapDescriptor bitmap = BitmapDescriptorFactory
-                                        .fromResource(R.drawable.bg_pop_bottom);//构建MarkerOption，用于在地图上添加Marker
-                                OverlayOptions option = new MarkerOptions()
+                                        .fromResource(R.drawable.about_us);
+                                OverlayOptions ooD = new MarkerOptions()
                                         .position(point)
-                                        .icon(bitmap);
-                                giflist.add(bitmap);
+                                        .icon(bitmap)
+                                        .zIndex(0).period(10);
+                                map.addOverlay(ooD);
                             }
                         }
-                        OverlayOptions ooD = new MarkerOptions()
-                                .position(new LatLng(result.getLocation().latitude, result.getLocation().longitude))
-                                .icons(giflist)
-                                .zIndex(0).period(10);
-                        mMarkerD = (Marker) (map.addOverlay(ooD));
                     }
                 });
             }

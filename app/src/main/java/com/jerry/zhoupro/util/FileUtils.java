@@ -273,11 +273,13 @@ public class FileUtils {
         long size = 0;
         try {
             File[] fileList = file.listFiles();
-            for (File aFileList : fileList) {
-                if (aFileList.isDirectory()) {
-                    size = size + getFolderSize(aFileList);
-                } else {
-                    size = size + aFileList.length();
+            if (fileList != null) {
+                for (File aFileList : fileList) {
+                    if (aFileList.isDirectory()) {
+                        size = size + getFolderSize(aFileList);
+                    } else {
+                        size = size + aFileList.length();
+                    }
                 }
             }
         } catch (Exception e) {

@@ -211,47 +211,57 @@ public class ReleaseActivity extends TitleBaseActivity {
                     return;
                 }
                 loadingDialog();
-                final BmobFile file = new BmobFile(new File(PATH_RELEASE_PIC));
-                file.upload(new UploadFileListener() {
-                    @Override
-                    public void done(final BmobException e) {
-                        if (e != null) {
-                            Mlog.e(e.toString());
-                            toast(R.string.error);
-                            return;
-                        }
-                        ThingInfoBean thingInfo = new ThingInfoBean();
-                        thingInfo.setReleaseType(releaseType);
-                        thingInfo.setTitle(titleText.getText().toString());
-                        thingInfo.setThingType(thingType);
-                        thingInfo.setDate(date);
-                        thingInfo.setPlace(place);
-                        thingInfo.setContent(content);
-                        thingInfo.setLatLng(latlng);
-                        thingInfo.setCity(city);
-                        List<BmobFile> pictures = new ArrayList<>();
-                        pictures.add(file);
-                        thingInfo.setPictures(pictures);
-                        thingInfo.setReleaser(UserManager.getInstance().getUser());
-                        thingInfo.save(new SaveListener<String>() {
-                            @Override
-                            public void done(final String thingInfo, final BmobException e) {
-                                if (e != null) {
-                                    Mlog.e(e.toString());
-                                    toast(R.string.error);
-                                    return;
-                                }
-                                Mlog.d(thingInfo);
-                                toast(R.string.release_success);
-                                closeLoadingDialog();
-                                FileUtils.deleteFiles(new File(PATH_SETTING_CATCH));
-                                finish();
+
+                final ThingInfoBean thingInfo = new ThingInfoBean();
+                thingInfo.setReleaseType(releaseType);
+                thingInfo.setTitle(titleText.getText().toString());
+                thingInfo.setThingType(thingType);
+                thingInfo.setDate(date);
+                thingInfo.setPlace(place);
+                thingInfo.setContent(content);
+                thingInfo.setLatLng(latlng);
+                thingInfo.setCity(city);
+                thingInfo.setReleaser(UserManager.getInstance().getUser());
+                if (TextUtils.isEmpty(PATH_RELEASE_PIC)) {
+                    saveThingInfo(thingInfo);
+                } else {
+                    final BmobFile bmobFile = new BmobFile();
+                    bmobFile.upload(new UploadFileListener() {
+                        @Override
+                        public void done(final BmobException e) {
+                            if (e != null) {
+                                Mlog.e(e.toString());
+                                toast(R.string.error);
+                                return;
                             }
-                        });
-                    }
-                });
+                            List<BmobFile> pictures = new ArrayList<>();
+                            pictures.add(bmobFile);
+                            thingInfo.setPictures(pictures);
+                            saveThingInfo(thingInfo);
+                        }
+                    });
+                }
+
                 break;
         }
+    }
+
+    private void saveThingInfo(final ThingInfoBean thingInfo) {
+        thingInfo.save(new SaveListener<String>() {
+            @Override
+            public void done(final String thingInfo, final BmobException e) {
+                if (e != null) {
+                    Mlog.e(e.toString());
+                    toast(R.string.error);
+                    return;
+                }
+                Mlog.d(thingInfo);
+                toast(R.string.release_success);
+                closeLoadingDialog();
+                FileUtils.deleteFiles(new File(PATH_SETTING_CATCH));
+                finish();
+            }
+        });
     }
 
     @Override
