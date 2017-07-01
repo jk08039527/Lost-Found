@@ -52,6 +52,7 @@ public class Key {
     public static final int CODE_103 = 103;
     public static final int TAG_RELEASE_LOST = 0;
     public static final int TAG_RELEASE_FOUND = 1;
+    public static final int TAG_RELEASE_FIND = 2;
     public static final int REGISTER = 2;
     public static final int LOGIN = 3;
     public static final int TAKE_PHOTO = 4;

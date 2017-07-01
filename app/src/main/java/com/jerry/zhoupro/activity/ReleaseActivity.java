@@ -56,7 +56,7 @@ public class ReleaseActivity extends TitleBaseActivity {
     TextView mTvThingPlaceValue;
     @BindView(R.id.iv_pic_info)
     ImageView mIvPicInfo;
-    private int releaseType;//0:失物，1:招领
+    private int releaseType;//0:失物，1:招领，2:发现
     private String latlng;
     private String city;
     private LocationClient mLocationClient;
@@ -78,9 +78,14 @@ public class ReleaseActivity extends TitleBaseActivity {
 
     @Override
     protected String getTitleText() {
-        return releaseType == Key.TAG_RELEASE_LOST
-                ? getString(R.string.realese_lost)
-                : getString(R.string.realese_found);
+        switch (releaseType) {
+            case Key.TAG_RELEASE_LOST:
+                return getString(R.string.realese_lost);
+            case Key.TAG_RELEASE_FOUND:
+                return getString(R.string.realese_found);
+            default:
+                return getString(R.string.discover);
+        }
     }
 
     @Override
@@ -210,6 +215,10 @@ public class ReleaseActivity extends TitleBaseActivity {
                     toast(R.string.input_place);
                     return;
                 }
+                if (releaseType == Key.TAG_RELEASE_FIND && TextUtils.isEmpty(PATH_RELEASE_PIC)) {
+                    toast(R.string.realese_find_must_pic);
+                    return;
+                }
                 loadingDialog();
 
                 final ThingInfoBean thingInfo = new ThingInfoBean();
@@ -225,7 +234,7 @@ public class ReleaseActivity extends TitleBaseActivity {
                 if (TextUtils.isEmpty(PATH_RELEASE_PIC)) {
                     saveThingInfo(thingInfo);
                 } else {
-                    final BmobFile bmobFile = new BmobFile();
+                    final BmobFile bmobFile = new BmobFile(new File(PATH_RELEASE_PIC));
                     bmobFile.upload(new UploadFileListener() {
                         @Override
                         public void done(final BmobException e) {

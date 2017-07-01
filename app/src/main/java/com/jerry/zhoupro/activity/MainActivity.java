@@ -79,7 +79,21 @@ public class MainActivity extends BaseActivity {
                     mReleasePopWindow = new ReleasePopWindow(this, new ReleasePopWindow.PopMenuClickListener() {
                         @Override
                         public void onPopMenuClick(final View view) {
-                            int requestCode = view.getId() == R.id.tv_release_lost ? Key.TAG_RELEASE_LOST : Key.TAG_RELEASE_FOUND;
+                            int requestCode;
+                            switch (view.getId()) {
+                                case R.id.tv_release_lost:
+                                    requestCode = Key.TAG_RELEASE_LOST;
+                                    break;
+                                case R.id.tv_release_found:
+                                    requestCode = Key.TAG_RELEASE_FOUND;
+                                    break;
+                                case R.id.tv_release_find:
+                                    requestCode = Key.TAG_RELEASE_FIND;
+                                    break;
+                                default:
+                                    requestCode = Key.TAG_RELEASE_FIND;
+                                    break;
+                            }
                             Intent intent;
                             if (UserManager.hasLogin()) {
                                 intent = new Intent(MainActivity.this, ReleaseActivity.class);

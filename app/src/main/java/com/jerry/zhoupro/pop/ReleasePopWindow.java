@@ -69,7 +69,7 @@ public class ReleasePopWindow extends PopupWindow {
         super.dismiss();
     }
 
-    @OnClick({R.id.tv_release_lost, R.id.tv_release_found})
+    @OnClick({R.id.tv_release_lost, R.id.tv_release_found, R.id.tv_release_find})
     public void onClick(View view) {
         dismiss();
         if (mPopMenuClickListener != null) {

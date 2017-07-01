@@ -22,9 +22,12 @@ import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.PermissionChecker;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import cn.bmob.v3.datatype.BmobFile;
 
 /**
  * Created by wzl-pc on 2017/5/20.
@@ -101,8 +104,15 @@ public class LostFoundInfoListAdapter extends CommonAdapter<ThingInfoBean> {
                 }
             }
         });
-        Glide.with(mActivity).load(thing.getReleaser().getPhotoUri()).into(binding.ivReleaser);
-        Glide.with(mActivity).load(thing.getPictures().get(0).getFileUrl()).into(binding.ivHappenPic);
+        String photoUrl = thing.getReleaser().getPhotoUri();
+        if (!TextUtils.isEmpty(photoUrl)) {
+            Glide.with(mActivity).load(photoUrl).into(binding.ivReleaser);
+        }
+        List<BmobFile> files = thing.getPictures();
+        if (files != null) {
+            String picUrl = files.get(0).getFileUrl();
+            Glide.with(mActivity).load(picUrl).into(binding.ivHappenPic);
+        }
         return convertView;
     }
 
