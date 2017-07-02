@@ -115,4 +115,5 @@
     <string name="checking_update">正在检查更新...</string>
     <string name="last_version_now">当前为最新版</string>
     <string name="realese_find_must_pic">发布发现必须要照片</string>
+    <string name="find_detail">发现详情</string>
 </resources>

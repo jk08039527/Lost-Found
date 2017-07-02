@@ -40,6 +40,7 @@ public class Key {
     public static final String THING_TYPE = "thingType";
     public static final String RELEASE_TYPE = "releaseType";//0:失物，1：招领
     public static final String RELEASER = "releaser";
+    public static final String THING_INFO = "thingInfo";
 
     public static final String ADDRESS= "address";
     public static final String LOCATION= "location";

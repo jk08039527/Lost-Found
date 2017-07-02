@@ -1,42 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout>
 
     <data>
 
         <variable
             name="thing"
             type="com.jerry.zhoupro.bean.ThingInfoBean" />
+
     </data>
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/gray_bg"
-        app:cardCornerRadius="@dimen/five_dp"
-        app:cardElevation="@dimen/ten_dp">
+        android:layout_height="match_parent">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/page_margin_left">
+            android:layout_height="match_parent">
+
+            <include
+                layout="@layout/title_bar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.jerry.zhoupro.widget.CircleImageView
                 android:id="@+id/iv_releaser"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/thirty_dp"
+                android:layout_height="@dimen/thirty_dp"
+                android:layout_marginLeft="@dimen/page_margin_left"
+                android:layout_marginTop="@dimen/page_margin_left"
                 android:src="@drawable/ic_img_user_default"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/title_bar" />
 
             <TextView
                 android:id="@+id/tv_releaser_nickname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginLeft="@dimen/thirty_dp"
-                android:layout_marginRight="@dimen/eight_dp"
+                android:layout_marginRight="@dimen/page_margin_left"
+                android:layout_marginTop="@dimen/eight_dp"
                 android:text="@{thing.releaser.nickname}"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_releaser"
                 app:layout_constraintLeft_toRightOf="@+id/iv_releaser"
@@ -53,9 +58,8 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sp"
                 android:textStyle="bold"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_releaser"
+                app:layout_constraintRight_toRightOf="@+id/tv_releaser_nickname"
                 app:layout_constraintTop_toBottomOf="@+id/iv_releaser" />
 
             <ImageView
@@ -64,8 +68,8 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="@dimen/eight_dp"
                 android:scaleType="matrix"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_releaser"
+                app:layout_constraintRight_toRightOf="@+id/tv_releaser_nickname"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title"
                 app:srcCompat="@drawable/bg_pop_cancel" />
 
@@ -76,11 +80,10 @@
                 android:layout_marginTop="@dimen/eight_dp"
                 android:drawablePadding="@dimen/four_dp"
                 android:text="@{thing.content}"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/iv_releaser"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintRight_toRightOf="@+id/tv_releaser_nickname"
                 app:layout_constraintTop_toBottomOf="@+id/iv_happen_pic" />
 
         </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+    </ScrollView>
 </layout>

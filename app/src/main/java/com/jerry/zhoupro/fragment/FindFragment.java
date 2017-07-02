@@ -6,13 +6,16 @@ import java.util.List;
 
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jerry.zhoupro.R;
+import com.jerry.zhoupro.activity.FindDetailActivity;
 import com.jerry.zhoupro.adapter.CommonAdapter;
 import com.jerry.zhoupro.adapter.FindAdapter;
 import com.jerry.zhoupro.bean.ThingInfoBean;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.util.Mlog;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 
 import butterknife.BindView;
 import cn.bmob.v3.BmobQuery;
@@ -22,7 +25,7 @@ import cn.bmob.v3.listener.FindListener;
 /**
  * Created by wzl-pc on 2017/5/9.
  */
-public class FindFragment extends TitleBaseFragment {
+public class FindFragment extends TitleBaseFragment implements AdapterView.OnItemClickListener {
 
     private CommonAdapter<ThingInfoBean> mAdapter;
     private List<ThingInfoBean> mFindInfos = new ArrayList<>();
@@ -45,6 +48,7 @@ public class FindFragment extends TitleBaseFragment {
         setGone(titleBack);
         mAdapter = new FindAdapter(getActivity(), mFindInfos);
         mPullRefreshList.setAdapter(mAdapter);
+        mPullRefreshList.setOnItemClickListener(this);
     }
 
     @Override
@@ -69,5 +73,12 @@ public class FindFragment extends TitleBaseFragment {
                 mPullRefreshList.onRefreshComplete();
             }
         });
+    }
+
+    @Override
+    public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
+        Intent intent = new Intent(getActivity(), FindDetailActivity.class);
+        intent.putExtra(Key.THING_INFO, mFindInfos.get(position - 1));
+        startActivity(intent);
     }
 }
