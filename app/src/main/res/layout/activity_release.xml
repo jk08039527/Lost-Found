@@ -22,7 +22,7 @@
         android:padding="@dimen/ten_dp"
         android:paddingLeft="@dimen/page_margin_left"
         android:paddingRight="@dimen/page_margin_left"
-        android:singleLine="true"
+        android:maxLines="2"
         android:textColor="@color/second_text_color"
         android:textColorHint="@color/hint_text_color"
         android:textCursorDrawable="@drawable/edit_cursor"

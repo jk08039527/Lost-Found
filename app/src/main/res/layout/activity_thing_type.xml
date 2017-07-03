@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,15 +11,141 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/lv_type"
+    <!--<ListView-->
+    <!--android:id="@+id/lv_type"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_marginBottom="0dp"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintHorizontal_bias="0.0"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintRight_toRightOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/title_bar" />-->
+
+    <RadioGroup
+        android:id="@+id/rg_type"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_bar" />
+        android:divider="@android:drawable/btn_radio"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar">
 
+        <RadioButton
+            style="@style/type_radio_style"
+            android:drawableLeft="@drawable/icon_all"
+            android:tag="@string/all"
+            android:text="@string/all" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="?android:attr/listDivider" />
+
+        <RadioButton
+            style="@style/type_radio_style"
+            android:drawableLeft="@drawable/icon_wallet"
+            android:tag="@string/wallet"
+            android:text="@string/wallet" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="?android:attr/listDivider" />
+
+        <RadioButton
+            style="@style/type_radio_style"
+            android:drawableLeft="@drawable/icon_cards"
+            android:tag="@string/certificates"
+            android:text="@string/certificates" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="?android:attr/listDivider" />
+
+        <RadioButton
+            style="@style/type_radio_style"
+            android:drawableLeft="@drawable/icon_digital"
+            android:tag="@string/digital"
+            android:text="@string/digital" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="?android:attr/listDivider" />
+
+        <RadioButton
+            style="@style/type_radio_style"
+            android:drawableLeft="@drawable/icon_ornaments"
+            android:tag="@string/ornaments"
+            android:text="@string/ornaments" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="?android:attr/listDivider" />
+
+        <RadioButton
+            style="@style/type_radio_style"
+            android:drawableLeft="@drawable/icon_clothes"
+            android:tag="@string/clothes"
+            android:text="@string/clothes" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="?android:attr/listDivider" />
+
+        <RadioButton
+            style="@style/type_radio_style"
+            android:drawableLeft="@drawable/icon_file"
+            android:tag="@string/file"
+            android:text="@string/file" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="?android:attr/listDivider" />
+
+        <RadioButton
+            style="@style/type_radio_style"
+            android:drawableLeft="@drawable/icon_book"
+            android:tag="@string/book"
+            android:text="@string/book" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="?android:attr/listDivider" />
+
+        <RadioButton
+            style="@style/type_radio_style"
+            android:drawableLeft="@drawable/icon_pet"
+            android:tag="@string/pet"
+            android:text="@string/pet" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="?android:attr/listDivider" />
+
+        <RadioButton
+            style="@style/type_radio_style"
+            android:drawableLeft="@drawable/icon_car"
+            android:tag="@string/car"
+            android:text="@string/car" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="?android:attr/listDivider" />
+
+        <RadioButton
+            style="@style/type_radio_style"
+            android:drawableLeft="@drawable/icon_other"
+            android:tag="@string/other"
+            android:text="@string/other" />
+    </RadioGroup>
 </android.support.constraint.ConstraintLayout>

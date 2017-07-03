@@ -95,6 +95,7 @@ public class ReleaseActivity extends TitleBaseActivity {
         super.initView();
         setVisible(titleRight);
         titleRight.setText(getString(R.string.realese));
+        mTvThingTypeValue.setText(R.string.all);
         switch (releaseType) {
             case Key.TAG_RELEASE_LOST:
                 mEtReleaseTitle.setHint(R.string.title_lost);
