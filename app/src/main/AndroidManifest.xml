@@ -89,6 +89,8 @@
                 <action android:name="com.baidu.location.service_v2.4" />
             </intent-filter>
         </service>
+
+        <activity android:name=".activity.GuideActivity"></activity>
     </application>
 
 </manifest>
