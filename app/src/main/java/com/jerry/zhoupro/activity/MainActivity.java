@@ -4,9 +4,9 @@ import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.command.Constants;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.data.UserManager;
-import com.jerry.zhoupro.fragment.FindFragment;
+import com.jerry.zhoupro.fragment.VirtueFragment;
 import com.jerry.zhoupro.fragment.HomeFragment;
-import com.jerry.zhoupro.fragment.MsgFragment;
+import com.jerry.zhoupro.fragment.ReleasePlaceFragment;
 import com.jerry.zhoupro.fragment.UserFragment;
 import com.jerry.zhoupro.pop.ReleasePopWindow;
 import com.jerry.zhoupro.util.PreferenceUtil;
@@ -140,7 +140,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case Constants.TAB_FIND:
                 if (null == fragmentFind) {
-                    fragmentFind = new FindFragment();
+                    fragmentFind = new VirtueFragment();
                     transaction.add(R.id.content, fragmentFind);
                 } else {
                     transaction.show(fragmentFind);
@@ -148,7 +148,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case Constants.TAB_MSG:
                 if (null == fragmentMsg) {
-                    fragmentMsg = new MsgFragment();
+                    fragmentMsg = new ReleasePlaceFragment();
                     transaction.add(R.id.content, fragmentMsg);
                 } else {
                     transaction.show(fragmentMsg);
@@ -196,12 +196,14 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        if (resultCode == RESULT_OK && requestCode == Key.TAG_RELEASE_LOST || requestCode == Key.TAG_RELEASE_FOUND) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK) {return;}
+        if (requestCode == Key.TAG_RELEASE_LOST || requestCode == Key.TAG_RELEASE_FOUND
+                || requestCode == Key.TAG_RELEASE_FIND) {
             Intent intent = new Intent(MainActivity.this, ReleaseActivity.class);
             intent.putExtra(Key.RELEASE_TYPE, requestCode);
             startActivity(intent);
         }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

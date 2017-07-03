@@ -74,7 +74,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/ten_dp"
-        android:text="@string/discover"
+        android:text="@string/virtue"
         app:layout_constraintBottom_toBottomOf="@+id/tv_release_lost"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toRightOf="@+id/tv_release_found"

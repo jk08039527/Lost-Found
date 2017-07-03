@@ -1,18 +1,19 @@
 package com.jerry.zhoupro.activity;
 
-import com.jerry.zhoupro.util.Mlog;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.data.User;
 import com.jerry.zhoupro.data.UserManager;
 import com.jerry.zhoupro.listener.MyTextWatcherListener;
 import com.jerry.zhoupro.util.ImeUtils;
+import com.jerry.zhoupro.util.Mlog;
 import com.jerry.zhoupro.util.PreferenceUtil;
 import com.jerry.zhoupro.util.StringUtils;
 import com.jerry.zhoupro.util.ViewUtil;
 import com.jerry.zhoupro.widget.MyEditText;
 import com.jerry.zhoupro.widget.PhoneNumEditText;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -89,11 +90,7 @@ public class LoginActivity extends TitleBaseActivity {
         switch (v.getId()) {
             case R.id.tv_reg:
                 startActivityForResult(new Intent(this, RegisterActivity.class), Key.REGISTER);
-                finish();
                 break;
-//            case R.id.tv_forget_pwd:
-//                startActivityForResult(new Intent(this, ResetPwdActivity.class), Key.CODE_101);
-//                break;
             case R.id.iv_pwd_show:
                 if (isHidden) {
                     mEtPasswd.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -121,6 +118,7 @@ public class LoginActivity extends TitleBaseActivity {
                         if (e != null) {
                             Mlog.e(e.toString());
                             toast(R.string.login_fail);
+                            return;
                         }
                         UserManager.getInstance().saveToLocal(user);
                         ImeUtils.hideIme(LoginActivity.this);
@@ -133,5 +131,13 @@ public class LoginActivity extends TitleBaseActivity {
                 super.onClick(v);
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != Activity.RESULT_OK) { return; }
+        setResult(RESULT_OK);
+        finish();
     }
 }

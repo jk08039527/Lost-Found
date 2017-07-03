@@ -25,7 +25,7 @@
             android:id="@+id/tab_find"
             style="@style/tab_bar_text_style"
             android:drawableTop="@drawable/selector_tab_find"
-            android:text="@string/discover" />
+            android:text="@string/virtue" />
 
         <ImageView
             android:id="@+id/iv_release"
@@ -39,7 +39,7 @@
             android:id="@+id/tab_msg"
             style="@style/tab_bar_text_style"
             android:drawableTop="@drawable/selector_tab_msg"
-            android:text="@string/message" />
+            android:text="@string/try_find" />
 
         <TextView
             android:id="@+id/tab_me"

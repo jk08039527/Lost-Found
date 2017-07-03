@@ -4,9 +4,9 @@
     <string name="ok">确定</string>
 
     <string name="tab_home">首页</string>
-    <string name="discover">发现</string>
+    <string name="virtue">美德</string>
     <string name="realese">发布</string>
-    <string name="message">消息</string>
+    <string name="try_find">找找</string>
     <string name="me">我</string>
 
     <string name="back">返回</string>
@@ -116,4 +116,9 @@
     <string name="last_version_now">当前为最新版</string>
     <string name="realese_find_must_pic">发布发现必须要照片</string>
     <string name="find_detail">发现详情</string>
+    <string name="title">标题</string>
+    <string name="title_lost">亲爱的小伙伴，我丢了一件心爱的宝贝，希望大家帮我找一下</string>
+    <string name="title_found">亲爱的小伙伴，我捡到一件心爱的宝贝，希望失主看到呀</string>
+    <string name="already_register">该号码已经注册</string>
+    <string name="verify_fail">验证失败</string>
 </resources>

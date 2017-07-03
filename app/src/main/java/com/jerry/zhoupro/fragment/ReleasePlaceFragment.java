@@ -43,7 +43,7 @@ import static cn.bmob.v3.Bmob.getApplicationContext;
 /**
  * Created by wzl-pc on 2017/5/9.
  */
-public class MsgFragment extends TitleBaseFragment {
+public class ReleasePlaceFragment extends TitleBaseFragment {
 
     @BindView(R.id.bmapView)
     MapView mBmapView;
@@ -77,12 +77,12 @@ public class MsgFragment extends TitleBaseFragment {
 
     @Override
     public int getContentLayout() {
-        return R.layout.fragment_msg;
+        return R.layout.fragment_place;
     }
 
     @Override
     protected String getTitleText() {
-        return getString(R.string.message);
+        return getString(R.string.try_find);
     }
 
     @Override
@@ -191,7 +191,7 @@ public class MsgFragment extends TitleBaseFragment {
                                 LatLng point = new LatLng(Double.parseDouble(latLng[0]), Double.parseDouble(latLng[1]));
                                 //构建Marker图标
                                 BitmapDescriptor bitmap = BitmapDescriptorFactory
-                                        .fromResource(R.drawable.about_us);
+                                        .fromResource(type == Key.TAG_RELEASE_LOST ? R.drawable.icon_lost_place : R.drawable.icon_found_place);
                                 OverlayOptions ooD = new MarkerOptions()
                                         .position(point)
                                         .icon(bitmap)

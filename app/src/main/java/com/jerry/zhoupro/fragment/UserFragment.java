@@ -43,7 +43,6 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.QueryListener;
-import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
@@ -229,21 +228,6 @@ public class UserFragment extends TitleBaseFragment {
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         if (resultCode != Activity.RESULT_OK) { return; }
         switch (requestCode) {
-            case Key.REGISTER:
-                User user = new User();
-                user.setUsername(data.getStringExtra(Key.phone));
-                user.setPassword(data.getStringExtra(Key.password));
-                user.login(new SaveListener<User>() {
-                    @Override
-                    public void done(final User user, final BmobException e) {
-                        if (e != null) {
-                            Mlog.e(e.toString());
-                            toast(R.string.login_fail);
-                        }
-                        UserManager.getInstance().saveToLocal(user);
-                    }
-                });
-                break;
             case Key.TAKE_PHOTO:
                 startZoomActivity(Uri.fromFile(new File(PATH_HEAD_PICTURE)));
                 break;

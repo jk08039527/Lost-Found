@@ -4,6 +4,7 @@ package com.jerry.zhoupro.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.activity.FindDetailActivity;
@@ -16,6 +17,7 @@ import com.jerry.zhoupro.util.Mlog;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 
 import butterknife.BindView;
 import cn.bmob.v3.BmobQuery;
@@ -25,7 +27,7 @@ import cn.bmob.v3.listener.FindListener;
 /**
  * Created by wzl-pc on 2017/5/9.
  */
-public class FindFragment extends TitleBaseFragment implements AdapterView.OnItemClickListener {
+public class VirtueFragment extends TitleBaseFragment implements AdapterView.OnItemClickListener {
 
     private CommonAdapter<ThingInfoBean> mAdapter;
     private List<ThingInfoBean> mFindInfos = new ArrayList<>();
@@ -34,12 +36,12 @@ public class FindFragment extends TitleBaseFragment implements AdapterView.OnIte
 
     @Override
     public int getContentLayout() {
-        return R.layout.fragment_find;
+        return R.layout.fragment_virtue;
     }
 
     @Override
     protected String getTitleText() {
-        return getString(R.string.discover);
+        return getString(R.string.virtue);
     }
 
     @Override
@@ -49,6 +51,12 @@ public class FindFragment extends TitleBaseFragment implements AdapterView.OnIte
         mAdapter = new FindAdapter(getActivity(), mFindInfos);
         mPullRefreshList.setAdapter(mAdapter);
         mPullRefreshList.setOnItemClickListener(this);
+        mPullRefreshList.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+            @Override
+            public void onRefresh(final PullToRefreshBase<ListView> refreshView) {
+                initData();
+            }
+        });
     }
 
     @Override

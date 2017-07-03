@@ -23,10 +23,10 @@ public class FindDetailActivity extends TitleBaseActivity {
     TextView mTvReleaserNickname;
     @BindView(R.id.iv_happen_pic)
     ImageView mIvHappenPic;
-    @BindView(R.id.tv_title)
-    TextView mTvTitle;
+    @BindView(R.id.tv_release_title)
+    TextView mTvReleaseTitle;
     @BindView(R.id.tv_content)
-    TextView mTvContent;
+    TextView mTvReleaseContent;
     private ThingInfoBean mThingInfo;
 
     @Override
@@ -50,7 +50,7 @@ public class FindDetailActivity extends TitleBaseActivity {
         Glide.with(this).load(mThingInfo.getReleaser().getPhotoUri()).into(mIvReleaser);
         Glide.with(this).load(mThingInfo.getPictures().get(0).getFileUrl()).into(mIvHappenPic);
         mTvReleaserNickname.setText(mThingInfo.getReleaser().getNickname());
-        mTvTitle.setText(mThingInfo.getTitle());
-        mTvContent.setText(mThingInfo.getContent());
+        mTvReleaseTitle.setText(mThingInfo.getTitle());
+        mTvReleaseContent.setText(mThingInfo.getContent());
     }
 }

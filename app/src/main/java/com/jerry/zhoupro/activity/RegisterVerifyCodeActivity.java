@@ -1,10 +1,13 @@
 package com.jerry.zhoupro.activity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.listener.MyTextWatcherListener;
+import com.jerry.zhoupro.util.Mlog;
 import com.jerry.zhoupro.util.TimeCount;
-import com.jerry.zhoupro.util.TimeTask;
 
 import android.content.Intent;
 import android.text.Editable;
@@ -15,6 +18,10 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobSMS;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class RegisterVerifyCodeActivity extends TitleBaseActivity implements TimeCount.CountOver {
 
@@ -66,7 +73,22 @@ public class RegisterVerifyCodeActivity extends TitleBaseActivity implements Tim
     public void onClick(final View view) {
         switch (view.getId()) {
             case R.id.cal_tv:
-                toast(R.string.cacha_has_send);
+                loadingDialog();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String sendTime = format.format(new Date());
+                BmobSMS.requestSMSCode(mPhone, sendTime, new QueryListener<Integer>() {
+
+                    @Override
+                    public void done(Integer smsId, BmobException ex) {
+                        if (ex != null) {
+                            Mlog.e(ex.toString());
+                            return;
+                        }
+                        toast(R.string.cacha_has_send);
+                        closeLoadingDialog();
+                        countDown();
+                    }
+                });
                 break;
             case R.id.button_commit:
                 checkVerifyCode();
@@ -86,20 +108,23 @@ public class RegisterVerifyCodeActivity extends TitleBaseActivity implements Tim
         loadingDialog();
         mButtonCommit.setText(getString(R.string.wait_a_moment));
         mButtonCommit.setEnabled(false);
-        //模拟请求网络
-        new TimeTask(800, new TimeTask.TimeOverListerner() {
+        BmobSMS.verifySmsCode(mPhone, code, new UpdateListener() {
             @Override
-            public void onFinished() {
-                closeLoadingDialog();
-                mButtonCommit.setText(getString(R.string.ok));
-                mButtonCommit.setEnabled(true);
-                //登录流程
-                Intent intent = new Intent();
-                intent.putExtra(Key.has_register, true);
-                setResult(RESULT_OK, intent);
-                finish();
+            public void done(final BmobException e) {
+                if (e != null) {//短信验证码已验证成功
+                    toast(R.string.verify_fail);
+                } else {
+                    closeLoadingDialog();
+                    mButtonCommit.setText(getString(R.string.ok));
+                    mButtonCommit.setEnabled(true);
+                    //登录流程
+                    Intent intent = new Intent();
+                    intent.putExtra(Key.has_register, true);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
             }
-        }).start();
+        });
     }
 
     private void countDown() {

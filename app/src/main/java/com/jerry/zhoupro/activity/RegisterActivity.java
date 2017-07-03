@@ -1,12 +1,15 @@
 package com.jerry.zhoupro.activity;
 
-import com.jerry.zhoupro.util.Mlog;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.data.User;
+import com.jerry.zhoupro.data.UserManager;
 import com.jerry.zhoupro.listener.MyTextWatcherListener;
+import com.jerry.zhoupro.util.Mlog;
 import com.jerry.zhoupro.util.PatternsUtil;
-import com.jerry.zhoupro.util.TimeTask;
 import com.jerry.zhoupro.util.ViewUtil;
 import com.jerry.zhoupro.widget.MyEditText;
 import com.jerry.zhoupro.widget.NoticeDialog;
@@ -24,7 +27,9 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobSMS;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SaveListener;
 
 public class RegisterActivity extends TitleBaseActivity {
@@ -42,6 +47,7 @@ public class RegisterActivity extends TitleBaseActivity {
     private String mPhone;
     private String mPwd;
     private boolean isHidden;
+    private User mUser;
 
     @Override
     protected int getContentLayout() {
@@ -128,19 +134,26 @@ public class RegisterActivity extends TitleBaseActivity {
                     @Override
                     public void onClick(View v) {
                         noticeDialog.dismiss();
-                        User user = new User();
-                        user.setUsername(mPhone);
-                        user.setMobilePhoneNumber(mPhone);
-                        user.setMobilePhoneNumberVerified(false);
-                        user.setPassword(mPwd);
-                        user.setNickname(mEtNickname.getText().toString().trim());
-                        user.signUp(new SaveListener<User>() {
+                        mUser = new User();
+                        mUser.setUsername(mPhone);
+                        mUser.setMobilePhoneNumber(mPhone);
+                        mUser.setMobilePhoneNumberVerified(false);
+                        mUser.setPassword(mPwd);
+                        mUser.setMobilePhoneNumberVerified(true);
+                        mUser.setNickname(mEtNickname.getText().toString().trim());
+                        mUser.signUp(new SaveListener<User>() {
                             @Override
                             public void done(final User s, final BmobException e) {
                                 if (e != null) {
                                     Mlog.e(e.toString());
-                                    toast(R.string.register_fail);
-                                    return;
+                                    switch (e.getErrorCode()) {
+                                        case 202:
+                                            toast(R.string.already_register);
+                                            return;
+                                        default:
+                                            toast(R.string.register_fail);
+                                            return;
+                                    }
                                 }
                                 executeVerifyCallBack();
                             }
@@ -161,27 +174,32 @@ public class RegisterActivity extends TitleBaseActivity {
         mRegisterTv.setText(getString(R.string.wait_a_moment));
         mRegisterTv.setEnabled(false);
         loadingDialog();
-        //模拟请求网络
-        new TimeTask(800, new TimeTask.TimeOverListerner() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String sendTime = format.format(new Date());
+        BmobSMS.requestSMSCode(mPhone, sendTime, new QueryListener<Integer>() {
+
             @Override
-            public void onFinished() {
+            public void done(Integer smsId, BmobException ex) {
+                if (ex != null) {
+                    Mlog.e(ex.toString());
+                    return;
+                }
                 closeLoadingDialog();
                 mRegisterTv.setText(getString(R.string.register));
                 mRegisterTv.setEnabled(true);
                 Intent intent = new Intent(RegisterActivity.this, RegisterVerifyCodeActivity.class);
                 intent.putExtra(Key.phone, mPhone);
+                startActivityForResult(intent, Key.REGISTER);
             }
-        }).start();
+        });
     }
 
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_OK) { return; }
-        Intent intent = new Intent();
-        intent.putExtra(Key.phone, mPhone);
-        intent.putExtra(Key.password, mPwd);
-        setResult(RESULT_OK, intent);
+        UserManager.getInstance().saveToLocal(mUser);
+        setResult(RESULT_OK);
         finish();
     }
 }

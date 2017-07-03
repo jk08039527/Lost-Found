@@ -44,6 +44,8 @@ import static com.jerry.zhoupro.command.Constants.PATH_SETTING_CATCH;
 
 public class ReleaseActivity extends TitleBaseActivity {
 
+    @BindView(R.id.et_release_title)
+    EditText mEtReleaseTitle;
     @BindView(R.id.et_release_content)
     EditText mEtReleaseContent;
     @BindView(R.id.gridView)
@@ -84,7 +86,7 @@ public class ReleaseActivity extends TitleBaseActivity {
             case Key.TAG_RELEASE_FOUND:
                 return getString(R.string.realese_found);
             default:
-                return getString(R.string.discover);
+                return getString(R.string.virtue);
         }
     }
 
@@ -93,6 +95,17 @@ public class ReleaseActivity extends TitleBaseActivity {
         super.initView();
         setVisible(titleRight);
         titleRight.setText(getString(R.string.realese));
+        switch (releaseType) {
+            case Key.TAG_RELEASE_LOST:
+                mEtReleaseTitle.setHint(R.string.title_lost);
+                break;
+            case Key.TAG_RELEASE_FOUND:
+                mEtReleaseTitle.setHint(R.string.title_found);
+                break;
+            default:
+                mEtReleaseTitle.setHint(R.string.title);
+                break;
+        }
     }
 
     @Override
@@ -131,9 +144,6 @@ public class ReleaseActivity extends TitleBaseActivity {
     public void onViewClicked(View view) {
         Intent intent;
         switch (view.getId()) {
-            case R.id.tv_title:
-                intent = new Intent();
-                break;
             case R.id.tv_thing_type:
                 intent = new Intent(this, ThingTypeActivity.class);
                 intent.putExtra(Key.THING_TYPE, mTvThingTypeValue.getText().toString());
@@ -198,6 +208,10 @@ public class ReleaseActivity extends TitleBaseActivity {
                 final String thingType = mTvThingTypeValue.getText().toString();
                 final String date = mTvThingDateValue.getText().toString();
                 final String place = mTvThingPlaceValue.getText().toString();
+                String title = mEtReleaseTitle.getText().toString();
+                if (TextUtils.isEmpty(title)) {
+                    title = mEtReleaseTitle.getHint().toString();
+                }
                 final String content = mEtReleaseContent.getText().toString();
                 if (TextUtils.isEmpty(content)) {
                     toast(R.string.input_content);
@@ -223,7 +237,7 @@ public class ReleaseActivity extends TitleBaseActivity {
 
                 final ThingInfoBean thingInfo = new ThingInfoBean();
                 thingInfo.setReleaseType(releaseType);
-                thingInfo.setTitle(titleText.getText().toString());
+                thingInfo.setTitle(title);
                 thingInfo.setThingType(thingType);
                 thingInfo.setDate(date);
                 thingInfo.setPlace(place);
