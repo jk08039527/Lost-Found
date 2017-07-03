@@ -3,6 +3,7 @@ package com.jerry.zhoupro.adapter;
 import java.util.List;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.bean.ThingInfoBean;
 import com.jerry.zhoupro.databinding.ItemFindBinding;
@@ -46,7 +47,10 @@ public class FindAdapter extends CommonAdapter<ThingInfoBean> {
         binding.setThing(thing);
         String photoUrl = thing.getReleaser().getPhotoUri();
         if (!TextUtils.isEmpty(photoUrl)) {
-            Glide.with(mActivity).load(photoUrl).into(binding.ivReleaser);
+            Glide.with(mActivity).load(photoUrl)
+                    .transition(new DrawableTransitionOptions().dontTransition())
+                    .thumbnail(Glide.with(mActivity).load(R.drawable.ic_img_user_default))
+                    .into(binding.ivReleaser);
         }
         List<BmobFile> files = thing.getPictures();
         if (files != null) {

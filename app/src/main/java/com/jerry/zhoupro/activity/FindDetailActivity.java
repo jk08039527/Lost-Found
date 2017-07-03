@@ -1,6 +1,7 @@
 package com.jerry.zhoupro.activity;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.bean.ThingInfoBean;
 import com.jerry.zhoupro.command.Key;
@@ -47,7 +48,10 @@ public class FindDetailActivity extends TitleBaseActivity {
 
     @Override
     protected void initData() {
-        Glide.with(this).load(mThingInfo.getReleaser().getPhotoUri()).into(mIvReleaser);
+        Glide.with(this).load(mThingInfo.getReleaser().getPhotoUri())
+                .transition(new DrawableTransitionOptions().dontTransition())
+                .thumbnail(Glide.with(this).load(R.drawable.ic_img_user_default))
+                .into(mIvReleaser);
         Glide.with(this).load(mThingInfo.getPictures().get(0).getFileUrl()).into(mIvHappenPic);
         mTvReleaserNickname.setText(mThingInfo.getReleaser().getNickname());
         mTvReleaseTitle.setText(mThingInfo.getTitle());

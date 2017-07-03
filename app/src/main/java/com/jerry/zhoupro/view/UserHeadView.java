@@ -1,6 +1,7 @@
 package com.jerry.zhoupro.view;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.jerry.zhoupro.R;
 
 import android.content.Context;
@@ -63,7 +64,10 @@ public class UserHeadView extends LinearLayout {
         if (TextUtils.isEmpty(uri)) {
             mIvUserHead.setImageResource(R.drawable.ic_img_user_default);
         } else {
-            Glide.with(getContext()).load(uri).into(mIvUserHead);
+            Glide.with(getContext()).load(uri)
+                    .transition(new DrawableTransitionOptions().dontTransition())
+                    .thumbnail(Glide.with(getContext()).load(R.drawable.ic_img_user_default))
+                    .into(mIvUserHead);
         }
     }
 
