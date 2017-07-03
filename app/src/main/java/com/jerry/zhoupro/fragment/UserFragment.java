@@ -300,6 +300,7 @@ public class UserFragment extends TitleBaseFragment {
                         }
                         FileUtils.deleteFiles(new File(PATH_SETTING_CATCH));
                         headView.setHeadImg(bm);
+                        UserManager.getInstance().setPhotoUrl(picture.getUrl());
                     }
                 });
             }

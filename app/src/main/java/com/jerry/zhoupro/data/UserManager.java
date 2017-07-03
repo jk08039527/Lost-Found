@@ -59,6 +59,10 @@ public class UserManager {
         return user.getPhotoUri();
     }
 
+    public void setPhotoUrl(String photoUri) {
+        user.setPhotoUri(photoUri);
+    }
+
     public String getSessionToken() {
         return user.getSessionToken();
     }
