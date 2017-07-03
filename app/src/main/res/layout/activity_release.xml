@@ -158,7 +158,7 @@
         android:layout_width="@dimen/_100dp"
         android:layout_height="@dimen/_100dp"
         android:scaleType="centerCrop"
-        android:src="@android:drawable/ic_input_add"
+        android:src="@drawable/ic_add_pic"
         android:background="@drawable/normal_editor_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_thing_place" />

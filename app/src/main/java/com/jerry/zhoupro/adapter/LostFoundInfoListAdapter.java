@@ -84,21 +84,33 @@ public class LostFoundInfoListAdapter extends CommonAdapter<ThingInfoBean> {
                         break;
                     case R.id.iv_share:
                         if (UserManager.hasLogin()) {
-                            ShareUtils.share(mActivity,
-                                    "http:www.baidu.com/",
-                                    mType == 0 ? mActivity.getString(R.string.share_lost) : mActivity.getString(R.string.share_found),
-                                    thing.getTitle(),
-                                    thing.getContent(),
-                                    thing.getPictures().get(0).getUrl());
+                            List<BmobFile> files = thing.getPictures();
+                            if (files != null && files.size() > 0) {
+                                ShareUtils.share(mActivity,
+                                        "http:www.baidu.com/",
+                                        mType == 0 ? mActivity.getString(R.string.share_lost) : mActivity.getString(R.string.share_found),
+                                        thing.getTitle(),
+                                        thing.getContent(),
+                                        files.get(0).getUrl());
+                            } else {
+                                ShareUtils.share(mActivity,
+                                        "http:www.baidu.com/",
+                                        mType == 0 ? mActivity.getString(R.string.share_lost) : mActivity.getString(R.string.share_found),
+                                        thing.getTitle(),
+                                        thing.getContent());
+                            }
                         } else {
                             mActivity.startActivity(new Intent(mActivity, LoginActivity.class));
                         }
                         break;
                     case R.id.iv_happen_pic:
-                        Intent intent = PictureActivity.newIntent(mActivity, thing.getPictures().get(0).getUrl(), thing.getTitle());
-                        ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity,
-                                v, PictureActivity.TRANSIT_PIC);
-                        ActivityCompat.startActivity(mActivity, intent, optionsCompat.toBundle());
+                        List<BmobFile> files = thing.getPictures();
+                        if (files != null && files.size() > 0) {
+                            Intent intent = PictureActivity.newIntent(mActivity, files.get(0).getUrl(), thing.getTitle());
+                            ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity,
+                                    v, PictureActivity.TRANSIT_PIC);
+                            ActivityCompat.startActivity(mActivity, intent, optionsCompat.toBundle());
+                        }
                         break;
                     default:
                         break;
@@ -113,9 +125,11 @@ public class LostFoundInfoListAdapter extends CommonAdapter<ThingInfoBean> {
                     .into(binding.ivReleaser);
         }
         List<BmobFile> files = thing.getPictures();
-        if (files != null) {
+        if (files != null && files.size() > 0) {
             String picUrl = files.get(0).getFileUrl();
             Glide.with(mActivity).load(picUrl).into(binding.ivHappenPic);
+        } else {
+            binding.ivHappenPic.setVisibility(View.GONE);
         }
         return convertView;
     }

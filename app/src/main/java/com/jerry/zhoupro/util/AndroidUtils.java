@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import com.jerry.zhoupro.MyApplication;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.activity.SplashActivity;
+import com.jerry.zhoupro.command.Key;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -93,6 +94,20 @@ public class AndroidUtils {
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
+        }
+    }
+
+    /**
+     * 获取应用程序versionName
+     */
+    public static String getVersionName() {
+        Context context = MyApplication.getInstance().getApplicationContext();
+        try {
+            PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            return info.versionName;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Key.NIL;
         }
     }
 

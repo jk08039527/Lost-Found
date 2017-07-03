@@ -18,7 +18,6 @@ import android.util.Log;
 public class ShareUtils {
 
     public static void share(final Activity activity, final String url, final String title, final String description, final String text, final int picUri) {
-        new UMImage(activity, picUri);
         UMWeb web = new UMWeb(TextUtils.isEmpty(url) ? "http://www.baidu.com/" : url);
         web.setTitle(title);//标题
         web.setThumb(new UMImage(activity, picUri));  //缩略图
@@ -27,10 +26,17 @@ public class ShareUtils {
     }
 
     public static void share(final Activity activity, final String url, final String title, final String description, final String text, final String picUri) {
-        new UMImage(activity, picUri);
         UMWeb web = new UMWeb(TextUtils.isEmpty(url) ? "http://www.baidu.com/" : url);
         web.setTitle(title);//标题
         web.setThumb(new UMImage(activity, picUri));  //缩略图
+        web.setDescription(description);//描述
+        share(activity, web, text);
+    }
+
+    public static void share(final Activity activity, final String url, final String title, final String description, final String text) {
+        UMWeb web = new UMWeb(TextUtils.isEmpty(url) ? "http://www.baidu.com/" : url);
+        web.setTitle(title);//标题
+        web.setThumb(new UMImage(activity, R.drawable.ic_img_user_default));  //缩略图
         web.setDescription(description);//描述
         share(activity, web, text);
     }
@@ -67,7 +73,7 @@ public class ShareUtils {
                 .withText(text)
                 .withMedia(web)
                 .setCallback(umShareListener)
-                .setDisplayList(SHARE_MEDIA.SMS, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE,
+                .setDisplayList(SHARE_MEDIA.SMS, /*SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE,*/
                         SHARE_MEDIA.SINA)
                 .open();
 

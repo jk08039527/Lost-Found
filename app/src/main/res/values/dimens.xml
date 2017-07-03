@@ -54,4 +54,8 @@
     <dimen name="_110dp">110dp</dimen>
     <dimen name="six_dp">6dp</dimen>
 
+    <!-- 关于我们 -->
+    <dimen name="about_us_logo_width">232dp</dimen>
+    <dimen name="about_us_logo_height">176dp</dimen>
+
 </resources>

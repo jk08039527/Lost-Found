@@ -1,21 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <include
         layout="@layout/title_bar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/about_us"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/about_logo"
+        android:layout_width="@dimen/about_us_logo_width"
+        android:layout_height="@dimen/about_us_logo_height"
+        android:layout_marginTop="@dimen/eight_dp"
+        android:scaleType="center"
+        android:src="@mipmap/ic_launcher"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/title_bar" />
+
+    <TextView
+        android:id="@+id/version_tv"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/row_height"
+        android:layout_marginLeft="@dimen/page_margin_left"
+        android:layout_marginRight="@dimen/page_margin_left"
+        android:layout_marginTop="@dimen/eight_dp"
+        android:background="@drawable/white_bg_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/ten_dp"
+        android:textColor="@color/second_text_color"
+        android:textSize="@dimen/fourteen_dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/about_logo"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_website_wzl"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/row_height"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="@dimen/page_margin_left"
+        android:layout_marginRight="@dimen/page_margin_left"
+        android:background="@drawable/white_bg_selector"
+        android:drawableRight="@drawable/arrow"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/ten_dp"
+        android:paddingRight="@dimen/ten_dp"
+        android:textColor="#0e93fb"
+        android:textSize="@dimen/fourteen_dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/version_tv" />
+
+    <TextView
+        android:id="@+id/tv_website_zb"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/row_height"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="@dimen/page_margin_left"
+        android:layout_marginRight="@dimen/page_margin_left"
+        android:background="@drawable/white_bg_selector"
+        android:drawableRight="@drawable/arrow"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/ten_dp"
+        android:paddingRight="@dimen/ten_dp"
+        android:textColor="#0e93fb"
+        android:textSize="@dimen/fourteen_dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_website_wzl" />
+
+    <View
+        android:id="@+id/line_view"
+        style="@style/horizontal_line_color_style"
+        android:layout_marginEnd="@dimen/page_margin_left"
+        android:layout_marginStart="@dimen/page_margin_left"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/version_tv" />
+
+    <View
+        android:id="@+id/line_view2"
+        style="@style/horizontal_line_color_style"
+        android:layout_marginEnd="@dimen/page_margin_left"
+        android:layout_marginStart="@dimen/page_margin_left"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_website_wzl" />
+
+    <TextView
+        android:id="@+id/about_us_copyright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/twenty_dp"
+        android:gravity="bottom"
+        android:text="版权所有 中山大学"
+        android:textColor="@color/second_text_color"
+        android:textSize="@dimen/thirteen_dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="127dp" />
+
 </android.support.constraint.ConstraintLayout>

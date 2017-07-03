@@ -121,4 +121,5 @@
     <string name="title_found">亲爱的小伙伴，我捡到一件心爱的宝贝，希望失主看到呀</string>
     <string name="already_register">该号码已经注册</string>
     <string name="verify_fail">验证失败</string>
+    <string name="version_info">版本信息：%1$s</string>
 </resources>

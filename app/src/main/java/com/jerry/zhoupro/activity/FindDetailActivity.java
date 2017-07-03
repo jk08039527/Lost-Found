@@ -1,5 +1,7 @@
 package com.jerry.zhoupro.activity;
 
+import java.util.List;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.jerry.zhoupro.R;
@@ -7,10 +9,12 @@ import com.jerry.zhoupro.bean.ThingInfoBean;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.widget.CircleImageView;
 
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
+import cn.bmob.v3.datatype.BmobFile;
 
 /**
  * Created by wzl-pc on 2017/7/2.
@@ -52,7 +56,12 @@ public class FindDetailActivity extends TitleBaseActivity {
                 .transition(new DrawableTransitionOptions().dontTransition())
                 .thumbnail(Glide.with(this).load(R.drawable.ic_img_user_default))
                 .into(mIvReleaser);
-        Glide.with(this).load(mThingInfo.getPictures().get(0).getFileUrl()).into(mIvHappenPic);
+        List<BmobFile> files = mThingInfo.getPictures();
+        if (files != null && files.size() > 0) {
+            Glide.with(this).load(files.get(0).getFileUrl()).into(mIvHappenPic);
+        } else {
+            mIvHappenPic.setVisibility(View.GONE);
+        }
         mTvReleaserNickname.setText(mThingInfo.getReleaser().getNickname());
         mTvReleaseTitle.setText(mThingInfo.getTitle());
         mTvReleaseContent.setText(mThingInfo.getContent());
