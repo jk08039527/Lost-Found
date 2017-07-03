@@ -12,6 +12,7 @@ import com.jerry.zhoupro.activity.AboutUsActivity;
 import com.jerry.zhoupro.activity.FeedbackActivity;
 import com.jerry.zhoupro.activity.LoginActivity;
 import com.jerry.zhoupro.activity.RegisterActivity;
+import com.jerry.zhoupro.command.Constants;
 import com.jerry.zhoupro.command.Key;
 import com.jerry.zhoupro.data.User;
 import com.jerry.zhoupro.data.UserManager;
@@ -45,9 +46,6 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
-
-import static com.jerry.zhoupro.command.Constants.PATH_SETTING_CATCH;
-import static com.jerry.zhoupro.command.Key.CUT_PHOTO;
 
 /**
  * Created by wzl-pc on 2017/5/9.
@@ -170,7 +168,11 @@ public class UserFragment extends TitleBaseFragment {
 
             @Override
             public void feedbackClick() {
-                startActivity(new Intent(getActivity(), FeedbackActivity.class));
+                if (UserManager.hasLogin()) {
+                    startActivity(new Intent(getActivity(), FeedbackActivity.class));
+                } else {
+                    startActivityForResult(new Intent(getActivity(), LoginActivity.class), Key.TAG_RELEASE_FEEDBACK);
+                }
             }
 
             @Override
@@ -236,16 +238,19 @@ public class UserFragment extends TitleBaseFragment {
                     startZoomActivity(data.getData());
                 }
                 break;
-            case CUT_PHOTO:
+            case Key.CUT_PHOTO:
                 //剪裁后的图片
                 if (data != null) {
                     Bundle extras = data.getExtras();
                     if (extras != null) {
                         final Bitmap bm = extras.getParcelable("data");
-                        FileUtils.saveLocalBitmap(bm, PATH_SETTING_CATCH + uid + Key.JPG);
+                        FileUtils.saveLocalBitmap(bm, Constants.PATH_SETTING_CATCH + uid + Key.JPG);
                         uploadPic(bm);
                     }
                 }
+                break;
+            case Key.TAG_RELEASE_FEEDBACK:
+                startActivity(new Intent(getActivity(), FeedbackActivity.class));
                 break;
             default:
                 break;
@@ -269,7 +274,7 @@ public class UserFragment extends TitleBaseFragment {
     }
 
     private void doUpdate(final Bitmap bm) {
-        final BmobFile picture = new BmobFile(new File(PATH_SETTING_CATCH + uid + Key.JPG));
+        final BmobFile picture = new BmobFile(new File(Constants.PATH_SETTING_CATCH + uid + Key.JPG));
         picture.upload(new UploadFileListener() {
             @Override
             public void done(final BmobException e) {
@@ -298,7 +303,7 @@ public class UserFragment extends TitleBaseFragment {
                             toast(R.string.error);
                             return;
                         }
-                        FileUtils.deleteFiles(new File(PATH_SETTING_CATCH));
+                        FileUtils.deleteFiles(new File(Constants.PATH_SETTING_CATCH));
                         headView.setHeadImg(bm);
                         UserManager.getInstance().setPhotoUrl(picture.getUrl());
                     }
@@ -333,6 +338,6 @@ public class UserFragment extends TitleBaseFragment {
     }
 
     public void setHeadPicTemp() {
-        PATH_HEAD_PICTURE = PATH_SETTING_CATCH + System.currentTimeMillis() + Key.JPG;
+        PATH_HEAD_PICTURE = Constants.PATH_SETTING_CATCH + System.currentTimeMillis() + Key.JPG;
     }
 }
