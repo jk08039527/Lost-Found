@@ -3,7 +3,6 @@ package com.jerry.zhoupro.activity;
 import com.bumptech.glide.Glide;
 import com.jerry.zhoupro.R;
 import com.jerry.zhoupro.util.ImeUtils;
-import com.jerry.zhoupro.util.PreferenceUtil;
 import com.jerry.zhoupro.util.TimeTask;
 import com.jerry.zhoupro.view.SkipView;
 
@@ -37,12 +36,12 @@ public class SplashActivity extends AppCompatActivity implements SkipView.SkipLi
     private void start() {
         if (!canSkip) { return; }
         Intent intent = new Intent();
-        if (PreferenceUtil.isFirst(PreferenceUtil.FIRST_INSTALLED)) {
-            PreferenceUtil.setNotFirst(PreferenceUtil.FIRST_INSTALLED);
-            intent.setClass(this, GuideActivity.class);
-        } else {
+//        if (PreferenceUtil.isFirst(PreferenceUtil.FIRST_INSTALLED)) {
+//            PreferenceUtil.setNotFirst(PreferenceUtil.FIRST_INSTALLED);
+//            intent.setClass(this, GuideActivity.class);
+//        } else {
             intent.setClass(this, MainActivity.class);
-        }
+//        }
         startActivity(intent);
         finish();
     }

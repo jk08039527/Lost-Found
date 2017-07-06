@@ -32,6 +32,15 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="qb4lxrY6q7VmkWnVwOhVeTm6a1vC03w5" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="118454-1" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="767c95215d0b58cb988708be713da0a2" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCdf0WkZdw6bQOCR1gMz0bb5/sFSsscvDtfaXH9o4UUAWNprL/vnqdbHJ51XKg/9BRotJB/b2M7DJdnZ4Ud0B3MwjcKHnW0ODVrN6qvmHNy+d+g6DqcG+dwTgySwIDYJ1t+juXfQSGXLr7nFsvMJMbdn+7iQ1BO7wUVRSy7nIgm6fsgUjh9eg+E/96/gbjH9LSgEiwwyd7UZky+JgCoy39zOAFXkGk1QGOAT6IfiFDI3ofP2aksgDaebbswLsT9rq8mgeHOU1/w7zH+VK1RV3SlNr1Je0/2pi6UTB6fIkAbxwOsDFOBZzqhW/c0nh3i02GvP4367s/Tz/Vac3kbl49jAgMBAAECggEBAJjdI8IJn3QRxNsY1eww7myYPzqGupccV2Am3x24LX0aT9wMcIppabP0FhSBJ0hTZc+umaUmfqCcewNBJaGnEpVfV755i/Ksr6Rt9jvScxOAVT4+yEwmhT6qcmepciTaJmKy3YgQFkM/esiehpWQiHgpN9niTbsfIMbhSiaaKkfhOGehVVy1ii/vawfS0NgS2l4mWR+X/PGmjucv4ZOWuN/fL6TPC8sHKCW5b2MOabW/qhYJ1+wHvZIAJQxRQuWwMSX5BkBI05MdEqYqrhCwH6vCXTwrB4R+eXmg8Fng8p8z8EQz1YKN4raACu27yXmpqHsM1+oHIKnxDKOQ20JbJLkCgYEA+yirGfwnIc+Ksst+RXKL7bFSMy8j8Axxch9VHFF4tWqtS4PwMjQ99X82z5m1i+QNz/JmeDO4XxDVpjz03ca3Sv2XK9i1tpbbhFZNd+LwcZwhm3k5u9jfAjceoHIb04e0V+1I8ufYC9jENVrLWltBCXavKYur/4Xou35U1/vyF/UCgYEAoIhvM5oVZqyHWtvYsMwuG+AkS+e2mbTvKj5siCHDUqZOMMH5qbVbAZMGsv39gdTaL0mu+QGi1mg6F2c6yrBKjlUz5JppDHUjvc5aXSLojciav5hm4TWPMP/4eiC8oJVh+C8AICkdYN89edgGg97w3pldux/vqr0QQR0bUFdbavcCgYEAh0X2Mf6vjPRdfcNAdWMmnpUc8th3ALmS+KaLjr8Kxpt4Tu33FvMwU+N6wAHH2FqyXcfvDNq+eOV2TR0TvcdjvY4sN792z6sc/IAHJYUjf+1Z5IU8ZUJ/io/pfP04o4u5xInW+o2IvYi41Qvb7wSrWM+FtFi4AN485Y87X0EhuWkCgYB7YGAWiJVqE67zZYNkXYgSZHGA5NSxzR0CmndPKKO1IZt2XZ5Dj94hl53OcuYiojQNo9OWDGvZ3MDIu82zeUnTmigHyaRyrpSJi85nRiz0yvgjyD1JWKB0SEXvlrlhsW1aEMVH8lFh4jCdNCnNr8nvSm9/IUxRLH0Rjg0v8fOQgQKBgQDy2qBoclYKfzUavg+JN/FpCOtpKR4kZgbMbH6eJFr/A8/nXfETA+YGmc1fS/MZiuPoou+b3R0EJXhkfTZNw7FwXg4wOIpqhDZLyq8DxOdVWCxV/K8W+k/TQSIKg26TA1mQYEXAnejribgB09aV8SgXh8iz2fZB+wmRKjrm8m/nLw==" />
 
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.MapActivity" />

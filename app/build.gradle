@@ -19,19 +19,12 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
     signingConfigs {
-        debug {
-            storeFile new File("/Users/wzl-pc/Library/Android/MyKeystore.keystore")
-            storePassword PASSWORD
-            keyAlias "MyKey"
-            keyPassword PASSWORD
-        }
-
         release {
             storeFile new File("/Users/wzl-pc/Library/Android/MyKeystore.keystore")
             storePassword PASSWORD
@@ -59,9 +52,9 @@ dependencies {
     compile 'cn.bmob.android:bmob-sdk:3.5.0'
     compile 'cn.bmob.android:http-legacy:1.0'
     compile 'com.github.bumptech.glide:glide:4.0.0-RC0'
-    compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.android.support:cardview-v7:25.3.1'
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
     apt 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile ('com.taobao.android:alisdk-hotfix:2.0.9')
 }
