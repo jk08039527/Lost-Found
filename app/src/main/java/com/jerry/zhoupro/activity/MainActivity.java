@@ -75,6 +75,7 @@ public class MainActivity extends BaseActivity {
                 setContentFragment(Constants.TAB_FIND);
                 break;
             case R.id.iv_release:
+//                toast(R.string.data_load_failed);
                 if (mReleasePopWindow == null) {
                     mReleasePopWindow = new ReleasePopWindow(this, new ReleasePopWindow.PopMenuClickListener() {
                         @Override

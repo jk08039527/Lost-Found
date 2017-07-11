@@ -10,6 +10,7 @@ import com.jerry.zhoupro.data.UserManager;
 import com.jerry.zhoupro.listener.MyTextWatcherListener;
 import com.jerry.zhoupro.util.Mlog;
 import com.jerry.zhoupro.util.PatternsUtil;
+import com.jerry.zhoupro.util.RxBus;
 import com.jerry.zhoupro.util.ViewUtil;
 import com.jerry.zhoupro.widget.MyEditText;
 import com.jerry.zhoupro.widget.NoticeDialog;
@@ -134,30 +135,7 @@ public class RegisterActivity extends TitleBaseActivity {
                     @Override
                     public void onClick(View v) {
                         noticeDialog.dismiss();
-                        mUser = new User();
-                        mUser.setUsername(mPhone);
-                        mUser.setMobilePhoneNumber(mPhone);
-                        mUser.setMobilePhoneNumberVerified(false);
-                        mUser.setPassword(mPwd);
-                        mUser.setMobilePhoneNumberVerified(true);
-                        mUser.setNickname(mEtNickname.getText().toString().trim());
-                        mUser.signUp(new SaveListener<User>() {
-                            @Override
-                            public void done(final User s, final BmobException e) {
-                                if (e != null) {
-                                    Mlog.e(e.toString());
-                                    switch (e.getErrorCode()) {
-                                        case 202:
-                                            toast(R.string.already_register);
-                                            return;
-                                        default:
-                                            toast(R.string.register_fail);
-                                            return;
-                                    }
-                                }
-                                executeVerifyCallBack();
-                            }
-                        });
+                        executeVerifyCallBack();
                     }
                 });
                 break;
@@ -198,8 +176,31 @@ public class RegisterActivity extends TitleBaseActivity {
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_OK) { return; }
-        UserManager.getInstance().saveToLocal(mUser);
-        setResult(RESULT_OK);
-        finish();
+        mUser = new User();
+        mUser.setUsername(mPhone);
+        mUser.setMobilePhoneNumber(mPhone);
+        mUser.setMobilePhoneNumberVerified(false);
+        mUser.setPassword(mPwd);
+        mUser.setMobilePhoneNumberVerified(true);
+        mUser.setNickname(mEtNickname.getText().toString().trim());
+        mUser.signUp(new SaveListener<User>() {
+            @Override
+            public void done(final User s, final BmobException e) {
+                if (e != null) {
+                    Mlog.e(e.toString());
+                    switch (e.getErrorCode()) {
+                        case 202:
+                            toast(R.string.already_register);
+                            return;
+                        default:
+                            toast(R.string.register_fail);
+                            return;
+                    }
+                }
+                UserManager.getInstance().saveToLocal(mUser);
+                RxBus.getDefault().post(mUser);
+                finish();
+            }
+        });
     }
 }

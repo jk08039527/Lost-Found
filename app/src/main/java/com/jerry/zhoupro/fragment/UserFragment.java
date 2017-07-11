@@ -21,6 +21,7 @@ import com.jerry.zhoupro.util.DataCleanUtils;
 import com.jerry.zhoupro.util.FileUtils;
 import com.jerry.zhoupro.util.Mlog;
 import com.jerry.zhoupro.util.PreferenceUtil;
+import com.jerry.zhoupro.util.RxBus;
 import com.jerry.zhoupro.util.ShareUtils;
 import com.jerry.zhoupro.util.TimeTask;
 import com.jerry.zhoupro.view.UserContentView;
@@ -34,6 +35,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +48,10 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by wzl-pc on 2017/5/9.
@@ -60,6 +66,7 @@ public class UserFragment extends TitleBaseFragment {
     private String uid = Key.NIL;
     private String photoUrl;
     private String PATH_HEAD_PICTURE;
+    private Subscription rxSubscription;
 
     @Override
     public int getContentLayout() {
@@ -339,5 +346,27 @@ public class UserFragment extends TitleBaseFragment {
 
     public void setHeadPicTemp() {
         PATH_HEAD_PICTURE = Constants.PATH_SETTING_CATCH + System.currentTimeMillis() + Key.JPG;
+    }
+
+    @Override
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        rxSubscription = RxBus.getDefault().toObservable(User.class)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<User>() {
+                    @Override
+                    public void call(final User user) {
+                        initData();
+                    }
+                });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (!rxSubscription.isUnsubscribed()) {
+            rxSubscription.unsubscribe();
+        }
     }
 }

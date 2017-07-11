@@ -8,6 +8,7 @@ import com.jerry.zhoupro.listener.MyTextWatcherListener;
 import com.jerry.zhoupro.util.ImeUtils;
 import com.jerry.zhoupro.util.Mlog;
 import com.jerry.zhoupro.util.PreferenceUtil;
+import com.jerry.zhoupro.util.RxBus;
 import com.jerry.zhoupro.util.StringUtils;
 import com.jerry.zhoupro.util.ViewUtil;
 import com.jerry.zhoupro.widget.MyEditText;
@@ -120,9 +121,9 @@ public class LoginActivity extends TitleBaseActivity {
                             toast(R.string.login_fail);
                             return;
                         }
-                        UserManager.getInstance().saveToLocal(user);
                         ImeUtils.hideIme(LoginActivity.this);
-                        setResult(RESULT_OK);
+                        UserManager.getInstance().saveToLocal(user);
+                        RxBus.getDefault().post(user);
                         finish();
                     }
                 });
