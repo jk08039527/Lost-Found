@@ -52,13 +52,13 @@ public class ShareUtils {
             public void onResult(SHARE_MEDIA platform) {
                 Log.d("plat", "platform" + platform);
                 if (platform != SHARE_MEDIA.SMS) {
-                    ToastTools.showShort(activity, R.string.umeng_share_completed);
+                    ToastUtils.showShort(activity, R.string.umeng_share_completed);
                 }
             }
 
             @Override
             public void onError(SHARE_MEDIA platform, Throwable t) {
-                ToastTools.showShort(activity, R.string.umeng_share_failed);
+                ToastUtils.showShort(activity, R.string.umeng_share_failed);
                 if (t != null) {
                     Log.d("throw", "throw" + t.getMessage());
                 }
@@ -66,7 +66,7 @@ public class ShareUtils {
 
             @Override
             public void onCancel(SHARE_MEDIA platform) {
-                ToastTools.showShort(activity, R.string.umeng_share_canceled);
+                ToastUtils.showShort(activity, R.string.umeng_share_canceled);
             }
         };
         new ShareAction(activity)

@@ -2,10 +2,10 @@ package com.jerry.zhoupro.util;
 
 import java.lang.reflect.Method;
 
-import com.jerry.zhoupro.MyApplication;
+import com.jerry.zhoupro.app.MyApplication;
 import com.jerry.zhoupro.R;
-import com.jerry.zhoupro.activity.SplashActivity;
-import com.jerry.zhoupro.command.Key;
+import com.jerry.zhoupro.ui.welcome.SplashActivity;
+import com.jerry.zhoupro.app.Key;
 
 import android.content.ComponentName;
 import android.content.Context;

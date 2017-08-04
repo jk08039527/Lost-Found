@@ -3,41 +3,73 @@ package com.jerry.zhoupro.util;
 import android.os.CountDownTimer;
 
 /**
- * Created by wzl-pc on 2017/5/22.
+ * @author wzl 2015-7-30 类说明：倒计时工具
  */
+public class TimeTask extends CountDownTimer {
 
-public class TimeTask {
+	private CountOver mCountOver;
 
-    private CountDownTimer mCountDownTimer;
-    private TimeOverListerner mTimeOverListerner;
+	public TimeTask(long millisInFuture, long countDownInterval) {
+		super(millisInFuture, countDownInterval);
+	}
 
-    public TimeTask(int time_ms, TimeOverListerner timeOverListerner) {
-        mCountDownTimer = new CountDownTimer(time_ms, time_ms) {
+	public TimeTask(long millisInFuture, long countDownInterval, CountOver countOver) {
+		super(millisInFuture, countDownInterval);
+		this.mCountOver = countOver;
+	}
 
-            @Override
-            public void onTick(final long millisUntilFinished) {
+	@Override
+	public void onTick(long millisUntilFinished) {
+		if (mCountOver != null) {
+			mCountOver.onCountTick(millisUntilFinished);
+		}
+	}
 
-            }
+	@Override
+	public void onFinish() {
+		this.cancel();
+		if (mCountOver != null) {
+			mCountOver.onCountOver(true);
+		}
+	}
 
-            @Override
-            public void onFinish() {
-                if (mTimeOverListerner != null) { mTimeOverListerner.onFinished(); }
-                this.cancel();
-            }
-        };
-        mTimeOverListerner = timeOverListerner;
-    }
+	public void setOnCountOverListener(CountOver countOver) {
+		this.mCountOver = countOver;
+	}
 
-    public void start() {
-        if (mCountDownTimer != null) { mCountDownTimer.start(); }
-    }
+	public static class OverDo {
 
-    public void cancel() {
-        if (mCountDownTimer != null) { mCountDownTimer.cancel(); }
-    }
+		private CountDownTimer mCountDownTimer;
 
-    public interface TimeOverListerner {
+		public OverDo(int time_ms, final TimeOverListerner timeOverListerner) {
+			mCountDownTimer = new CountDownTimer(time_ms, time_ms) {
 
-        void onFinished();
-    }
+				@Override
+				public void onTick(final long millisUntilFinished) {
+
+				}
+
+				@Override
+				public void onFinish() {
+					if (timeOverListerner != null) { timeOverListerner.onFinished(); }
+					if (mCountDownTimer != null) { mCountDownTimer.cancel(); }
+				}
+			}.start();
+		}
+	}
+
+	public interface TimeOverListerner {
+
+		void onFinished();
+	}
+
+	/**
+	 * 倒计时回调接口
+	 */
+	public interface CountOver {
+
+		void onCountOver(boolean isFinish);
+
+		void onCountTick(long millisUntilFinished);
+	}
 }

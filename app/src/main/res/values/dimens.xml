@@ -6,6 +6,7 @@
     <dimen name="half_px">0.5px</dimen>
     <dimen name="half_dp">0.5dp</dimen>
     <dimen name="one_dp">1dp</dimen>
+    <dimen name="three_dp">3dp</dimen>
     <dimen name="four_dp">4dp</dimen>
     <dimen name="five_dp">5dp</dimen>
     <dimen name="seven_dp">7dp</dimen>
@@ -31,6 +32,7 @@
     <dimen name="fifty_dp">50dp</dimen>
     <dimen name="inputbox_height">51dp</dimen>
     <dimen name="sixty_dp">60dp</dimen>
+    <dimen name="_65dp">65dp</dimen>
     <dimen name="seventy_dp">70dp</dimen>
     <dimen name="eighty_dp">80dp</dimen>
 

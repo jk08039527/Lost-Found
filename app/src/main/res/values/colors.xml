@@ -29,6 +29,7 @@
     <color name="blue_second">#5782ac</color>
     <color name="blue_pressed">#1088ff</color>
     <color name="blue_disable">#7cbeff</color>
+    <color name="dark_blue">#abc0d5</color>
 
     <!-- text color -->
     <color name="primary_text_color">#333333</color>

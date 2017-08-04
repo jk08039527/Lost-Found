@@ -3,7 +3,7 @@ package com.jerry.zhoupro.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.jerry.zhoupro.command.Key;
+import com.jerry.zhoupro.app.Key;
 
 import android.text.TextUtils;
 

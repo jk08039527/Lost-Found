@@ -244,6 +244,29 @@ public class FileUtils {
         return bitmap;
     }
 
+    /**
+     * 生成一个图片的名称
+     *
+     * @param rootUrl
+     * @param date
+     * @param imgId
+     * @param imgInfo
+     * @return
+     */
+    public static String generyImgUrl(Object rootUrl, Object date, Object imgId, String imgInfo) {
+        StringBuilder bf = new StringBuilder();
+        try {
+            String ext = imgInfo.substring(imgInfo.lastIndexOf(".") + 1,
+                    imgInfo.length()).toLowerCase();
+            bf.append(rootUrl).append("/");
+            bf.append(date).append("/");
+            bf.append(imgId).append(ext);
+        } catch (Exception e) {
+            bf.append("");
+        }
+        return bf.toString();
+    }
+
     public static Uri saveLocalBitmap(final Bitmap bitmap, final String path) {
         File img = new File(path);
         if (!createFile(path)) { return null; }

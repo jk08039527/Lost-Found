@@ -5,7 +5,7 @@
         android:id="@+id/np_numberpicker_input"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        class="com.jerry.zhoupro.pop.NumberPicker$CustomTextView"
+        class="com.jerry.zhoupro.widget.NumberPicker$CustomTextView"
         android:background="@null"
         android:gravity="center"
         android:maxLines="1"

@@ -3,8 +3,8 @@ package com.jerry.zhoupro.widget;
 import java.util.regex.Pattern;
 
 import com.jerry.zhoupro.R;
-import com.jerry.zhoupro.command.Key;
-import com.jerry.zhoupro.listener.MyTextWatcherListener;
+import com.jerry.zhoupro.app.Key;
+import com.jerry.zhoupro.presenter.listener.MyTextWatcherListener;
 
 import android.content.Context;
 import android.content.res.TypedArray;

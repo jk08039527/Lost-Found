@@ -5,7 +5,10 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.support.annotation.DimenRes;
+import android.text.Selection;
+import android.text.Spannable;
 import android.view.View;
+import android.widget.EditText;
 
 public class DisplayUtil {
 
@@ -86,5 +89,16 @@ public class DisplayUtil {
 	 */
 	public static int getDimensionPixelSize(Context context, @DimenRes int dimenId) {
 		return context.getResources().getDimensionPixelSize(dimenId);
+	}
+
+	/**
+	 * 切换后将EditText光标置于末尾
+	 */
+	public static void setEditSelection(EditText edittext) {
+		CharSequence mCharSequence = edittext.getText();
+		if (mCharSequence != null) {
+			Spannable sTv = (Spannable) mCharSequence;
+			Selection.setSelection(sTv, mCharSequence.length());
+		}
 	}
 }

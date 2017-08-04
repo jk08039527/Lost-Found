@@ -91,7 +91,7 @@ public class StringUtils {
         if (null == src || repeats <= 0) {
             return src;
         } else {
-            StringBuffer bf = new StringBuffer();
+            StringBuilder bf = new StringBuilder();
             for (int i = 0; i < repeats; i++) {
                 bf.append(src);
             }
@@ -224,7 +224,7 @@ public class StringUtils {
     public static String toStr(String[] ary, String s) {
         if (ary == null || ary.length < 1)
             return "";
-        StringBuffer bf = new StringBuffer();
+        StringBuilder bf = new StringBuilder();
         bf.append(s);
         bf.append(ary[0]);
         for (int i = 1; i < ary.length; i++) {
@@ -323,7 +323,7 @@ public class StringUtils {
      * @param entry
      * @param value
      */
-    public static void generyXmlEntry(StringBuffer bf, String entry, Object value) {
+    public static void generyXmlEntry(StringBuilder bf, String entry, Object value) {
         bf.append("<").append(entry).append(">");
         if (null != value)
             bf.append(value.toString().trim());
@@ -383,44 +383,7 @@ public class StringUtils {
         return null == value ? "" : value;
     }
 
-    /**
-     * 生成一个图片的名称
-     *
-     * @param rootUrl
-     * @param date
-     * @param imgId
-     * @param imgInfo
-     * @return
-     */
-    public static String generyImgUrl(Object rootUrl, Object date, Object imgId, Object imgInfo) {
-        StringBuffer bf = new StringBuffer();
-        try {
-            String ext = StringUtils.getFileExtName((String) imgInfo);
-            bf.append(rootUrl).append("/");
-            bf.append(date).append("/");
-            bf.append(imgId).append(ext);
-        } catch (Exception e) {
-            bf.append("");
-        }
-        return bf.toString();
-    }
-
-    /**
-     * 获取文件的扩展名
-     *
-     * @param oldName
-     * @return
-     */
-    public static String getFileExtName(String oldName) {
-        String ext = "";
-        int lastIndex = oldName.lastIndexOf(".");
-        if (lastIndex > 0) {
-            ext = oldName.substring(lastIndex);
-        }
-        return ext;
-    }
-
-    public static void generyXmlEntryCData(StringBuffer bf, String entry, Object value) {
+    public static void generyXmlEntryCData(StringBuilder bf, String entry, Object value) {
         bf.append("<").append(entry).append("><![CDATA[");
         if (null != value)
             bf.append(value);
@@ -468,7 +431,7 @@ public class StringUtils {
         if (random == null) {
             return null;
         }
-        StringBuffer ret = new StringBuffer();
+        StringBuilder ret = new StringBuilder();
         for (int i = 0; i < length; i++) {
             ret.append(CHAR_RANDOMS[random.nextInt(CHAR_RANDOMS.length)]);
         }
@@ -501,7 +464,7 @@ public class StringUtils {
             return null;
         }
         int length = random.nextInt(max - min + 1) + min;
-        StringBuffer ret = new StringBuffer();
+        StringBuilder ret = new StringBuilder();
         for (int i = 0; i < length; i++) {
             ret.append(CHAR_RANDOMS[random.nextInt(CHAR_RANDOMS.length)]);
         }
@@ -526,22 +489,22 @@ public class StringUtils {
         String inputstr = str;
         String temptext = "";
         if (null != inputstr && !"".equals(inputstr)) {
-            if (inputstr.indexOf("&amp;") > -1) {
+            if (inputstr.contains("&amp;")) {
                 inputstr = inputstr.replaceAll("&amp;", "&");
             }
-            if (inputstr.indexOf("&lt;") > -1) {
+            if (inputstr.contains("&lt;")) {
                 inputstr = inputstr.replaceAll("&lt;", "<");
             }
-            if (inputstr.indexOf("&gt;") > -1) {
+            if (inputstr.contains("&gt;")) {
                 inputstr = inputstr.replaceAll("&gt;", ">");
             }
-            if (inputstr.indexOf("&apos;") > -1) {
+            if (inputstr.contains("&apos;")) {
                 inputstr = inputstr.replaceAll("&apos;", "'");
             }
-            if (inputstr.indexOf("&quot;") > -1) {
+            if (inputstr.contains("&quot;")) {
                 inputstr = inputstr.replaceAll("&quot;", "\"");
             }
-            if (inputstr.indexOf("&#034;") > -1) {
+            if (inputstr.contains("&#034;")) {
                 inputstr = inputstr.replaceAll("&#034;", "\"");
             }
             temptext = inputstr;

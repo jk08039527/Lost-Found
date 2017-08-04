@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@+id/frame"
+             xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="@dimen/fifty_dp"
+             android:layout_height="@dimen/_65dp"
+             android:background="@color/white">
+
+    <TextView
+        android:layout_width="@dimen/half_dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="#ccd9e5"/>
+
+    <LinearLayout
+        android:id="@+id/date_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:gravity="top|left"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="@dimen/six_dp"
+            android:layout_height="@dimen/six_dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ball_light_blue_bg"/>
+
+        <TextView
+            android:id="@+id/date_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/three_dp"
+            android:gravity="center"
+            android:textColor="@color/blue_second"
+            android:textSize="@dimen/_12sp"/>
+    </LinearLayout>
+</FrameLayout>
+

@@ -56,7 +56,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_release_title" />
 
-    <com.jerry.zhoupro.view.MeasureGridView
+    <com.jerry.zhoupro.widget.MeasureGridView
         android:id="@+id/gridView"
         android:layout_width="0dp"
         android:layout_height="10dp"

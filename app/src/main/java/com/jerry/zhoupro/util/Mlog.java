@@ -1,6 +1,6 @@
 package com.jerry.zhoupro.util;
 
-import com.jerry.zhoupro.command.Key;
+import com.jerry.zhoupro.app.Key;
 
 import android.text.TextUtils;
 import android.util.Log;

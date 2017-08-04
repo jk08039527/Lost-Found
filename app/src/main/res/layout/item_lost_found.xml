@@ -6,7 +6,7 @@
 
         <variable
             name="thing"
-            type="com.jerry.zhoupro.bean.ThingInfoBean" />
+            type="com.jerry.zhoupro.model.bean.ThingInfoBean" />
 
         <variable
             name="myClick"

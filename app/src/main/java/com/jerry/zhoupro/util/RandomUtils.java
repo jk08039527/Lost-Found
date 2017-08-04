@@ -35,7 +35,7 @@ public class RandomUtils {
         if (random == null) {
             return null;
         }
-        StringBuffer ret = new StringBuffer();
+        StringBuilder ret = new StringBuilder();
         for (int i = 0; i < length; i++) {
             ret.append(CHAR_RANDOMS[random.nextInt(CHAR_RANDOMS.length)]);
         }
@@ -55,7 +55,7 @@ public class RandomUtils {
         if (random == null) {
             return -1;
         }
-        StringBuffer ret = new StringBuffer();
+        StringBuilder ret = new StringBuilder();
         for (int i = 0; i < length; i++) {
             if (i == 0) {
                 ret.append(CHAR_RANDOMS_NONZERO[random.nextInt(CHAR_RANDOMS_NONZERO.length)]);
