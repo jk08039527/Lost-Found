@@ -11,10 +11,11 @@ import android.view.View;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView{
 
     private Unbinder mUnbinder;
     private RefreshDialog progressDialog;
+    private T mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,5 +80,30 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void toast(int resId) {
         ToastUtils.showShort(this,resId);
+    }
+
+    @Override
+    public void showErrorMsg(final String error) {
+
+    }
+
+    @Override
+    public void stateNormal() {
+
+    }
+
+    @Override
+    public void stateError() {
+
+    }
+
+    @Override
+    public void stateEmpty() {
+
+    }
+
+    @Override
+    public void stateLoading() {
+
     }
 }

@@ -1,8 +1,3 @@
-/*
- * 作者		刘国山 lgs@yitong.com.cn
- * 开发环境	Win7 Eclipse3.5 JDK1.6
- * 开发日期	2012-7-19
- */
 package com.jerry.zhoupro.util;
 
 /**

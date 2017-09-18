@@ -1,8 +1,3 @@
-/*
- * 作者		刘国山 (刘国山)
- * 开发环境	WindowsXp MyEclipse6.5 JDK1.6.0_22
- * 开发日期	2011-4-15
- */
 package com.jerry.zhoupro.util;
 
 import java.util.regex.Matcher;
