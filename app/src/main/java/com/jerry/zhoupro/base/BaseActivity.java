@@ -1,17 +1,17 @@
 package com.jerry.zhoupro.base;
 
-import com.jerry.zhoupro.widget.RefreshDialog;
 import com.jerry.zhoupro.util.ToastUtils;
+import com.jerry.zhoupro.widget.RefreshDialog;
 import com.umeng.analytics.MobclickAgent;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView{
+public abstract class BaseActivity<T extends BasePresenter> extends FragmentActivity implements BaseView{
 
     private Unbinder mUnbinder;
     private RefreshDialog progressDialog;
@@ -35,10 +35,13 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     protected abstract void initData();
 
+    @Override
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
     }
+
+    @Override
     public void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);

@@ -2,7 +2,6 @@ package com.jerry.zhoupro.base;
 
 import com.jerry.zhoupro.R;
 
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,9 +9,6 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-/**
- * A simple {@link AppCompatActivity} subclass.
- */
 public abstract class TitleBaseActivity extends BaseActivity {
 
     @BindView(R.id.back)

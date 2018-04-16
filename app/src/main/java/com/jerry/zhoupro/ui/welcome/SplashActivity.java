@@ -9,12 +9,12 @@ import com.jerry.zhoupro.widget.SkipView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 
-public class SplashActivity extends AppCompatActivity implements SkipView.SkipListener {
+public class SplashActivity extends FragmentActivity implements SkipView.SkipListener {
 
     private boolean canSkip = true;// 是否能跳到首页
 

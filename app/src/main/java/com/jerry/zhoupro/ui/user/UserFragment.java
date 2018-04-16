@@ -91,7 +91,7 @@ public class UserFragment extends TitleBaseFragment {
             public void changePicClick() {
                 if (UserManager.hasLogin()) {
                     if (itemPopupWindow == null) {
-                        List<String> list = new ArrayList<String>();
+                        List<String> list = new ArrayList<>();
                         list.add(getString(R.string.take_photo));
                         list.add(getString(R.string.select_photo));
                         itemPopupWindow = new ItemPopupWindow(getActivity(), list, new ItemPopupWindow.ActionLister() {
@@ -123,6 +123,8 @@ public class UserFragment extends TitleBaseFragment {
                                         intent = new Intent(Intent.ACTION_PICK);
                                         intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                                         startActivityForResult(intent, Key.PICK_PHOTO);
+                                        break;
+                                    default:
                                         break;
                                 }
                             }

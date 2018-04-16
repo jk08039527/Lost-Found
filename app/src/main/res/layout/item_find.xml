@@ -67,7 +67,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title"
-                app:srcCompat="@drawable/bg_pop_cancel" />
+                android:src="@drawable/bg_pop_cancel" />
 
             <TextView
                 android:id="@+id/tv_content"

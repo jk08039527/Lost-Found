@@ -8,15 +8,15 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.widget.EditText;
 
 
 /**
  * 带清空按钮的EditText
  */
-public class MyEditText extends AppCompatEditText {
+public class MyEditText extends EditText {
 
 	private Drawable dRight;
 	private Rect rBounds;

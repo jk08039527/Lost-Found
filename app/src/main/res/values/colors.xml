@@ -40,6 +40,6 @@
     <color name="text_gray">#bebebe</color>
     <color name="alertdialog_line">#c6c6c6</color>
     <color name="skip_text_color">#f5f5f5</color>
-
+    <color name="state_text_color">#666666</color>
 
 </resources>

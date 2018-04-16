@@ -71,7 +71,7 @@
                 app:layout_constraintLeft_toLeftOf="@+id/iv_releaser"
                 app:layout_constraintRight_toRightOf="@+id/tv_releaser_nickname"
                 app:layout_constraintTop_toBottomOf="@+id/tv_release_title"
-                app:srcCompat="@drawable/bg_pop_cancel" />
+                android:src="@drawable/bg_pop_cancel" />
 
             <TextView
                 android:id="@+id/tv_content"

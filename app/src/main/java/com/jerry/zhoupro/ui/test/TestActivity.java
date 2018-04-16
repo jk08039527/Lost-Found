@@ -13,8 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.NotificationCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -23,7 +22,7 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TestActivity extends AppCompatActivity {
+public class TestActivity extends FragmentActivity {
 
     @BindView(R.id.rv_list)
     RecyclerView mRvList;
@@ -83,7 +82,7 @@ public class TestActivity extends AppCompatActivity {
         Notification notification = null;
         boolean isMiUIV6 = true;
         try {
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+            Notification.Builder builder = new Notification.Builder(this);
             builder.setContentTitle("您有" + number + "未读消息");
             builder.setTicker("您有" + number + "未读消息");
             builder.setAutoCancel(true);
